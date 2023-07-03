@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,7 +21,6 @@ import { RodapeComponent } from './componente/rodape/rodape.component';
     AppComponent,
     ObjetosCustomizadosListaComponent,
     ObjetosCustomizadosCadastroComponent,
-    ObjetosCustomizadosCadastroComponent,
     CabecalhoComponent,
     RodapeComponent
   ],
@@ -30,7 +30,8 @@ import { RodapeComponent } from './componente/rodape/rodape.component';
     ButtonModule,
     FormsModule,
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

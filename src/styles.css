@@ -17,11 +17,25 @@ app-cabecalho {
   grid-area: h;
 }
 
+.l-esquerdo {
+  background: rgb(168, 167, 167);
+  --grid-column-start: 1;
+  --grid-column-end: 3;
+  grid-area: e;
+}
+
 main {
   background: rgb(255, 255, 255);
   --grid-column-start: 1;
   --grid-column-end: 3;
   grid-area: m;
+}
+
+.l-direito {
+  background: rgb(168, 167, 167);
+  --grid-column-start: 1;
+  --grid-column-end: 3;
+  grid-area: d;
 }
 
 /* aside {
@@ -39,11 +53,11 @@ app-rodape {
   grid-area: f;
 }
 
-.container {
+app-root {
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 1fr 9fr 1fr;
   grid-template-rows: 10vh 80vh 10vh;
-  grid-template-areas: "h h"
-                        "m m"
-                        "f f"
+  grid-template-areas: "h h h"
+                        "e m d"
+                        "f f f"
 }

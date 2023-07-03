@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { ObjetosCustomizadosService } from '../objetos-customizados.service';
+import { ObjetoCustomizado } from '../objetos-customizados';
+
 
 @Component({
   selector: 'app-objetos-customizados-cadastro',
@@ -10,13 +13,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ObjetosCustomizadosCadastroComponent {
     cadastroForm: FormGroup;
 
-    constructor(private formBuilder: FormBuilder) {
+    constructor(private formBuilder: FormBuilder,
+                private _objetoCustomizadoService: ObjetosCustomizadosService
+      ) {
       this.cadastroForm = this.formBuilder.group({
-        id: [null, Validators.required],
+        id: [null],
         descricao: [null, Validators.required],
         dataCadastro: [null, Validators.required],
         status: [null, Validators.required],
-        anotacao: [null],
+        anotacao: [null, Validators.required],
         arquivo: [null],
         ativo: [true]
       });
@@ -24,8 +29,8 @@ export class ObjetosCustomizadosCadastroComponent {
 
     cadastrar() {
       if (this.cadastroForm.valid) {
-        // Lógica para salvar os dados no servidor
-        console.log(this.cadastroForm.value);
+        console.log(this.cadastroForm.value)
+        this._objetoCustomizadoService.criar(this.cadastroForm.value).subscribe()
       }
     }
   }
