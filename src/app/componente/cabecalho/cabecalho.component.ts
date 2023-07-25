@@ -17,4 +17,8 @@ export class CabecalhoComponent {
   redirectListaComponent(){
     this.router.navigate(['../objetos-customizados-lista']);
   }
+
+  redirectProcessoListaComponent(){
+    this.router.navigate(['../processo-lista']);
+  }
 }

@@ -15,6 +15,14 @@ import { ButtonModule } from 'primeng/button';
 
 import { CabecalhoComponent } from './componente/cabecalho/cabecalho.component';
 import { RodapeComponent } from './componente/rodape/rodape.component';
+import { ProcessoListaComponent } from './componente/processo/processo-lista/processo-lista.component';
+
+import {ToastModule} from 'primeng/toast';
+import {TableModule} from 'primeng/table';
+import {DropdownModule} from 'primeng/dropdown';
+
+
+
 
 @NgModule({
   declarations: [
@@ -22,7 +30,8 @@ import { RodapeComponent } from './componente/rodape/rodape.component';
     ObjetosCustomizadosListaComponent,
     ObjetosCustomizadosCadastroComponent,
     CabecalhoComponent,
-    RodapeComponent
+    RodapeComponent,
+    ProcessoListaComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +40,10 @@ import { RodapeComponent } from './componente/rodape/rodape.component';
     FormsModule,
     CommonModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastModule,
+    TableModule,
+    DropdownModule
   ],
   providers: [],
   bootstrap: [AppComponent]

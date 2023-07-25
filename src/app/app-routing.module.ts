@@ -4,6 +4,7 @@ import { CommonModule, } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { ObjetosCustomizadosListaComponent } from './componente/objetos-customizados/objetos-customizados-lista/objetos-customizados-lista.component';
 import { ObjetosCustomizadosCadastroComponent } from './componente/objetos-customizados/objetos-customizados-cadastro/objetos-customizados-cadastro.component';
+import { ProcessoListaComponent } from './componente/processo/processo-lista/processo-lista.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'objetos-customizados-cadastro',
     component: ObjetosCustomizadosCadastroComponent
+  },
+  {
+    path: 'processo-lista',
+    component: ProcessoListaComponent
   }
 ];
 

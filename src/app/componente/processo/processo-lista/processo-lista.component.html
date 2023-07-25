@@ -1,0 +1,103 @@
+<p-toast></p-toast>
+
+<div class="card">
+    <h5>Processos</h5>
+    <p-table [value]="listaProcessos" dataKey="id" >
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Número</th>
+                <th>Descrição</th>
+                <th>Data Cadastro</th>
+                <th>Data Início</th>
+                <th>Data Prevista</th>
+                <th>Data Final</th>
+                <th>Valor Causa</th>
+                <th>Ativo</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-processo>
+            <tr>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="processo.numero" (blur)="salvarProcesso(processo)">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{processo.numero}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="processo.descricao" required (blur)="salvarProcesso(processo)">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{processo.descricao}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                  <p-cellEditor>
+                      <ng-template pTemplate="input">
+                          <input pInputText type="text" [(ngModel)]="processo.dataCadastro" (blur)="salvarProcesso(processo)">
+                      </ng-template>
+                      <ng-template pTemplate="output">
+                          {{processo.dataCadastro}}
+                      </ng-template>
+                  </p-cellEditor>
+              </td>
+              <td pEditableColumn>
+                  <p-cellEditor>
+                      <ng-template pTemplate="input">
+                          <input pInputText type="text" [(ngModel)]="processo.dataInicio" (blur)="salvarProcesso(processo)">
+                      </ng-template>
+                      <ng-template pTemplate="output">
+                          {{processo.dataInicio}}
+                      </ng-template>
+                  </p-cellEditor>
+              </td>
+              <td pEditableColumn>
+                  <p-cellEditor>
+                      <ng-template pTemplate="input">
+                          <input pInputText type="text" [(ngModel)]="processo.dataPrevista" (blur)="salvarProcesso(processo)">
+                      </ng-template>
+                      <ng-template pTemplate="output">
+                          {{processo.dataPrevista}}
+                      </ng-template>
+                  </p-cellEditor>
+              </td>
+              <td pEditableColumn>
+                  <p-cellEditor>
+                      <ng-template pTemplate="input">
+                          <input pInputText type="text" [(ngModel)]="processo.dataFinal" (blur)="salvarProcesso(processo)">
+                      </ng-template>
+                      <ng-template pTemplate="output">
+                          {{processo.dataFinal}}
+                      </ng-template>
+                  </p-cellEditor>
+              </td>
+              <td pEditableColumn>
+                  <p-cellEditor>
+                      <ng-template pTemplate="input">
+                          <input pInputText type="text" [(ngModel)]="processo.valorCausa" (blur)="salvarProcesso(processo)">
+                      </ng-template>
+                      <ng-template pTemplate="output">
+                          {{processo.valorCausa}}
+                      </ng-template>
+                  </p-cellEditor>
+              </td>
+              <td pEditableColumn>
+                  <p-cellEditor>
+                      <ng-template pTemplate="input">
+                          <input pInputText type="text" [(ngModel)]="processo.ativo" (blur)="salvarProcesso(processo)">
+                      </ng-template>
+                      <ng-template pTemplate="output">
+                          {{processo.ativo}}
+                      </ng-template>
+                  </p-cellEditor>
+              </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
