@@ -1,11 +1,20 @@
 import { Processo } from '../processo';
 import { ProcessoService } from '../processo.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 
 import { LazyLoadEvent } from 'primeng/api';
 import { SelectItem } from 'primeng/api';
-import {MessageService} from 'primeng/api';
+import { MessageService } from 'primeng/api';
+import { InputMask } from 'primeng/inputmask';
+
+import { UtilsService } from 'src/app/Utils/utils.serive';
+
+// import { createNumberMask } from 'text-mask-core'; // Importe a função createNumberMask
+// import { default as numberMask } from 'text-mask-addons/dist/createNumberMask';
+
+
+
 
 @Component({
   selector: 'app-processo-lista',
@@ -26,10 +35,23 @@ export class ProcessoListaComponent implements OnInit {
   filtro: string = '';
   favoritos: boolean = false;
 
-  constructor(private processoService: ProcessoService, private messageService: MessageService) { }
+  constructor(private processoService: ProcessoService,
+              private messageService: MessageService,
+              private utilsService: UtilsService
+
+              ) { }
 
   ngOnInit(): void {
     this.listarProcessos();
+  }
+
+  formatarData(data: string) {
+    let d = new Date(data);
+    let dia = ('0' + d.getDate()).slice(-2);
+    let mes = ('0' + (d.getMonth() + 1)).slice(-2);
+    let ano = d.getFullYear();
+
+    return [dia, mes, ano].join('/');
   }
 
   listarProcessos(): void {
@@ -44,7 +66,19 @@ export class ProcessoListaComponent implements OnInit {
     this.processoService.listar(this.paginaAtual, this.filtro, this.favoritos)
     .subscribe(
       (processos: Processo[]) => {
-        this.listaProcessos = processos;
+        // this.listaProcessos = processos.map(processo => ({
+        //   ...processo,
+        //   data: new Date(processo.dataCadastro).toLocaleDateString('pt-BR')
+        // }));
+
+        this.listaProcessos = processos.map(processo => ({
+          ...processo,
+          dataCadastro: this.utilsService.formatarData(processo.dataCadastro),
+          dataInicio: this.utilsService.formatarData(processo.dataInicio),
+          dataPrevista: this.utilsService.formatarData(processo.dataPrevista),
+          dataFinal: this.utilsService.formatarData(processo.dataFinal),
+        }));
+
         console.log(this.listaProcessos)
       },
       (error) => {
@@ -57,4 +91,25 @@ export class ProcessoListaComponent implements OnInit {
   salvarProcesso(processo: Processo) {
     this.processoService.editar(processo).subscribe()
   }
+
+  // createNumberMask(): any {
+  //   return createNumberMask({
+  //     prefix: 'R$ ',
+  //     suffix: '',
+  //     thousandsSeparatorSymbol: '.',
+  //     allowDecimal: true,
+  //     decimalSymbol: ',',
+  //     decimalLimit: 2,
+  //     requireDecimal: true
+  //   });
+  // }
+
+  // mask = createNumberMask({
+  //   prefix: '$',
+  //   thousandsSeparatorSymbol: ',',
+  //   decimalSymbol: '.',
+  //   requireDecimal: true,
+  //   allowDecimal: true,
+  //   decimalLimit: 2,
+  // });
 }

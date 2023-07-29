@@ -40,7 +40,7 @@
                 <td pEditableColumn>
                   <p-cellEditor>
                       <ng-template pTemplate="input">
-                          <input pInputText type="text" [(ngModel)]="processo.dataCadastro" (blur)="salvarProcesso(processo)">
+                          <p-inputMask pInputText type="text" [(ngModel)]="processo.dataCadastro" mask="99/99/9999" slotChar="mm/dd/yyyy" (blur)="salvarProcesso(processo)"> </p-inputMask>
                       </ng-template>
                       <ng-template pTemplate="output">
                           {{processo.dataCadastro}}

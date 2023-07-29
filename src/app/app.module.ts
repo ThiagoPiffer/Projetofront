@@ -20,6 +20,10 @@ import { ProcessoListaComponent } from './componente/processo/processo-lista/pro
 import {ToastModule} from 'primeng/toast';
 import {TableModule} from 'primeng/table';
 import {DropdownModule} from 'primeng/dropdown';
+import { InputMaskModule } from 'primeng/inputmask';
+
+import { UtilsService } from './Utils/utils.serive';
+
 
 
 
@@ -32,6 +36,7 @@ import {DropdownModule} from 'primeng/dropdown';
     CabecalhoComponent,
     RodapeComponent,
     ProcessoListaComponent
+
   ],
   imports: [
     BrowserModule,
@@ -43,9 +48,10 @@ import {DropdownModule} from 'primeng/dropdown';
     HttpClientModule,
     ToastModule,
     TableModule,
-    DropdownModule
+    DropdownModule,
+    InputMaskModule
   ],
-  providers: [],
+  providers: [UtilsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
