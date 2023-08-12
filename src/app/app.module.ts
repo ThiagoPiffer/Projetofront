@@ -12,6 +12,10 @@ import { ObjetosCustomizadosListaComponent } from './componente/objetos-customiz
 import { ObjetosCustomizadosCadastroComponent } from './componente/objetos-customizados/objetos-customizados-cadastro/objetos-customizados-cadastro.component';
 
 import { ButtonModule } from 'primeng/button';
+import { MenuModule } from 'primeng/menu';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 import { CabecalhoComponent } from './componente/cabecalho/cabecalho.component';
 import { RodapeComponent } from './componente/rodape/rodape.component';
@@ -21,8 +25,10 @@ import {ToastModule} from 'primeng/toast';
 import {TableModule} from 'primeng/table';
 import {DropdownModule} from 'primeng/dropdown';
 import { InputMaskModule } from 'primeng/inputmask';
+import { DialogModule } from 'primeng/dialog';
 
 import { UtilsService } from './Utils/utils.serive';
+
 
 
 
@@ -49,7 +55,10 @@ import { UtilsService } from './Utils/utils.serive';
     ToastModule,
     TableModule,
     DropdownModule,
-    InputMaskModule
+    InputMaskModule,
+    MenuModule,
+    BrowserAnimationsModule,
+    DialogModule
   ],
   providers: [UtilsService],
   bootstrap: [AppComponent]

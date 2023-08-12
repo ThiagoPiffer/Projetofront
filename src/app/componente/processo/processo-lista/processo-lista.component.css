@@ -1,0 +1,51 @@
+/* Torna o botão branco com borda transparente e remove o contorno ao clicar */
+.icon-button {
+  background-color: white;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: none; /* Remover contorno ao clicar e focar */
+}
+
+/* Define a cor preta para o ícone por padrão */
+.icon-button svg {
+  fill: black;
+}
+
+/* Remove a cor do botão quando o mouse estiver sobre ele */
+.icon-button:hover {
+  background-color: white;
+  background-color: transparent;
+}
+
+/* Define a cor preta para o ícone quando o mouse estiver sobre o botão */
+.icon-button:hover svg {
+  fill: black;
+}
+
+/* Remove a borda azul que aparece quando o botão está focado */
+.icon-button:focus {
+  outline: none;
+  border: none;
+}
+
+/* Define a classe para o ícone de rendimentos */
+.icon-tres-pontos {
+  display: inline-block;
+  width: 24px; /* Ajuste o tamanho conforme necessário */
+  height: 24px; /* Ajuste o tamanho conforme necessário */
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>');
+  background-size: cover;
+}
+
+.linha-novo-processo {
+  box-shadow: 0 1px 0 0 #cfc8c8, 1px 0 0 0 #cfc8c8;
+  border-radius: 5px;
+}
+
+
+
+
+
+
+
