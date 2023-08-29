@@ -3,7 +3,7 @@ import { Processo } from '../../models/processo';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { GrupoProcesso } from 'src/app/models/grupoprocesso';
+import { UtilsService } from 'src/app/Utils/utils.serive';
 
 
 @Injectable({
@@ -12,31 +12,29 @@ import { GrupoProcesso } from 'src/app/models/grupoprocesso';
 export class ProcessoService {
   private readonly API = 'http://localhost:5166/api'
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private utilsService : UtilsService
+    ) { }
 
   listar(): Observable<Processo[]> {
-    return this.http.get<Processo[]>(this.API + '/Processo');
+    return this.http.get<Processo[]>(this.utilsService.API + '/Processo');
   }
 
-  criaGrupoInicial(): Observable<any>{
-    return this.http.get<any>(this.API + '/GrupoProcesso/criaGrupoInicial');
+  obterProId(id: number): Observable<Processo> {
+    return this.http.get<Processo>(this.utilsService.API + '/Processo/ObterPorId?id=' + id);
   }
 
   editar(processoDto: Processo): Observable<Processo> {
-    console.log(processoDto)
-    debugger
-    return this.http.put<Processo>(this.API + '/Processo/Editar', processoDto)
+    return this.http.put<Processo>(this.utilsService.API + '/Processo/Editar', processoDto)
   }
 
   salvar(processoDto: Processo): Observable<Processo> {
-    console.log(processoDto)
-    debugger
-    return this.http.post<Processo>(this.API + '/Processo/Adicionar', processoDto)
+    return this.http.post<Processo>(this.utilsService.API + '/Processo/Adicionar', processoDto)
   }
 
 
   deletar(processoDto: Processo): Observable<any> {
-    return this.http.delete<any>(this.API + '/Processo/Deletar?id=' + processoDto.id)
+    return this.http.delete<any>(this.utilsService.API + '/Processo/Deletar?id=' + processoDto.id)
   }
 
 }

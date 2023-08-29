@@ -43,7 +43,39 @@
   border-radius: 5px;
 }
 
+.table-limited {
+  max-height: 45vh;
+  overflow-y: auto;
+  display: block;
+}
 
+/* Para Webkit (Chrome, Opera, Safari) */
+
+/* Esconde inicialmente a barra de rolagem na classe .table-limited */
+.table-limited::-webkit-scrollbar {
+  width: 5px; /* Largura mais fina para a barra de rolagem */
+  background: transparent; /* Torna a barra de rolagem completamente transparente */
+}
+
+/* Quando o mouse passa sobre o elemento .table-limited, mostra a barra de rolagem */
+.table-limited:hover::-webkit-scrollbar {
+  width: 5px;
+}
+
+.table-limited:hover::-webkit-scrollbar-track {
+  background-color: #f9f9f9; /* Cor de fundo mais clara para a trilha */
+  border-radius: 3px; /* Cantos mais sutis */
+}
+
+.table-limited:hover::-webkit-scrollbar-thumb {
+  background-color: #b0b0b0; /* Cor mais clara para a barra de rolagem */
+  border-radius: 3px;
+}
+
+/* Quando o mouse está sobre a barra de rolagem da classe .table-limited */
+.table-limited:hover::-webkit-scrollbar-thumb:hover {
+  background-color: #8a8a8a; /* Cor um pouco mais escura quando o mouse está sobre ela */
+}
 
 
 

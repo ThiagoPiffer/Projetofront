@@ -1,0 +1,44 @@
+<div class="conteudo2">
+  <div class="row my-2">
+      <div class="col-12">
+        <label class="d-block">Número:</label>
+        <input class="w-100" pInputText id="numero" [(ngModel)]="novoProcesso.numero" required />
+      </div>
+  </div>
+  <div class="row my-2">
+      <div class="col-12">
+        <label class="d-block">Descrição:</label>
+        <input class="w-100" pInputText id="descricao" [(ngModel)]="novoProcesso.descricao" required />
+      </div>
+  </div>
+  <div class="row my-2">
+      <div class="col-12">
+        <label class="d-block">Data de Início:</label>
+        <p-inputMask [(ngModel)]="novoProcesso.dataInicio" name="dataInicio" mask="99/99/9999" slotChar="dd/mm/yyyy" #dataInicioField="ngModel"></p-inputMask>
+        <div *ngIf="dataInicioField.invalid && dataInicioField.touched" class="error-message">
+          Data de Início é obrigatória.
+        </div>
+      </div>
+  </div>
+  <div class="row my-2">
+      <div class="col-12">
+        <label class="d-block">Data Prevista:</label>
+        <p-inputMask [(ngModel)]="novoProcesso.dataPrevista" name="dataPrevista" mask="99/99/9999" slotChar="dd/mm/yyyy" #dataPrevistaField="ngModel"></p-inputMask>
+        <div *ngIf="dataPrevistaField.invalid && dataPrevistaField.touched" class="error-message">
+          Data Prevista é obrigatória.
+        </div>
+      </div>
+  </div>
+  <div class="row my-2">
+      <div class="col-12">
+        <label class="d-block">Valor da Causa:</label>
+        <p-inputNumber [(ngModel)]="novoProcesso.valorCausa" inputId="locale-br" mode="decimal" locale="pt-BR" [minFractionDigits]="2"> </p-inputNumber>
+      </div>
+  </div>
+  <div class="row my-2">
+    <div class="col-12 text-end">
+      <p-button icon="pi pi-times" label="Cancelar" styleClass="p-button-text" (click)="fecharModal()"></p-button>
+      <p-button icon="pi pi-check" label="Confirmar" styleClass="p-button-text" (click)="salvar(novoProcesso)"></p-button>
+    </div>
+  </div>
+</div>

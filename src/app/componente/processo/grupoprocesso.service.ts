@@ -23,6 +23,10 @@ export class GrupoprocessoService {
   //   return this.http.get<Record<string, Processo[]>[]>(this.utilsService.API + '/GrupoProcesso/ListarGrupoItemProcesso');
   // }
 
+  criaGrupoInicial(): Observable<any>{
+    return this.http.get<any>(this.utilsService.API + '/GrupoProcesso/criaGrupoInicial');
+  }
+
   salvar(grupoDto: GrupoProcesso): Observable<GrupoProcesso> {
     return this.http.post<GrupoProcesso>(this.utilsService.API + '/GrupoProcesso/Adicionar', grupoDto)
   }

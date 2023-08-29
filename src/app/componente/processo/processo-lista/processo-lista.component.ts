@@ -1,24 +1,26 @@
+import { GrupoProcesso } from './../../../models/grupoprocesso';
 import { Processo } from '../../../models/processo';
-import { GrupoProcesso } from '../../../models/grupoprocesso';
 import { GrupoProcessoModel } from 'src/app/models/grupoprocessoModel';
+import { ProcessoCadastroModalComponent } from '../processo-cadastro-modal/processo-cadastro-modal.component';
+
+import { take } from 'rxjs/operators';
 
 import { ProcessoService } from '../processo.service';
 import { GrupoprocessoService } from  '../grupoprocesso.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ProcessoCompartilhadoService } from '../processo-compartilhado.service';
+import { Component, ElementRef, OnInit, QueryList, Renderer2, ViewChild, ViewChildren,  } from '@angular/core';
 
-
-import { LazyLoadEvent } from 'primeng/api';
-import { SelectItem } from 'primeng/api';
-import { MenuItem, MessageService } from 'primeng/api';
-import { InputMask } from 'primeng/inputmask';
-
+import { MenuItem } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 
 import { UtilsService } from 'src/app/Utils/utils.serive';
 
-// import { createNumberMask } from 'text-mask-core'; // Importe a função createNumberMask
-// import { default as numberMask } from 'text-mask-addons/dist/createNumberMask';
+import { Router } from '@angular/router';
 
+import { DialogService } from 'primeng/dynamicdialog';
 
+import { ChangeDetectorRef } from '@angular/core';
+import { Table } from 'primeng/table';
 
 
 @Component({
@@ -83,10 +85,10 @@ export class ProcessoListaComponent implements OnInit {
     id: 0,
     numero: '',
     descricao: '',
-    dataCadastro: null,
+    dataCadastro: '',
+    dataFinal: '',
     dataInicio: null,
     dataPrevista: null,
-    dataFinal: null,
     valorCausa: 0,
     grupoProcessoId: null,
     ativo: true,
@@ -96,10 +98,10 @@ export class ProcessoListaComponent implements OnInit {
     id: 0,
     numero: '',
     descricao: '',
-    dataCadastro: null,
+    dataCadastro: '',
+    dataFinal: '',
     dataInicio: null,
     dataPrevista: null,
-    dataFinal: null,
     valorCausa: 0,
     grupoProcessoId: null,
     ativo: true,
@@ -109,11 +111,22 @@ export class ProcessoListaComponent implements OnInit {
   novoProcessos: Processo[] = [];
   processoExcluir: Processo | null = null;
 
+  editando: boolean = false;
+  @ViewChild('dt', { static: false }) dataTable: Table | undefined;
+
+
+
+
 
   constructor(private processoService: ProcessoService,
               private grupoprocessoService: GrupoprocessoService,
+              private processoCompartilhadoService : ProcessoCompartilhadoService,
               private messageService: MessageService,
-              private utilsService: UtilsService
+              private utilsService: UtilsService,
+              private dialogService: DialogService,
+              private router: Router,
+              private renderer: Renderer2,
+              private el: ElementRef
 
               ) { }
 
@@ -146,8 +159,9 @@ export class ProcessoListaComponent implements OnInit {
     this.processoExcluir = processo;
   }
 
-  detalhes(processo: Processo) {
-    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Data Updated' });
+  exibirDetable(processo: Processo) {
+    this.processoCompartilhadoService.setProcessoId(processo.id);
+    this.router.navigate(['../processo-detalhe']); // Navegação para o componente destino
   }
 
   delete() {
@@ -166,9 +180,11 @@ export class ProcessoListaComponent implements OnInit {
     return data ? new Date(data) : null;
   }
 
-  obterItensMenu(processo: Processo) {
-    return this.mapaItensMenu.get(processo.id);
+  obterItensMenu(processo: any, rowIndex: number): MenuItem[] {
+    const items = this.mapaItensMenu.get(processo.id);
+    return items ? items : [];
   }
+
 
   listarProcessos(): void {
     this.processoService.listar()
@@ -176,10 +192,8 @@ export class ProcessoListaComponent implements OnInit {
       (processos: Processo[]) => {
         this.listaProcessos = processos.map(processo => ({
           ...processo,
-          dataCadastro: processo.dataCadastro ? this.utilsService.formatarData(processo.dataCadastro.toString()) : null,
           dataInicio: processo.dataInicio ? this.utilsService.formatarData(processo.dataInicio.toString()) : null,
           dataPrevista: processo.dataPrevista ? this.utilsService.formatarData(processo.dataPrevista.toString()) : null,
-          dataFinal: processo.dataFinal ? this.utilsService.formatarData(processo.dataFinal.toString()) : null,
           valorCausa: processo.valorCausa ?? 0
         }));
 
@@ -191,7 +205,7 @@ export class ProcessoListaComponent implements OnInit {
               icon: 'pi pi-external-link',
               url: 'http://angular.io',
               command: () => {
-                this.detalhes(processo);
+                this.exibirDetable(processo);
               }
             },
             {
@@ -219,7 +233,7 @@ export class ProcessoListaComponent implements OnInit {
     this.grupoprocessoService.listar().subscribe(
       (grupoProcesso: GrupoProcessoModel[]) => {
         if (grupoProcesso.length == 0 )
-          this.processoService.criaGrupoInicial().subscribe(
+          this.grupoprocessoService.criaGrupoInicial().subscribe(
             () => {
               this.listarGrupoProcesso()
             },
@@ -238,9 +252,15 @@ export class ProcessoListaComponent implements OnInit {
                 {
                   label: 'Detalhes',
                   icon: 'pi pi-external-link',
-                  url: 'http://angular.io',
                   command: () => {
-                    this.detalhes(processo);
+                    this.exibirDetable(processo);
+                  }
+                },
+                {
+                  label: 'Editar',
+                  icon: 'pi pi-pencil',
+                  command: () => {
+                    this.abrirModalCadastroProcesso(processo.id, grupo.id);  // Passando grupo.id como segundo argumento
                   }
                 },
                 {
@@ -347,8 +367,6 @@ export class ProcessoListaComponent implements OnInit {
   }
 
   salvarProcesso(processo: Processo, grupo: GrupoProcesso) {
-    processo.dataCadastro = processo.dataCadastro === '' ? null : processo.dataCadastro;
-    processo.dataFinal = processo.dataFinal === '' ? null : processo.dataFinal;
     processo.dataInicio = processo.dataInicio === '' ? null : processo.dataInicio;
     processo.dataPrevista = processo.dataPrevista === '' ? null : processo.dataPrevista;
     processo.grupoProcessoId = grupo.id;
@@ -358,25 +376,33 @@ export class ProcessoListaComponent implements OnInit {
       let valorComoNumero = parseFloat(valorComoString);
 
       // Limitar a precisão decimal a duas casas.
-      let valorComDuasCasasDecimais = parseFloat(valorComoNumero.toFixed(2));
+      // let valorComDuasCasasDecimais = parseFloat(valorComoNumero.toFixed(2));
 
-      processo.valorCausa = valorComDuasCasasDecimais;
+      // processo.valorCausa = valorComDuasCasasDecimais;
     }
 
     if (this.verificaDiferenca(processo, grupo))
-      this.processoService.editar(processo).subscribe()
+    this.processoService.editar(processo).subscribe({
+      next: () => {
+          this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Cadastro realizado com sucesso' });
+          this.listarGrupoProcesso();
+      },
+      error: (error) => {
+        this.messageService.add({ severity: 'error', summary: 'Erro no processo', detail: error.error.message });
+      }
+    });
+
   }
 
   salvarGrupoProcessoNovo(grupo: GrupoProcesso) {
     grupo.ativo = true
 
     if (grupo.nome !== '') {
-      this.grupoprocessoService.editar(grupo).subscribe({
+      this.grupoprocessoService.salvar(grupo).subscribe({
         next: () => {
+          this.messageService.add({ severity: 'success', summary: 'Successo', detail: 'Cadastro realizado com sucesso' });
           this.listarGrupoProcesso();
-        },
-        error: err => {
-          console.error('Erro ao salvar o processo:', err);
+          this.grupoNovo.nome = '';
         }
       });
     }
@@ -388,18 +414,14 @@ export class ProcessoListaComponent implements OnInit {
     if (grupo.nome !== '') {
       this.grupoprocessoService.editar(grupo).subscribe({
         next: () => {
+          this.messageService.add({ severity: 'success', summary: 'Successo', detail: 'Alteração realizada com sucesso' });
           this.listarGrupoProcesso();
-        },
-        error: err => {
-          console.error('Erro ao salvar o processo:', err);
         }
       });
     }
   }
 
   salvarProcessoNovo(processo: Processo, grupo: GrupoProcesso) {
-    processo.dataCadastro = this.utilsService.DateTimeNow();
-    processo.dataFinal = null;
     processo.dataInicio = null;
     processo.dataPrevista = null;
     processo.grupoProcessoId = grupo.id;
@@ -408,14 +430,42 @@ export class ProcessoListaComponent implements OnInit {
     if (processo.numero !== '') {
       this.processoService.salvar(processo).subscribe({
         next: () => {
-          console.log('salvarProcessoNovo')
+          this.messageService.add({ severity: 'success', summary: 'Successo', detail: 'Cadastro realizado com sucesso' });
           this.listarGrupoProcesso();
-        },
-        error: err => {
-          console.error('Erro ao salvar o processo:', err);
         }
       });
     }
   }
+
+  abrirModalCadastroProcesso(processoId: number, grupoId: number) {
+    let ref;
+    if (processoId === 0) {
+      ref = this.dialogService.open(ProcessoCadastroModalComponent, {
+        header: 'Cadastrar Processo',
+        width: '25%',
+      });
+    } else {
+      ref = this.dialogService.open(ProcessoCadastroModalComponent, {
+        header: 'Editar Processo',
+        width: '25%',
+        data: { processoId: processoId, grupoId: grupoId  }
+      });
+    }
+
+    ref.onClose.subscribe((result) => {
+      this.processoCompartilhadoService.mensagem$.pipe(take(1)).subscribe(mensagem => {
+        debugger;
+        if (mensagem.tipo)
+          this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: mensagem.mensagem });
+        else{
+          if(mensagem.mensagem)
+          this.messageService.add({ severity: 'error', summary: 'Erro no processo', detail: mensagem.mensagem });
+        }
+
+        this.listarGrupoProcesso();
+      });
+    });
+  }
+
 
 }

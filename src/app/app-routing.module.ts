@@ -5,6 +5,8 @@ import { ButtonModule } from 'primeng/button';
 import { ObjetosCustomizadosListaComponent } from './componente/objetos-customizados/objetos-customizados-lista/objetos-customizados-lista.component';
 import { ObjetosCustomizadosCadastroComponent } from './componente/objetos-customizados/objetos-customizados-cadastro/objetos-customizados-cadastro.component';
 import { ProcessoListaComponent } from './componente/processo/processo-lista/processo-lista.component';
+import { ProcessoDetalheComponent } from './componente/processo/processo-detalhe/processo-detalhe.component';
+import { PessoaCadastroModalComponent } from './componente/Pessoa/pessoa-cadastro-modal/pessoa-cadastro-modal.component';
 
 const routes: Routes = [
   {
@@ -23,6 +25,14 @@ const routes: Routes = [
   {
     path: 'processo-lista',
     component: ProcessoListaComponent
+  },
+  {
+    path: 'processo-detalhe',
+    component: ProcessoDetalheComponent
+  },
+  {
+    path: 'pessoa-cadastro-modal',
+    component: PessoaCadastroModalComponent
   }
 ];
 

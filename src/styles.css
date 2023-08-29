@@ -1,6 +1,6 @@
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
-@import '~primeicons/primeicons.css';
+@import "primeicons/primeicons.css";
 
 
 html, body{
@@ -27,11 +27,12 @@ app-cabecalho {
 }
 
 main {
-  background: rgb(255, 255, 255);
+  background: #f2f2f2;
   --grid-column-start: 1;
   --grid-column-end: 3;
   grid-area: m;
-  overflow: auto;
+  /* overflow: auto; */
+  min-height: 95vh;
 }
 
 .l-direito {
@@ -58,11 +59,55 @@ app-rodape {
 
 app-root {
   display: grid;
-  grid-template-columns: 1fr 9fr 1fr;
+  grid-template-columns: 1fr 80fr 1fr;
   grid-template-rows: auto 1fr auto;
   grid-template-areas: "h h h"
                         "e m d"
                         "f f f"
+}
+
+.conteudo{
+  width: 100%;
+  padding: 10px;
+}
+
+.box {
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.71);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.71);
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.71);
+
+  background: white;
+
+}
+
+.box-medio {
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.71);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.71);
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.71);
+
+  /* Defina um flex-basis para cada elemento para ocupar a metade da largura disponível */
+  flex-basis: calc(50% - 5px); /* Subtraindo o espaço entre os elementos */
+  margin-bottom: 10px; /* Espaçamento entre as linhas */
+  display: flex;
+  flex-wrap: wrap; /* Permite que os elementos ocupem a largura total da linha */
+
+  background: white;
+}
+
+.box-medio1 {
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.71);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.71);
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.71);
+
+  /* Defina um flex-basis para cada elemento para ocupar a metade da largura disponível */
+  margin-bottom: 10px; /* Espaçamento entre as linhas */
+  margin-right: 10px; /* Espaçamento entre as linhas */
+
+  background: white;
+}
+
+.box-medio > .campo-inteiro {
+  width: 49%;
 }
 
 
@@ -77,10 +122,6 @@ app-root {
     border-radius: 15%; /* Redondo */
     padding: 8px; /* Espaçamento interno para torná-lo maior */
   }
-
-
-
-
 }
 
 .p-dialog-content > .body{
@@ -92,3 +133,19 @@ app-root {
 .p-dialog-footer{
 
 }
+
+.conteudo2{
+  width: 100%;
+  padding: 5px;
+}
+
+body .table-limited .p-datatable-tbody > tr > td,
+body .table-limited .p-datatable-thead > tr > th {
+    padding: 4px 8px !important;
+}
+
+input {
+  height: 33px; /* ou o valor que você achar adequado */
+  padding: 5px 10px; /* ajuste o padding conforme necessário */
+}
+

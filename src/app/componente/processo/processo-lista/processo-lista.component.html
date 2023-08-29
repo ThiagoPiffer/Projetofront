@@ -13,187 +13,164 @@
     </ng-template>
 </p-dialog>
 
-<div *ngFor="let grupo of listaGrupos; let i = index" style="padding: 10px;">
-  <p-table [value]="[grupo]" [style]="{ width: '20%' }">
-    <ng-template pTemplate="body" let-singleGrupo>
-      <tr>
-        <td pEditableColumn>
-          <p-cellEditor>
-            <ng-template pTemplate="input">
-              <input pInputText type="text" [(ngModel)]="singleGrupo.nome"
-                     (focus)="capturaGrupoAntigo(singleGrupo)"
-                     (blur)="salvarGrupoProcesso(singleGrupo)"
-                     (keydown.enter)="salvarGrupoProcesso(singleGrupo); editingIndex = null">
-            </ng-template>
-            <ng-template pTemplate="output">
-                <h4 >
-                  {{ singleGrupo.nome || '+ Novo nome de grupo' }}
-                </h4>
-            </ng-template>
-          </p-cellEditor>
-        </td>
-      </tr>
-    </ng-template>
-  </p-table>
+<div *ngFor="let grupo of listaGrupos; let i = index" class="conteudo">
+  <div class="box">
+    <p-table [value]="[grupo]" [style]="{ width: '20%' }" class="table-limited">
+      <ng-template pTemplate="body" let-singleGrupo>
+        <tr>
+          <td pEditableColumn>
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <input pInputText type="text" [(ngModel)]="singleGrupo.nome"
+                      (focus)="capturaGrupoAntigo(singleGrupo)"
+                      (blur)="salvarGrupoProcesso(singleGrupo)"
+                      (keydown.enter)="salvarGrupoProcesso(singleGrupo); editingIndex = null">
+              </ng-template>
+              <ng-template pTemplate="output">
+                  <h4 >
+                    {{ singleGrupo.nome || '+ Novo nome de grupo' }}
+                  </h4>
+              </ng-template>
+            </p-cellEditor>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
 
-  <br />
+    <br />
 
-  <!-- Tabela de processos para cada grupo -->
-  <div >
-      <p-table [value]="grupo.processos" dataKey="id">
+    <!-- Tabela de processos para cada grupo -->
+    <div >
+        <p-table #dt  [value]="grupo.processos" dataKey="id" editMode="row" class="table-limited">
+          <ng-template pTemplate="header">
+              <tr>
+                  <th>Número</th>
+                  <th>Descrição</th>
+                  <th>Data Início</th>
+                  <th>Prazo</th>
+                  <th>Data Prevista</th>
+                  <th>Valor Causa</th>
+                  <th style="width: 1rem"></th>
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-processo let-editando="editing" let-rowIndex="rowIndex">
+            <tr [pEditableRow]="processo" *ngIf="rowIndex !== grupo.processos.length - 1 || processo.id !== 0">
+              <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="processo.numero">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{processo.numero}}
+                    </ng-template>
+                </p-cellEditor>
+              </td>
+              <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="processo.descricao">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{processo.descricao}}
+                    </ng-template>
+                </p-cellEditor>
+              </td>
+              <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <p-inputMask pInputText type="text" [(ngModel)]="processo.dataInicio" mask="99/99/9999" slotChar="mm/dd/yyyy"></p-inputMask>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{processo.dataInicio}}
+                    </ng-template>
+                </p-cellEditor>
+              </td>
+              <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="processo.prazo">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{processo.prazo}}
+                    </ng-template>
+                </p-cellEditor>
+              </td>
+              <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <p-inputMask pInputText type="text" [(ngModel)]="processo.dataPrevista" mask="99/99/9999" slotChar="mm/dd/yyyy"></p-inputMask>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{processo.dataPrevista}}
+                    </ng-template>
+                </p-cellEditor>
+              </td>
+              <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <span>R$</span>
+                        <p-inputNumber [(ngModel)]="processo.valorCausa" mode="currency" inputId="currency-brazil" currency="BRL" locale="pt-BR"></p-inputNumber>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{formatarValor(processo.valorCausa)}}
+                    </ng-template>
+                </p-cellEditor>
+              </td>
+              <td>
+                <p-toast></p-toast>
+                <a class="icon-button invisible-button no-hover" (click)="menu.toggle($event)">
+                  <span class="icon icon-tres-pontos"></span>
+                </a>
 
-
-
-
-
-                <ng-template pTemplate="header">
-                    <tr>
-                        <th>Número</th>
-                        <th>Descrição</th>
-                        <th>Data Início</th>
-                        <th>Prazo</th>
-                        <th>Data Prevista</th>
-                        <th>Valor Causa</th>
-                        <th>Ativo</th>
-                        <th></th>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-processo let-rowIndex="rowIndex">
-                   <tr *ngIf="rowIndex !== grupo.processos.length - 1 || processo.id !== 0">
-
-                      <td pEditableColumn>
-                          <p-cellEditor>
-                              <ng-template pTemplate="input">
-                                  <input pInputText type="text" [(ngModel)]="processo.numero" (focus)="capturaProcessoAntigo(processo)" (blur)="salvarProcesso(processo, grupo)">
-                              </ng-template>
-                              <ng-template pTemplate="output">
-                                  {{processo.numero}}
-                              </ng-template>
-                          </p-cellEditor>
-                      </td>
-                      <td pEditableColumn>
-                          <p-cellEditor>
-                              <ng-template pTemplate="input">
-                                  <input pInputText type="text" [(ngModel)]="processo.descricao" (focus)="capturaProcessoAntigo(processo)" (blur)="salvarProcesso(processo, grupo)">
-                              </ng-template>
-                              <ng-template pTemplate="output">
-                                  {{processo.descricao}}
-                              </ng-template>
-                          </p-cellEditor>
-                      </td>
-                      <td pEditableColumn>
-                          <p-cellEditor>
-                              <ng-template pTemplate="input">
-                                  <p-inputMask pInputText type="text" [(ngModel)]="processo.dataInicio" mask="99/99/9999" slotChar="mm/dd/yyyy" (focus)="capturaProcessoAntigo(processo)" (onComplete)="salvarProcesso(processo, grupo)"> </p-inputMask>
-                              </ng-template>
-                              <ng-template pTemplate="output">
-                                  {{processo.dataInicio}}
-                              </ng-template>
-                          </p-cellEditor>
-                      </td>
-                      <td pEditableColumn>
-                        <p-cellEditor>
-                            <ng-template pTemplate="input">
-                                <input pInputText type="text" [(ngModel)]="processo.prazo" (focus)="capturaProcessoAntigo(processo)" (blur)="salvarProcesso(processo, grupo)">
-                            </ng-template>
-                            <ng-template pTemplate="output">
-                                {{processo.prazo}}
-                            </ng-template>
-                        </p-cellEditor>
-                    </td>
-                      <td pEditableColumn>
-                          <p-cellEditor>
-                              <ng-template pTemplate="input">
-                                  <p-inputMask pInputText type="text" [(ngModel)]="processo.dataPrevista" mask="99/99/9999" slotChar="mm/dd/yyyy" (focus)="capturaProcessoAntigo(processo)" (onComplete)="salvarProcesso(processo, grupo)"> </p-inputMask>
-                              </ng-template>
-                              <ng-template pTemplate="output">
-                                  {{processo.dataPrevista}}
-                              </ng-template>
-                          </p-cellEditor>
-                      </td>
-                      <td pEditableColumn>
-                          <p-cellEditor>
-                              <ng-template pTemplate="input">
-                                  <span>R$</span>
-                                  <input pInputText type="text" [(ngModel)]="processo.valorCausa"
-                                    (focus)="processo.valorCausa = formatarValorInput(processo.valorCausa)"
-                                    (blur)="salvarProcesso(processo, grupo)">
-                              </ng-template>
-                              <ng-template pTemplate="output">
-                                  {{formatarValor(processo.valorCausa)}}
-                              </ng-template>
-                          </p-cellEditor>
-                      </td>
-                      <td pEditableColumn>
-                          <p-cellEditor>
-                              <ng-template pTemplate="input">
-                                  <input pInputText type="text" [(ngModel)]="processo.ativo" (focus)="capturaProcessoAntigo(processo)" (blur)="salvarProcesso(processo, grupo)">
-                              </ng-template>
-                              <ng-template pTemplate="output">
-                                  {{processo.ativo}}
-                              </ng-template>
-                          </p-cellEditor>
-                      </td>
-                      <td pEditableColumn>
-                        <p-toast></p-toast>
-                        <a class="icon-button invisible-button no-hover" (click)="menu.toggle($event)">
-                          <span class="icon icon-tres-pontos"></span>
-                        </a>
-
-                        <p-menu #menu appendTo="body" [model]="obterItensMenu(processo)" [popup]="true"></p-menu>
-                      </td>
-                    </tr>
-                </ng-template>
-      </p-table>
-      <!-- Novo Processo -->
-      <p-table [value]="[novoProcessos[i]]" [style]="{width: '20%'}">
-        <ng-template pTemplate="body" let-processo>
-          <tr>
-            <td pEditableColumn style="border-radius: 5px !important; width: 100%;" class="linha-novo-processo">
-              <p-cellEditor>
-                <ng-template pTemplate="input">
-                  <input pInputText type="text" [(ngModel)]="novoProcessos[i].numero"
-                         (blur)="salvarProcessoNovo(novoProcessos[i], grupo)"
-                         (keydown.enter)="salvarProcessoNovo(novoProcessos[i], grupo)">
-                </ng-template>
-                <ng-template pTemplate="output">
-                  {{ novoProcessos[i].numero || '+ Novo número de processo' }}
-                </ng-template>
-              </p-cellEditor>
-            </td>
-          </tr>
-        </ng-template>
-      </p-table>
+                <p-menu #menu appendTo="body" [model]="obterItensMenu(processo, rowIndex)" [popup]="true"></p-menu>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+        <!-- Novo Processo -->
+        <p-table [value]="[novoProcessos[i]]" [style]="{width: '20%'}">
+          <ng-template pTemplate="body" let-processo>
+            <tr>
+              <td pEditableColumn style="border-radius: 5px !important; width: 100%;" class="linha-novo-processo">
+                <p-cellEditor>
+                  <ng-template pTemplate="input">
+                    <input pInputText type="text" [(ngModel)]="novoProcessos[i].numero"
+                          (blur)="salvarProcessoNovo(novoProcessos[i], grupo)"
+                          (keydown.enter)="salvarProcessoNovo(novoProcessos[i], grupo)">
+                  </ng-template>
+                  <ng-template pTemplate="output">
+                    {{ novoProcessos[i].numero || '+ Novo número de processo' }}
+                  </ng-template>
+                </p-cellEditor>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+    </div>
   </div>
 </div>
 <!-- Novo Grupo -->
-<p-table [value]="[grupoNovo]" [style]="{width: '20%'}">
-  <ng-template pTemplate="body" let-grupo>
-    <tr>
-      <td pEditableColumn>
-        <p-cellEditor>
-          <ng-template pTemplate="input">
-            <input pInputText type="text" [(ngModel)]="grupo.nome"
-                   (focus)="capturaGrupoAntigo(grupo)"
-                   (blur)="salvarGrupoProcessoNovo(grupo)"
-                   (keydown.enter)="salvarGrupoProcessoNovo(grupo); editingNewGroup = false">
-          </ng-template>
-          <ng-template pTemplate="output">
-            <h5>{{ grupo.nome || '+ Novo nome de grupo' }}</h5>
-          </ng-template>
-        </p-cellEditor>
-      </td>
-    </tr>
-  </ng-template>
-</p-table>
-
-
-
-
-
-
-
-
-    <br/>
-
+<div class="conteudo">
+  <div class="box">
+    <p-table [value]="[grupoNovo]" [style]="{width: '20%'}">
+      <ng-template pTemplate="body" let-grupo>
+        <tr>
+          <td pEditableColumn>
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <input pInputText type="text" [(ngModel)]="grupo.nome"
+                      (focus)="capturaGrupoAntigo(grupo)"
+                      (blur)="salvarGrupoProcessoNovo(grupo)"
+                      (keydown.enter)="salvarGrupoProcessoNovo(grupo); editingNewGroup = false">
+              </ng-template>
+              <ng-template pTemplate="output">
+                <h5>{{ grupo.nome || '+ Novo nome de grupo' }}</h5>
+              </ng-template>
+            </p-cellEditor>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
 <!-- </div> -->

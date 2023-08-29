@@ -1,0 +1,26 @@
+.flex {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; /* Espaçamento vertical entre os campos */
+}
+
+.flex > label {
+  order: 1; /* Coloca o label antes do input */
+}
+
+.flex > input {
+  order: 2; /* Coloca o input depois do label */
+}
+
+td {
+  padding: 3px;
+}
+
+p-inputMask {
+  width: 100%;
+}
+
+.error-message{
+  color: orangered;
+  font-size: 11px;
+}

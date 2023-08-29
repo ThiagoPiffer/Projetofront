@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import * as moment from 'moment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -6,16 +8,16 @@ import { Injectable } from '@angular/core';
 
 export class UtilsService {
   formatarData(data: string | null): string | null {
+    debugger
     if (!data) {
       return null;
     }
-    const d = new Date(data);
-    const dia = ('0' + d.getDate()).slice(-2);
-    const mes = ('0' + (d.getMonth() + 1)).slice(-2);
-    const ano = d.getFullYear();
 
-    return [dia, mes, ano].join('/');
+    const formattedDate = moment(data).format('DD/MM/YYYY');
+
+    return formattedDate;
   }
+
 
   DateTimeNow() {
     const currentDate = new Date();
