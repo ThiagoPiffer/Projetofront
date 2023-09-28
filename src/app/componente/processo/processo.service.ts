@@ -10,7 +10,7 @@ import { UtilsService } from 'src/app/Utils/utils.serive';
   providedIn: 'root'
 })
 export class ProcessoService {
-  private readonly API = 'http://localhost:5166/api'
+  private readonly API = 'https://localhost:5167/api'
 
   constructor(private http: HttpClient,
               private utilsService : UtilsService

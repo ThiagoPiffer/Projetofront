@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ObjetosCustomizadosService {
-  private readonly API = 'http://localhost:5166/'
+  private readonly API = 'https://localhost:5167/'
   constructor(private http: HttpClient) { }
 
   listar(pagina: number, filtro: string, favoritos: boolean): Observable<ObjetoCustomizado[]> {

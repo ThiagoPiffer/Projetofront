@@ -9,7 +9,7 @@ import { PessoasProcessoModel } from 'src/app/models/pessoasProcessoModel';
   providedIn: 'root'
 })
 export class PessoaService {
-  private readonly API = 'http://localhost:5166/api'
+  private readonly API = 'https://localhost:5167/api'
 
   constructor(
     private http: HttpClient,
