@@ -7,11 +7,12 @@ import { ObjetosCustomizadosCadastroComponent } from './componente/objetos-custo
 import { ProcessoListaComponent } from './componente/processo/processo-lista/processo-lista.component';
 import { ProcessoDetalheComponent } from './componente/processo/processo-detalhe/processo-detalhe.component';
 import { PessoaCadastroModalComponent } from './componente/Pessoa/pessoa-cadastro-modal/pessoa-cadastro-modal.component';
+import { LoginComponent } from './componente/identidade/login/login.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'objetos-customizados-lista',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
   {
     path: 'pessoa-cadastro-modal',
     component: PessoaCadastroModalComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   }
 ];
 

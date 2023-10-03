@@ -1,0 +1,20 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="email">E-mail:</label>
+    <input type="email" id="email" formControlName="email">
+  </div>
+
+  <div>
+    <label for="password">Senha:</label>
+    <input type="password" id="password" formControlName="password">
+  </div>
+
+  <div>
+    <label for="passwordConfirmation">Confirmação de Senha:</label>
+    <input type="password" id="passwordConfirmation" formControlName="passwordConfirmation">
+  </div>
+
+  <div *ngIf="passwordMismatch">As senhas não coincidem.</div>
+
+  <button type="submit" [disabled]="registerForm.invalid">Enviar</button>
+</form>

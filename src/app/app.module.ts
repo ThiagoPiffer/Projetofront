@@ -46,6 +46,8 @@ import { IdentidadeMaskDirective } from './Utils/identidadeMask-diretiva';
 import { ArquivoProcessoUploadModalComponent } from './componente/arquivo-Processo/arquivo-processo-upload-modal/arquivo-processo-upload-modal.component';
 import { ArquivoProcessoInserirDescricaoModalComponent } from './componente/arquivo-Processo/arquivo-processo-inserir-descricao-modal/arquivo-processo-inserir-descricao-modal.component';
 import { ProcessoCadastroModalComponent } from './componente/processo/processo-cadastro-modal/processo-cadastro-modal.component';
+import { RegistroComponent } from './componente/identidade/registro/registro.component';
+import { LoginComponent } from './componente/identidade/login/login.component';
 
 
 
@@ -66,6 +68,8 @@ import { ProcessoCadastroModalComponent } from './componente/processo/processo-c
     ArquivoProcessoUploadModalComponent,
     ArquivoProcessoInserirDescricaoModalComponent,
     ProcessoCadastroModalComponent,
+    RegistroComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
