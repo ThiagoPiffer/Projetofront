@@ -35,7 +35,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { FileUploadModule } from 'primeng/fileupload';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ErrorInterceptor } from '../app/error.interceptor';
+import { ErrorInterceptor } from './helpers/error.interceptor';
 
 
 import { UtilsService } from './Utils/utils.serive';
@@ -48,8 +48,10 @@ import { ArquivoProcessoInserirDescricaoModalComponent } from './componente/arqu
 import { ProcessoCadastroModalComponent } from './componente/processo/processo-cadastro-modal/processo-cadastro-modal.component';
 import { RegistroComponent } from './componente/identidade/registro/registro.component';
 import { LoginComponent } from './componente/identidade/login/login.component';
+import { JwtInterceptor } from './helpers/JwtInterceptor';
 
 
+import { CookieService } from 'ngx-cookie-service';
 
 
 
@@ -96,7 +98,10 @@ import { LoginComponent } from './componente/identidade/login/login.component';
     DialogService,
     ConfirmationService,
     MessageService,
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+    CookieService,
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+
 
   ],
   bootstrap: [AppComponent]

@@ -29,7 +29,6 @@ export class ObjetosCustomizadosCadastroComponent {
 
     cadastrar() {
       if (this.cadastroForm.valid) {
-        console.log(this.cadastroForm.value)
         this._objetoCustomizadoService.criar(this.cadastroForm.value).subscribe()
       }
     }

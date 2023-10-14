@@ -1,0 +1,50 @@
+/* Estilos para o container principal */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Estilos para o formulário de login/registro */
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estilos para os elementos do formulário */
+.form-group {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estilos para o grupo de botão */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Estilos para o botão de envio */
+.submit-button {
+  margin-top: 10px;
+  align-self: flex-end; /* Alinha o botão à direita dentro do grupo de botão */
+}
+
+/* Estilos para mensagens de erro (no caso de senhas não coincidirem) */
+.error-message {
+  color: red; /* Cor para mensagens de erro */
+  margin-top: 5px;
+}
+
+/* Estilos para o link "Criar uma conta" */
+a {
+  text-decoration: none;
+  color: #007bff; /* Cor do link, pode ser ajustada conforme necessário */
+}
+
+/* Estilos para o link "Criar uma conta" quando hover */
+a:hover {
+  text-decoration: underline;
+}

@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
+import { environment } from 'src/environments/environment';
+
 
 
 @Injectable({
@@ -8,7 +10,6 @@ import * as moment from 'moment';
 
 export class UtilsService {
   formatarData(data: string | null): string | null {
-    debugger
     if (!data) {
       return null;
     }
@@ -28,6 +29,5 @@ export class UtilsService {
     return `${day}/${month}/${year}`;
   }
 
-  public readonly API = 'https://localhost:5167/api'
-
+  public readonly API = environment.apiUrl
 }

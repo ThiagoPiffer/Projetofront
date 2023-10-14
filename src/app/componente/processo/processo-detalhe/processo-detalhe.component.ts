@@ -186,7 +186,6 @@ export class ProcessoDetalheComponent implements OnInit {
 
       ref.onClose.subscribe((result) => {
         this.arquivoProcessoCompartilhadoService.mensagem$.pipe(take(1)).subscribe(mensagem => {
-          debugger;
           if (mensagem.tipo)
             this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: mensagem.mensagem });
           else{
@@ -222,7 +221,6 @@ export class ProcessoDetalheComponent implements OnInit {
     listarArquivosProcesso(){
       this.arquivoProcessoService.listarArquivosProcesso(this.processoId).subscribe(
         (arquivosProcesso: ArquivoProcesso[]) => {
-          console.log(arquivosProcesso)
           this.arquivosProcesso = arquivosProcesso
         }
       )
@@ -268,7 +266,6 @@ export class ProcessoDetalheComponent implements OnInit {
 
       ref.onClose.subscribe((result) => {
         this.pessoaCompartilhadoService.mensagem$.pipe(take(1)).subscribe(mensagem => {
-          debugger;
           if (mensagem.tipo)
             this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: mensagem.mensagem });
           else{
@@ -290,7 +287,6 @@ export class ProcessoDetalheComponent implements OnInit {
 
       ref.onClose.subscribe((result) => {
         this.arquivoProcessoCompartilhadoService.mensagem$.pipe(take(1)).subscribe(mensagem => {
-          debugger;
           if (mensagem.tipo)
             this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: mensagem.mensagem });
           else{

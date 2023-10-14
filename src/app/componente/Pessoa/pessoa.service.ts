@@ -29,7 +29,6 @@ export class PessoaService {
   }
 
   editar(pessoaDto: Pessoa): Observable<Pessoa> {
-    console.log(pessoaDto)
     return this.http.put<Pessoa>(this.utilsService.API + '/Pessoa/Editar', pessoaDto);
   }
 

@@ -80,8 +80,6 @@ export class ProcessoCadastroModalComponent {
     processo.dataPrevista = processo.dataPrevista === '' ? null : processo.dataPrevista;
     processo.grupoProcessoId = this.grupoId;
 
-    console.log(processo)
-    debugger
     if (this.processoId === 0)
     // Chama o serviço para salvar a nova processo
     this.processoService.salvar(processo).subscribe({

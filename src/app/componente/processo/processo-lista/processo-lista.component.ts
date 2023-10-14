@@ -274,9 +274,6 @@ export class ProcessoListaComponent implements OnInit {
             });
           });
 
-
-           console.log(this.listaGrupos)
-
            this.novoProcessos = this.listaGrupos.map(() => ({
             id: 0,
             numero: '',
@@ -293,7 +290,7 @@ export class ProcessoListaComponent implements OnInit {
 
       },
       (error) => {
-        console.error('Ocorreu um erro ao listar os processos:', error);
+        console.log('Ocorreu um erro ao listar os processos:', error);
         this.listaProcessos = []; // Atribui um array vazio em caso de erro
       }
     );
@@ -454,7 +451,6 @@ export class ProcessoListaComponent implements OnInit {
 
     ref.onClose.subscribe((result) => {
       this.processoCompartilhadoService.mensagem$.pipe(take(1)).subscribe(mensagem => {
-        debugger;
         if (mensagem.tipo)
           this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: mensagem.mensagem });
         else{

@@ -80,7 +80,6 @@ export class ArquivoProcessoUploadModalComponent {
 
       this.arquivoProcessoService.salvar(formData).subscribe({
         next: () => {
-          debugger;
           this.arquivoProcessoCompartilhadoService.enviarMensagem(true, 'Cadastro realizado com sucesso');
           this.fecharModal();
         },

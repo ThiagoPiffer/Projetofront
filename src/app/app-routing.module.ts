@@ -8,6 +8,8 @@ import { ProcessoListaComponent } from './componente/processo/processo-lista/pro
 import { ProcessoDetalheComponent } from './componente/processo/processo-detalhe/processo-detalhe.component';
 import { PessoaCadastroModalComponent } from './componente/Pessoa/pessoa-cadastro-modal/pessoa-cadastro-modal.component';
 import { LoginComponent } from './componente/identidade/login/login.component';
+import { RegistroComponent } from './componente/identidade/registro/registro.component';
+import { AuthGuard } from './helpers/auth.guard';
 
 const routes: Routes = [
   {
@@ -17,27 +19,36 @@ const routes: Routes = [
   },
   {
     path: 'objetos-customizados-lista',
-    component: ObjetosCustomizadosListaComponent
+    component: ObjetosCustomizadosListaComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'objetos-customizados-cadastro',
-    component: ObjetosCustomizadosCadastroComponent
+    component: ObjetosCustomizadosCadastroComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'processo-lista',
-    component: ProcessoListaComponent
+    component: ProcessoListaComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'processo-detalhe',
-    component: ProcessoDetalheComponent
+    component: ProcessoDetalheComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'pessoa-cadastro-modal',
-    component: PessoaCadastroModalComponent
+    component: PessoaCadastroModalComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'registro',
+    component: RegistroComponent
   }
 ];
 

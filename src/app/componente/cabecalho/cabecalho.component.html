@@ -1,4 +1,28 @@
-<button (click)="redirectListaComponent()">Ir para lista</button>
-<button (click)="redirectCadastroComponent()">Ir para cadastro </button>
-<button (click)="redirectProcessoListaComponent()">Ir para Processo Lista </button>
+<div class="header">
+  <div class="user-info">
+    <span *ngIf="userEmail">{{ userEmail }}</span>
+    <!-- Outros elementos do cabeçalho -->
+  </div>
+  <div class="actions">
+    <ng-container *ngIf="userEmail; else loginButtons">
+      <a (click)="showLogoutConfirmationDialog()" class="logout-link">Sair</a>
+    </ng-container>
+    <ng-template #loginButtons>
+      <!-- Links de navegação em linha -->
+      <a [routerLink]="['/lista']">Ir para lista </a>
+      <a [routerLink]="['/cadastro']">Ir para cadastro </a>
+      <a [routerLink]="['/processo-lista']">Ir para Processo Lista </a>
+      <a [routerLink]="['/login']">Login </a>
+      <a [routerLink]="['/registro']">Registro </a>
+    </ng-template>
+    <!-- Outros elementos do cabeçalho -->
+  </div>
+</div>
 
+<p-dialog #logoutConfirmationDialog header="Confirmação" [(visible)]="displayLogoutDialog" [modal]="true" [responsive]="true">
+  <p>Tem certeza de que deseja sair?</p>
+  <p-footer>
+    <button type="button" pButton label="Cancelar" (click)="hideLogoutConfirmationDialog()" class="ui-button-secondary"></button>
+    <button type="button" pButton label="Confirmar" (click)="confirmLogout()" class="ui-button-danger"></button>
+  </p-footer>
+</p-dialog>
