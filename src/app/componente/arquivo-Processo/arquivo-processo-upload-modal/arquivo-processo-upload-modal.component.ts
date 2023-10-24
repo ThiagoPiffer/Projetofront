@@ -9,9 +9,6 @@ import { ArquivoProcessoService } from '../arquivo-processo.service';
 import { ProcessoCompartilhadoService } from '../../processo/processo-compartilhado.service';
 import { ArquivoProcessoCompartilhadoService } from '../arquivo-processo-compartilhado.service';
 
-
-
-
 interface UploadEvent {
   originalEvent: Event;
   files: File[];
@@ -24,30 +21,30 @@ interface UploadEvent {
   providers: [MessageService]
 })
 export class ArquivoProcessoUploadModalComponent {
-    @Input() displayModal = true; // Inicialização padrão
-    @Output() close = new EventEmitter<boolean>();
-    uploadedFiles: any[] = [];
-    maxFileSizeNumber: number = 1000000;
-    processoId: number = 0;
+  @Input() displayModal = true; // Inicialização padrão
+  @Output() close = new EventEmitter<boolean>();
+  uploadedFiles: any[] = [];
+  maxFileSizeNumber: number = 1000000;
+  processoId: number = 0;
 
 
-    constructor(private messageService: MessageService,
-                private arquivoProcessoService: ArquivoProcessoService,
-                private processoCompartilhadoService : ProcessoCompartilhadoService,
-                private arquivoProcessoCompartilhadoService: ArquivoProcessoCompartilhadoService,
-                public ref: DynamicDialogRef,
+  constructor(private messageService: MessageService,
+              private arquivoProcessoService: ArquivoProcessoService,
+              private processoCompartilhadoService : ProcessoCompartilhadoService,
+              private arquivoProcessoCompartilhadoService: ArquivoProcessoCompartilhadoService,
+              public ref: DynamicDialogRef,
 
 
-    ) {
-      this.processoCompartilhadoService.processoId$.subscribe(id => {
-        if (id !== null) {
-          this.processoId = id;
-        }
-      });
-    }
+  ) {
+    this.processoCompartilhadoService.processoId$.subscribe(id => {
+      if (id !== null) {
+        this.processoId = id;
+      }
+    });
+  }
 
-    testEvent() {
-      console.log('onBeforeUpload foi acionado!');
+  testEvent() {
+    console.log('onBeforeUpload foi acionado!');
   }
 
 
@@ -85,8 +82,6 @@ export class ArquivoProcessoUploadModalComponent {
         },
       });
     }
-
-    this.messageService.add({ severity: 'info', summary: 'File Uploaded', detail: '' });
   }
 
 

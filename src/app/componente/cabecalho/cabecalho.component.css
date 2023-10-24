@@ -1,0 +1,24 @@
+
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* outras estilizações */
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  /* outras estilizações */
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+}
+
+/* Alinha o conteúdo à direita */
+.user-info, .actions {
+  justify-content: flex-end;
+}

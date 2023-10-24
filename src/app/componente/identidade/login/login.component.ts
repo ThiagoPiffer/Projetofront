@@ -50,6 +50,13 @@ export class LoginComponent implements OnInit {
       this.messageService.add({ key: 'custom', severity: 'success', summary: 'Erro', detail: errorMessage });
       localStorage.removeItem('loginSucessoMessage'); // Remova a mensagem após exibí-la
     }
+
+    errorMessage = localStorage.getItem('loginTokenExpiradoMessage');
+
+    if (errorMessage) {
+      this.messageService.add({ key: 'custom', severity: 'error', summary: 'Erro', detail: errorMessage });
+      localStorage.removeItem('loginTokenExpiradoMessage'); // Remova a mensagem após exibí-la
+    }
   }
 
 

@@ -30,7 +30,6 @@ export class GrupoprocessoService {
   }
 
   // listar(): Observable<GrupoProcessoModel[]> {
-  //   debugger
   //   const usuarioAtual = this.identidadeService.valorUsuarioAtual;
   //   console.log('usuarioAtual.accessToken', usuarioAtual.accessToken);
 

@@ -1,0 +1,93 @@
+<p-toast></p-toast>
+
+<div class="conteudo">
+  <div class="row">
+    <div class="box m-2 p-3 col rounded-box">
+      <span class="subtitulo">Tipos de Pessoa no template</span>
+        <div class="p-2">
+          <p-dropdown [options]="tiposPessoa" [(ngModel)]="selectedTipoPessoa" optionLabel="descricao" placeholder="Selecione um Tipo de Pessoa" >
+            <ng-template let-tipoPessoa pTemplate="item">
+                <div class="ui-helper-clearfix" style="position: relative;height: 25px;" class="TamanhoMinimo">
+                    <div>{{tipoPessoa.descricao}}</div>
+                    <button type="button" class="TamanhoBotao" pButton icon="pi pi-plus" (click)="incrementarTipoPessoa($event, tipoPessoa)" style="position: absolute; top: 0; right: 0;"></button>
+                </div>
+            </ng-template>
+          </p-dropdown>
+        </div>
+    </div>
+
+    <div class="box m-2 p-3 col rounded-box" *ngIf="tiposSelecionados.length > 0">
+      <span class="subtitulo">Tipos selecionados, informe a chave de cada tipo</span>
+      <div class="p-2">
+        <div *ngFor="let tipo of tiposSelecionados">
+          <div class="row">
+            <div class="col-5">
+              <span>{{tipo.descricao}}: {{tipo.contagem}}</span> <!-- Envolva o texto em uma tag span ou div -->
+            </div>
+
+            <div class="col-5">
+              <!-- Input para adicionar texto -->
+              <input
+                type="text"
+                pInputText
+                [(ngModel)]="tipo.textoAdicional"
+                (ngModelChange)="atualizarEntradas()"
+                style="margin-left: 10px; margin-right: 10px;"
+              />
+            </div>
+            <div class="col-2">
+              <button
+                type="button"
+                pButton
+                pRipple
+                icon="pi pi-trash"
+                class="p-button-rounded p-button-danger p-button-text"
+                (click)="removerTipoPessoa(tipo)"
+                style="margin: 0; padding: 0; line-height: 0; min-height: 0; width: 20px; height: 20px;">
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="box mb-2 p-3 col-12 rounded-box" *ngIf="entradas.length > 0">
+        <span class="subtitulo">Exemplos de chaves no template</span>
+        <div class="p-2">
+          <table style="padding: auto; width: 100%;">
+            <tbody>
+              <tr *ngFor="let entrada of entradas">
+                <td>{{entrada.descricao}}</td>
+                <td>{{entrada.cpf}}</td>
+                <td>{{entrada.email}}</td>
+                <td>{{entrada.identidade}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="box p-3 col-12 rounded-box" >
+      <span class="subtitulo">Faça upload do template</span>
+      <p-fileUpload name="demo[]" (onUpload)="onUpload($event)" [multiple]="false"
+      (onBeforeUpload)="testEvent()"
+      url="https://www.primefaces.org/cdn/api/upload.php"
+          accept="application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+          chooseLabel="Escolher"
+          uploadLabel="Enviar"
+          cancelLabel="Cancelar"
+          [maxFileSize]="maxFileSizeNumber">
+          <ng-template pTemplate="content">
+              <ul *ngIf="uploadedFiles.length">
+                  <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
+              </ul>
+          </ng-template>
+      </p-fileUpload>
+    </div>
+  </div>
+</div>
+

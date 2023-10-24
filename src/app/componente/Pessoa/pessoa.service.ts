@@ -4,13 +4,12 @@ import { Observable } from 'rxjs';
 import { UtilsService } from 'src/app/Utils/utils.serive';
 import { Pessoa } from '../../models/pessoa';
 import { PessoasProcessoModel } from 'src/app/models/pessoasProcessoModel';
+import { TipoPessoaTemplateModel } from 'src/app/models/tipoPessoaTemplateModel';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PessoaService {
-  private readonly API = 'https://localhost:5167/api'
-
   constructor(
     private http: HttpClient,
     private utilsService: UtilsService

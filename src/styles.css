@@ -12,34 +12,35 @@ html, body{
 }
 
 app-cabecalho {
-  background: rgb(255,255,255);
-  background: linear-gradient(94deg, rgba(255,255,255,1) 0%, rgba(68,158,18,1) 43%, rgba(4,105,0,1) 100%);
+  position: relative; /* ou 'fixed' ou 'absolute', dependendo da sua necessidade */
+  z-index: 1009; /* maior que o z-index do sidebar */
+  background: #607D8B; /* cor de fundo sólida */
   --grid-column-start: 1;
   --grid-column-end: 3;
   grid-area: h;
 }
 
-.l-esquerdo {
+/* .l-esquerdo {
   background: rgb(168, 167, 167);
   --grid-column-start: 1;
   --grid-column-end: 3;
   grid-area: e;
-}
+} */
 
 main {
   background: #f2f2f2;
   --grid-column-start: 1;
-  --grid-column-end: 3;
+  --grid-column-end: 1;
   grid-area: m;
   /* overflow: auto; */
   min-height: 95vh;
 }
 
-.l-direito {
+p-sidebar {
   background: rgb(168, 167, 167);
   --grid-column-start: 1;
   --grid-column-end: 3;
-  grid-area: d;
+  grid-area: s;
 }
 
 /* aside {
@@ -50,8 +51,7 @@ main {
 } */
 
 app-rodape {
-  background: rgb(255,255,255);
-  background: linear-gradient(94deg, rgba(255,255,255,1) 0%, rgba(68,158,18,1) 43%, rgba(4,105,0,1) 100%);
+  background: #607D8B; /* cor de fundo sólida, mesma do cabeçalho */
   --grid-column-start: 1;
   --grid-column-end: 3;
   grid-area: f;
@@ -62,7 +62,7 @@ app-root {
   grid-template-columns: 1fr 80fr 1fr;
   grid-template-rows: auto 1fr auto;
   grid-template-areas: "h h h"
-                        "e m d"
+                        "m m m"
                         "f f f"
 }
 
@@ -149,3 +149,56 @@ input {
   padding: 5px 10px; /* ajuste o padding conforme necessário */
 }
 
+
+.conteudo-principal-menu-expandido {
+  /* seus estilos para o conteúdo principal quando o menu está expandido */
+  margin-left: 0px; /* Exemplo: ajuste conforme necessário */
+}
+
+.conteudo-principal-menu-retraido {
+  /* seus estilos para o conteúdo principal quando o menu está retraído */
+  margin-left: 0px; /* Exemplo: ajuste conforme necessário */
+}
+
+.index-superior{
+  z-index: 1010;
+}
+
+body .p-sidebar .p-sidebar-content {
+  padding: 0 !important; /* Remove o padding */
+}
+
+
+
+.p-accordion-content {
+  padding: 0 !important; /* remove o padding */
+  margin: 0 !important;  /* ajusta a margem, se necessário */
+}
+
+
+/* Adicione isso ao seu arquivo de estilos CSS */
+.p-dialog-content {
+  background-color: #f9f9f9 !important; /* Isso representa a cor cinza claro; você pode ajustar o código hexadecimal conforme necessário */
+}
+
+.rounded-box {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+}
+
+.subtitulo {
+  font-weight: bold; /* faz o texto ficar em negrito */
+  font-size: 1.2em; /* aumenta o tamanho da fonte */
+  margin-bottom: 15px; /* adiciona uma margem na parte inferior */
+  display: block; /* altera o display para block, necessário para aplicar a margem no span */
+  color: #333; /* opcional: altera a cor do texto */
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+.project-title {
+  color: #FFFFFF; /* Cor do texto */
+  font-weight: bold; /* Torna o texto em negrito */
+  font-family: 'Montserrat', sans-serif; /* Define a família da fonte */
+  font-size: 24px; /* Define o tamanho da fonte */
+  padding: 10px; /* Espaçamento interno */
+}

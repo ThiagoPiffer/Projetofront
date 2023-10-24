@@ -1,8 +1,7 @@
 <p-toast></p-toast>
-
 <div class="conteudo">
   <div class="row">
-    <div class="box m-2 p-2 col">
+    <div class="box m-2 p-2 col rounded-box">
       <div class="row">
         <div class="col-6">
           <h3>{{ processo?.numero }} </h3>
@@ -29,7 +28,7 @@
       </div>
     </div>
 
-    <div class="box m-2 p-2 col">
+    <div class="box m-2 p-2 col rounded-box">
       <p>Alerta Vermelho: <i style="color: red;" class="pi-exclamation-triangle"></i></p>
       <p>Alerta Amarelo: <i style="color: greenyellow;" class="pi-exclamation-triangle"></i></p>
       <p>Alerta Verde: <i class="pi pi-check"></i></p>
@@ -55,7 +54,7 @@
   </div>
 
   <div class="row">
-    <div class="box m-2 p-2 col">
+    <div class="box m-2 p-2 col rounded-box">
       <button class="btn" (click)="abrirModalCadastroPessoa(0)">
         <i class="fas fa-user-plus"></i> Adicionar Pessoa
       </button>
@@ -66,7 +65,7 @@
               <tr>
                   <th style="width: 1rem"></th>
                   <th pSortableColumn="nome">Nome <p-sortIcon field="nome"></p-sortIcon></th>
-                  <th pSortableColumn="tipopessoadescricao">Tipo <p-sortIcon field="tipopessoadescricao"></p-sortIcon></th>
+                  <th pSortableColumn="tipoPessoaDescricao">Tipo <p-sortIcon field="tipoPessoaDescricao"></p-sortIcon></th>
                   <th style="width: 1rem"></th>
               </tr>
           </ng-template>
@@ -78,7 +77,7 @@
                     </a>
                   </td>
                   <td>{{ pessoa.nome }}</td>
-                  <td>{{ pessoa.tipopessoadescricao }}</td>
+                  <td>{{ pessoa.tipoPessoaDescricao }}</td>
                   <td>
                     <a #menuButton class="icon-button invisible-button no-hover" (click)="menu.toggle($event)">
                       <span class="icon icon-tres-pontos"></span>
@@ -112,7 +111,7 @@
       </div>
     </div>
 
-    <div class="box m-2 p-2 col">
+    <div class="box m-2 p-2 col rounded-box">
       <button class="btn" (click)="abrirModalImportarArquivo()">
         <i class="fas fa-file-alt"></i> Adicionar Documento
       </button>

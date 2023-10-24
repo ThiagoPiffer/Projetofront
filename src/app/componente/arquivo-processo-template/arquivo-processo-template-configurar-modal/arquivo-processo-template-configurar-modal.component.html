@@ -1,0 +1,53 @@
+<div *ngFor="let tipo of tiposPessoaTemplate; let i = index" class="conteudo">
+  <div class="row">
+    <div class="box m-2 p-3 col rounded-box">
+      <div class="col-6" >
+        <p-dropdown
+          [options]="pessoaTemplateFiltrado(tipo.idTipoPessoa)"
+          [(ngModel)]="selectedPessoaIds[tipo.id]"
+          (onChange)="onPessoaChange($event, tipo.id)"
+          placeholder="Selecione uma Pessoa"
+          optionLabel="nome"
+          optionValue="id">
+        </p-dropdown>
+      </div>
+      <ng-template #loading>
+        <p>Carregando pessoas...</p>
+      </ng-template>
+    </div>
+
+    <div class="box m-2 p-3 col rounded-box" *ngIf="(tiposPessoaTemplate.length > 0 && !exibeAnonimo)">
+      <span class="subtitulo">Tipo de Pessoa:</span><span>{{tipo.descricao}}</span>
+    </div>
+    <div class="box m-2 p-3 col rounded-box" style="display: flex;" *ngIf="exibeAnonimo">
+      <span class="subtitulo col-6">Tipo de Pessoa: </span>
+      <span class="col-2"> Anônimo</span>
+    </div>
+  </div>
+
+  <div class="box m-2 p-3 col rounded-box" *ngIf="selectedPessoaIds[tipo.id]">
+    <div class="row">
+      <div class="col">
+        <h2>Detalhes da Pessoa</h2>
+        <p>Nome: {{selectedPessoaIds[tipo.id].nome}}</p>
+        <p>E-mail: {{selectedPessoaIds[tipo.id].email}}</p>
+        <p>CPF: {{selectedPessoaIds[tipo.id].cpfcnpj}}</p>
+        <p>Identidade: {{selectedPessoaIds[tipo.id].identidade}}</p>
+        <p>DataNascimento: {{selectedPessoaIds[tipo.id].dataNascimento}}</p>
+        <p>Telefone: {{selectedPessoaIds[tipo.id].telefone}}</p>
+        <p>Celular: {{selectedPessoaIds[tipo.id].celular}}</p>
+      </div>
+      <div class="col">
+        <h2>Chave Template</h2>
+        <p>{{formatCampoChaveNome(tipo.campoChave)}}</p>
+        <p>{{formatCampoChaveEmail(tipo.campoChave)}}</p>
+        <p>{{formatCampoChaveIdentidade(tipo.campoChave)}}</p>
+        <p>{{formatCampoChaveDataNascimento(tipo.campoChave)}}</p>
+        <p>{{formatCampoChaveTelefone(tipo.campoChave)}}</p>
+        <p>{{formatCampoChaveCelular(tipo.campoChave)}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<p-button icon="fas fa-file-alt" label="Gerar Documento" styleClass="p-button-text" (click)="gerarDocumento()"></p-button>
+<br/><br/><br/><br/><br/><br/>

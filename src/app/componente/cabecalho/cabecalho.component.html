@@ -1,21 +1,26 @@
 <div class="header">
-  <div class="user-info">
-    <span *ngIf="userEmail">{{ userEmail }}</span>
-    <!-- Outros elementos do cabeçalho -->
-  </div>
-  <div class="actions">
-    <ng-container *ngIf="userEmail; else loginButtons">
-      <a (click)="showLogoutConfirmationDialog()" class="logout-link">Sair</a>
-    </ng-container>
-    <ng-template #loginButtons>
-      <!-- Links de navegação em linha -->
-      <a [routerLink]="['/lista']">Ir para lista </a>
-      <a [routerLink]="['/cadastro']">Ir para cadastro </a>
-      <a [routerLink]="['/processo-lista']">Ir para Processo Lista </a>
-      <a [routerLink]="['/login']">Login </a>
-      <a [routerLink]="['/registro']">Registro </a>
-    </ng-template>
-    <!-- Outros elementos do cabeçalho -->
+  <span class="project-title">P R O J E T O</span>
+  <div class="topbar-menu fadeInDown" *ngIf="userEmail">
+    <!-- Item do perfil do usuário -->
+    <div class="profile-item">
+        <a href="#" (click)="toggleProfileMenu()" class="profile-link">
+            <div class="profile-image">
+                <!-- Imagem do usuário (adicione sua lógica de caminho de imagem aqui) -->
+                <img src="assets/layout/images/profile-image.png" alt="Profile" />
+            </div>
+            <div class="profile-info">
+                <span class="profile-name">{{ userName }}</span>
+                <span class="profile-role">{{ userRole }}</span>
+            </div>
+        </a>
+        <!-- Menu suspenso do perfil -->
+        <ul *ngIf="isProfileMenuVisible" class="profile-menu">
+            <li><a href="#"><i class="pi pi-user"></i>Perfil</a></li>
+            <li><a href="#"><i class="pi pi-cog"></i>Configurações</a></li>
+            <li><a href="#" (click)="logout()"><i class="pi pi-sign-out"></i>Sair</a></li>
+        </ul>
+    </div>
+    <!-- Outros itens do menu, se necessário -->
   </div>
 </div>
 

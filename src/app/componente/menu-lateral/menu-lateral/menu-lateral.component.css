@@ -1,0 +1,79 @@
+.botao-menu {
+  position: fixed;
+  top: 45px;
+  left: 0px;
+  z-index: 1011;
+  background-color: #FFFFFF; /* Cor de fundo branca */
+  border: none; /* Remove a borda padrão do botão */
+  border-radius: 50%; /* Faz o botão ficar redondo */
+  height: 36px; /* Diminui a altura */
+  width: 36px; /* Diminui a largura */
+  display: flex; /* Usa flexbox para centralizar o ícone */
+  align-items: center; /* Centraliza o ícone verticalmente */
+  justify-content: center; /* Centraliza o ícone horizontalmente */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Adiciona uma leve sombra, opcional */
+  outline: none; /* Remove o contorno que aparece ao clicar no botão */
+  cursor: pointer; /* Muda o cursor para indicar que é clicável */
+}
+
+.botao-menu i {
+  color: #607D8B; /* Ou qualquer outra cor que se destaque contra o fundo branco */
+  font-size: 18px; /* Diminui o tamanho da fonte, que controla o tamanho do ícone */
+}
+
+
+p-sidebar {
+  margin-top: 20px;/* altura do seu cabeçalho */ /* Ajuste este valor para a altura do seu cabeçalho */
+  z-index: 1000;
+}
+
+/* Se o menu estiver expandido, adicione margem ao conteúdo principal */
+.conteudo-principal-menu-expandido {
+  margin-left: 200px;/* largura do seu sidebar */
+}
+
+/* Se o menu estiver retraído, a margem é menor */
+.conteudo-principal-menu-retraido {
+  margin-left: 50px;/* largura do ícone ou um valor fixo */
+}
+
+/* Estilo para os links */
+ul li a {
+  color: #666666; /* Cor dos links */
+  text-decoration: none; /* Remove o sublinhado dos links */
+}
+
+.liAccordionTab {
+  padding: 0; /* Remove o padding do <li> */
+  margin: 0; /* Remove a margem do <li> */
+}
+
+.liAccordionTab a {
+  display: block; /* Faz o <a> preencher todo o <li> */
+  padding: 5px; /* Adiciona algum padding dentro do <a> para espaço interno */
+  transition: background-color 0.3s; /* Transição suave para hover */
+  text-decoration: none; /* Opcional: remove o sublinhado do link */
+  color: inherit; /* Opcional: faz com que o link herde a cor do texto do elemento pai */
+  cursor: pointer; /* Muda o cursor para o estilo de "mão" ao passar o mouse */
+}
+
+.liAccordionTab a:hover {
+  background-color: #B0BEC5; /* Cor de fundo ao passar o mouse */
+  box-shadow: none; /* Remove a sombra, se houver */
+}
+
+
+ul {
+  list-style-type: none; /* remove os marcadores da lista */
+}
+
+/* styles.css ou styles.scss */
+
+.ulAccordionTab {
+  padding: 0px; /* adiciona padding */
+  margin: 0px;
+}
+
+
+
+

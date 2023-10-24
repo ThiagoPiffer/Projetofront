@@ -14,7 +14,7 @@
 </p-dialog>
 
 <div *ngFor="let grupo of listaGrupos; let i = index" class="conteudo">
-  <div class="box">
+  <div class="box rounded-box">
     <p-table [value]="[grupo]" [style]="{ width: '20%' }" class="table-limited">
       <ng-template pTemplate="body" let-singleGrupo>
         <tr>
@@ -151,7 +151,7 @@
 </div>
 <!-- Novo Grupo -->
 <div class="conteudo">
-  <div class="box">
+  <div class="box rounded-box">
     <p-table [value]="[grupoNovo]" [style]="{width: '20%'}">
       <ng-template pTemplate="body" let-grupo>
         <tr>

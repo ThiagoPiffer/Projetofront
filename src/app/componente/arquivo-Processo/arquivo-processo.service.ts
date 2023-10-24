@@ -8,7 +8,6 @@ import { ArquivoProcesso } from '../../models/arquivoProcesso';  // Importe o mo
   providedIn: 'root'
 })
 export class ArquivoProcessoService {
-  private readonly API = 'https://localhost:5167/api';
 
   constructor(
     private http: HttpClient,

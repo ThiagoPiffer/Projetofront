@@ -33,6 +33,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { FileUploadModule } from 'primeng/fileupload';
+import { SidebarModule } from 'primeng/sidebar';
+import { AccordionModule } from 'primeng/accordion';
+
+
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from './helpers/error.interceptor';
@@ -52,6 +56,11 @@ import { JwtInterceptor } from './helpers/JwtInterceptor';
 
 
 import { CookieService } from 'ngx-cookie-service';
+import { MenuLateralComponent } from './componente/menu-lateral/menu-lateral/menu-lateral.component';
+import { ArquivoProcessoTemplateUploadModalComponent } from './componente/arquivo-processo-template/arquivo-processo-template-upload-modal/arquivo-processo-template-upload-modal.component';
+import { ArquivoProcessoTemplateConfigurarModalComponent } from './componente/arquivo-processo-template/arquivo-processo-template-configurar-modal/arquivo-processo-template-configurar-modal.component';
+import { TipoPessoaComponent } from './componente/tipo-pessoa/tipo-pessoa/tipo-pessoa.component';
+import { TipoPessoaTemplateComponent } from './componente/tipo-pessoa-template/tipo-pessoa-template/tipo-pessoa-template.component';
 
 
 
@@ -72,6 +81,11 @@ import { CookieService } from 'ngx-cookie-service';
     ProcessoCadastroModalComponent,
     RegistroComponent,
     LoginComponent,
+    MenuLateralComponent,
+    ArquivoProcessoTemplateUploadModalComponent,
+    ArquivoProcessoTemplateConfigurarModalComponent,
+    TipoPessoaComponent,
+    TipoPessoaTemplateComponent,
   ],
   imports: [
     BrowserModule,
@@ -91,7 +105,9 @@ import { CookieService } from 'ngx-cookie-service';
     InputNumberModule,
     InputTextModule,
     ConfirmPopupModule,
-    FileUploadModule
+    FileUploadModule,
+    SidebarModule,
+    AccordionModule
   ],
   providers: [
     UtilsService,

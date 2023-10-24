@@ -1,0 +1,52 @@
+/* Esta classe será aplicada ao botão para diminuir seu tamanho */
+.TamanhoBotao {
+  padding: 2px 6px; /* Reduz o preenchimento ao redor do botão */
+  font-size: 12px; /* Reduz o tamanho da fonte no botão */
+  line-height: 1; /* Reduz a altura da linha do texto no botão */
+  height: 24px; /* Define uma altura específica para o botão */
+  width: 24px; /* Define uma largura específica para o botão */
+}
+
+/* Esta classe estabelece um tamanho mínimo para o select */
+.TamanhoMinimo {
+  min-width: 150px; /* Define uma largura mínima para o select */
+}
+
+.botao-sem-margem {
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  min-height: 0;
+}
+
+.botao-pequeno {
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  min-height: 0;
+  width: 25px;
+  height: 25px;
+  font-size: 0.8rem;
+}
+
+.linha-hover {
+  border-radius: 5px; /* Isso irá adicionar bordas arredondadas à linha */
+  transition: box-shadow 0.3s ease; /* Isso fará a sombra aparecer suavemente */
+}
+
+.linha-hover:hover {
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.5); /* Isso irá adicionar uma sombra quando o mouse passar sobre a linha */
+}
+
+.linha-com-icone {
+  display: flex; /* Isso faz com que usemos flexbox, o que ajuda no layout de itens complexos */
+  align-items: center; /* Isso alinha verticalmente os itens no meio */
+  justify-content: space-between; /* Isso coloca espaço máximo entre os itens, empurrando-os para os cantos */
+}
+
+
+
+
+
+
+

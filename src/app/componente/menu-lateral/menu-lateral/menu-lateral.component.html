@@ -1,0 +1,29 @@
+<div *ngIf="mostrarMenuLateral">
+  <button (click)="toggleMenu()" class="botao-menu index-superior">
+    <!-- ícone de três tracinhos -->
+    <i class="pi pi-bars"></i>
+  </button>
+  <p-sidebar [(visible)]="menuExpandido" position="left" [modal]="false" [baseZIndex]="10000">
+    <p-accordion>
+      <p-accordionTab header="Template" [selected]="false">
+        <ul class="ulAccordionTab">
+          <li class="liAccordionTab" *ngFor="let template of listaTemplates">
+            <a (click)="ConfiguraArquivoTemplateModal($event, template)">{{ template.nome }}</a>
+          </li>
+          <li class="liAccordionTab">
+            <a href="#" (click)="NovoTemplate($event)">
+              <i class="fas fa-plus"></i> Novo Template
+            </a>
+        </ul>
+      </p-accordionTab>
+      <p-accordionTab header="Template2" [selected]="false">
+        <ul>
+          <li><a href="#" (click)="metodoRelatorio1($event)">Relatório 1</a></li>
+          <li><a href="#" (click)="metodoRelatorio1($event)">Relatório 2</a></li>
+          <li><a href="#" (click)="metodoRelatorio1($event)">Relatório 3</a></li>
+        </ul>
+      </p-accordionTab>
+      <!-- Você pode adicionar mais <p-accordionTab> aqui para outros itens no menu -->
+    </p-accordion>
+  </p-sidebar>
+</div>

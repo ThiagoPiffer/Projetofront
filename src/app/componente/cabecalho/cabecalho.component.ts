@@ -14,6 +14,10 @@ export class CabecalhoComponent {
   userEmail: string | null = null;
   displayLogoutDialog: boolean = false;
 
+  userName: string = 'Claire White';
+  userRole: string = 'System Admin';
+  isProfileMenuVisible: boolean = false;
+
   @ViewChild('logoutConfirmationDialog')
   logoutConfirmationDialog: Dialog;
 
@@ -23,10 +27,52 @@ export class CabecalhoComponent {
                 this.logoutConfirmationDialog = {} as Dialog;
               }
 
+  // Função para alternar a visibilidade do menu do perfil
+  toggleProfileMenu() {
+    this.isProfileMenuVisible = !this.isProfileMenuVisible;
+  }
+
+  // Função para lidar com a lógica de logout
+  logout() {
+    // Sua lógica de logout aqui
+  }
+
   ngOnInit() {
     this.identidadeService.usuarioAtual.subscribe(usuario => {
       if (usuario && usuario.usuarioToken && usuario.usuarioToken.email)
-        this.userEmail = usuario.usuarioToken.email;
+      {
+        const criacaoToekn = usuario.usuarioToken.claims.find(
+          (claim: { type: string }) => claim.type === "nbf" // pega a data da claim
+        );
+
+        const criacaotimestamp = criacaoToekn.value;
+
+        // Converta o timestamp para uma data JavaScript
+        let criacao = new Date(Number(criacaotimestamp) * 1000); // Multiplica por 1000 para converter de segundos para milissegundos
+
+
+        const expiracaoToekn = usuario.usuarioToken.claims.find(
+          (claim: { type: string }) => claim.type === "exp" // pega a data da claim
+        );
+
+        const expiracaotimestamp = expiracaoToekn.value;
+
+        // Converta o timestamp para uma data JavaScript
+        let expiracao = new Date(Number(expiracaotimestamp) * 1000); // Multiplica por 1000 para converter de segundos para milissegundos
+
+        const agora = new Date();
+        agora.setMinutes(agora.getMinutes() + 5);
+
+        if (agora < expiracao && agora > criacao) {
+          this.userEmail = usuario.usuarioToken.email;
+        }else
+        {
+          // O token expirou, então limpe os dados do localStorage
+          localStorage.removeItem('usuarioAtual');
+          localStorage.setItem('loginTokenExpiradoMessage', 'Sessão expirada, faça login novamente.');
+          this.router.navigate(['../login']);
+        }
+      }
       else
         this.userEmail = null;
     });

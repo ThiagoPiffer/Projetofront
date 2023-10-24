@@ -37,7 +37,6 @@ export class ErrorInterceptor implements HttpInterceptor {
     // intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     //     return next.handle(req).pipe(
     //         catchError((error: HttpErrorResponse) => {
-    //           debugger
     //           if (error.error instanceof ErrorEvent) {
     //             // Erros do lado do cliente
     //             const clientErrorMessage = error.error && error.error.message ? error.error.message : 'Erro desconhecido no lado do cliente';

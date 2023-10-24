@@ -10,6 +10,7 @@ export interface PessoasProcessoModel {
   telefone?: string | null;
   dddCelular?: string | null;
   celular?: string | null;
+  idTipoPessoa? : number | null;
   tipoPessoaDescricao?: string | null;
   ativo: boolean;
 }

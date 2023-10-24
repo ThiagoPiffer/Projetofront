@@ -207,9 +207,6 @@ export class ProcessoDetalheComponent implements OnInit {
       });
     }
 
-
-
-
     listarPessoasProcesso(){
       this.pessoaService.listarPessoasProcesso(this.processoId).subscribe(
         (pessoasProcessoModel: PessoasProcessoModel[]) => {
