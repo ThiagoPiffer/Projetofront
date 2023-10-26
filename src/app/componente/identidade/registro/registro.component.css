@@ -48,3 +48,12 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+.conteudo {
+  max-width: 600px;
+  margin: 0 auto;  /* Centraliza o conteúdo se ele for menor que a largura da janela ou do contêiner pai */
+}
+
+.rounded-button {
+  border-radius: 25px; /* Ajuste conforme necessário */
+}

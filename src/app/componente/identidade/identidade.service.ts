@@ -48,9 +48,18 @@ export class IdentidadeService {
   registro(data: any): Observable<UsuarioRegistroModel> {
     console.log(data)
     let usuarioRegistro: UsuarioRegistroModel = {
+      id: 0,
+      nome: data.nomeUsuario,
+      cpf: data.cpfUsuario,
       email: data.email,
       senha: data.senha,
-      senhaConfirmacao: data.senhaConfirmacao
+      senhaConfirmacao: data.senhaConfirmacao,
+      empresaModel: {
+          id: 0,
+          nome: data.nomeEmpresa,
+          cnpj: data.cnpjEmpresa,
+          codigoIdentificador: data.codigoIdentificadorEmpresa,
+      }
     };
     console.log(usuarioRegistro)
 

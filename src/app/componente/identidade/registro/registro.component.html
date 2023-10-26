@@ -1,25 +1,73 @@
 <p-toast></p-toast>
-<div class="container">
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="login-form">
-    <div class="form-group">
-      <label for="email">E-mail:</label>
-      <input type="email" pInputText id="email" formControlName="email">
-    </div>
+<div class="conteudo">
+  <div class="row">
+    <div class="box m-2 p-3 col rounded-box">
+      <p-steps [model]="items" [activeIndex]="activeIndex"></p-steps>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="login-form">
+        <!-- Passo 1 -->
+        <div *ngIf="activeIndex === 0">
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" pInputText id="nomeEmpresa" formControlName="nomeEmpresa">
+            </div>
+            <div class="form-group">
+                <label for="cnpj">CNPJ:</label>
+                <input type="text" pInputText id="cnpjEmpresa" formControlName="cnpjEmpresa">
+            </div>
+            <div class="form-group">
+                <label for="codigoIdentificadorEmpresa">Código Identificador:</label>
+                <input type="text" pInputText id="codigoIdentificadorEmpresa" formControlName="codigoIdentificadorEmpresa">
+            </div>
 
-    <div class="form-group">
-      <label for="senha">Senha:</label>
-      <input type="password" pInputText id="senha" formControlName="senha">
-    </div>
+        </div>
 
-    <div class="form-group">
-      <label for="senhaConfirmacao">Confirmação de Senha:</label>
-      <input type="password" pInputText id="senhaConfirmacao" formControlName="senhaConfirmacao">
-    </div>
+        <!-- Passo 2 -->
+        <div *ngIf="activeIndex === 1">
 
-    <div *ngIf="senhaMismatch" class="error-message">As senhas não coincidem.</div>
+            <div class="form-group">
+                <label for="nomeUsuario">Nome:</label>
+                <input type="text" pInputText id="nomeUsuario" formControlName="nomeUsuario">
+            </div>
+            <div class="form-group">
+                <label for="cpfUsuario">CPF:</label>
+                <input type="text" pInputText id="cpfUsuario" formControlName="cpfUsuario">
+            </div>
+            <!-- Adicione outros campos conforme necessário -->
 
-    <div class="button-group">
-      <button type="submit" pButton [disabled]="registerForm.invalid" class="submit-button">Enviar</button>
+        </div>
+
+        <!-- Passo 3 -->
+        <div *ngIf="activeIndex === 2">
+
+            <div class="form-group">
+              <label for="email">E-mail:</label>
+              <input type="email" pInputText id="email" formControlName="email">
+            </div>
+
+            <div class="form-group">
+              <label for="senha">Senha:</label>
+              <input type="password" pInputText id="senha" formControlName="senha">
+            </div>
+
+            <div class="form-group">
+              <label for="senhaConfirmacao">Confirmação de Senha:</label>
+              <input type="password" pInputText id="senhaConfirmacao" formControlName="senhaConfirmacao">
+            </div>
+
+            <div *ngIf="senhaMismatch" class="error-message">As senhas não coincidem.</div>
+
+            <div class="d-flex justify-content-end mt-3">
+              <button type="submit" pButton [disabled]="registerForm.invalid" class="submit-button">Enviar</button>
+            </div>
+
+        </div>
+      </form>
     </div>
-  </form>
+  </div>
+  <div class="d-flex justify-content-end mt-3">
+    <p-button (click)="prev()" class="m-2">Anterior</p-button>
+    <p-button (click)="next()" class="m-2">Próximo</p-button>
+  </div>
 </div>
+
+

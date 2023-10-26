@@ -35,6 +35,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { FileUploadModule } from 'primeng/fileupload';
 import { SidebarModule } from 'primeng/sidebar';
 import { AccordionModule } from 'primeng/accordion';
+import { StepsModule } from 'primeng/steps';
 
 
 
@@ -62,8 +63,6 @@ import { ArquivoProcessoTemplateConfigurarModalComponent } from './componente/ar
 import { TipoPessoaComponent } from './componente/tipo-pessoa/tipo-pessoa/tipo-pessoa.component';
 import { TipoPessoaTemplateComponent } from './componente/tipo-pessoa-template/tipo-pessoa-template/tipo-pessoa-template.component';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -85,7 +84,7 @@ import { TipoPessoaTemplateComponent } from './componente/tipo-pessoa-template/t
     ArquivoProcessoTemplateUploadModalComponent,
     ArquivoProcessoTemplateConfigurarModalComponent,
     TipoPessoaComponent,
-    TipoPessoaTemplateComponent,
+    TipoPessoaTemplateComponent
   ],
   imports: [
     BrowserModule,
@@ -107,7 +106,8 @@ import { TipoPessoaTemplateComponent } from './componente/tipo-pessoa-template/t
     ConfirmPopupModule,
     FileUploadModule,
     SidebarModule,
-    AccordionModule
+    AccordionModule,
+    StepsModule
   ],
   providers: [
     UtilsService,
