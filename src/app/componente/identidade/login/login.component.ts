@@ -27,6 +27,8 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    localStorage.clear();
+
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       senha: ['', Validators.required]
@@ -63,8 +65,6 @@ export class LoginComponent implements OnInit {
   onSubmit() {
 
     if (this.loginForm.valid) {
-
-
       this.identidadeService.login(this.loginForm.value).subscribe({
         next: (response) => {
           this.router.navigate(['/processo-lista']);

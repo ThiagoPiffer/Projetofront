@@ -14,7 +14,7 @@ html, body{
 app-cabecalho {
   position: relative; /* ou 'fixed' ou 'absolute', dependendo da sua necessidade */
   z-index: 1009; /* maior que o z-index do sidebar */
-  background: #607D8B; /* cor de fundo sólida */
+  background: linear-gradient(white, #607D8B 5%); /* branco ocupa apenas os primeiros 10% do gradiente */
   --grid-column-start: 1;
   --grid-column-end: 3;
   grid-area: h;

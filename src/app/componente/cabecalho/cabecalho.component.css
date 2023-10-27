@@ -22,3 +22,61 @@
 .user-info, .actions {
   justify-content: flex-end;
 }
+
+.profile-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none; /* Isso remove o sublinhado */
+}
+
+.profile-image img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;     /* Isso adiciona um pequeno espaço à direita da imagem */
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;  /* alinha os itens à esquerda */
+}
+
+.profile-info span {
+  color: white;          /* Isso define a cor do texto como branco */
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;       /* Isso muda o cursor para um ponteiro quando o mouse passa por cima */
+  margin-right: 20px;  /* Ajuste este valor conforme a distância desejada */
+}
+
+.profile-name {
+  font-size: 18px;  /* Ajuste conforme necessário */
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  cursor: pointer;
+}
+
+.profile-role {
+  font-size: 11px;  /* Ajuste conforme necessário */
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  cursor: pointer;
+}
+
+.profile-item {
+  position: relative;
+}
+
+.profile-menu {
+  position: absolute;
+  top: 100%;     /* Posiciona logo abaixo do contêiner do perfil */
+  right: 0;      /* Alinha à direita */
+  z-index: 1000; /* Garante que ele apareça acima de outros elementos */
+}
+
+
+
+
+
+

@@ -2,6 +2,8 @@ import { Component, Input, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { IdentidadeService } from '../identidade/identidade.service';
 import { Dialog } from 'primeng/dialog';
+import { Renderer2, ElementRef } from '@angular/core';
+
 
 
 @Component({
@@ -14,6 +16,22 @@ export class CabecalhoComponent {
   userEmail: string | null = null;
   displayLogoutDialog: boolean = false;
 
+  items = [
+    {
+        label: 'Perfil',
+        icon: 'pi pi-user'
+    },
+    {
+        label: 'Configurações',
+        icon: 'pi pi-cog'
+    },
+    {
+        label: 'Sair',
+        icon: 'pi pi-sign-out',
+        command: (event: any) => { this.confirmLogout(); }  // Adiciona o comando para executar a função logout
+    }
+  ];
+
   userName: string = 'Claire White';
   userRole: string = 'System Admin';
   isProfileMenuVisible: boolean = false;
@@ -22,7 +40,10 @@ export class CabecalhoComponent {
   logoutConfirmationDialog: Dialog;
 
   constructor(private router: Router,
-              private identidadeService: IdentidadeService)
+              private identidadeService: IdentidadeService,
+              private renderer: Renderer2,
+              private el: ElementRef
+              )
               {
                 this.logoutConfirmationDialog = {} as Dialog;
               }
@@ -37,7 +58,18 @@ export class CabecalhoComponent {
     // Sua lógica de logout aqui
   }
 
+  fecharMenuAberto()
+  {
+    this.renderer.listen('window', 'click', (event: Event) => {
+      if (!this.el.nativeElement.contains(event.target)) {
+          this.isProfileMenuVisible = false;
+      }
+    });
+  }
+
   ngOnInit() {
+    this.fecharMenuAberto()
+
     this.identidadeService.usuarioAtual.subscribe(usuario => {
       if (usuario && usuario.usuarioToken && usuario.usuarioToken.email)
       {
@@ -65,6 +97,7 @@ export class CabecalhoComponent {
 
         if (agora < expiracao && agora > criacao) {
           this.userEmail = usuario.usuarioToken.email;
+          this.userName = usuario.usuarioToken.email;
         }else
         {
           // O token expirou, então limpe os dados do localStorage
@@ -107,16 +140,17 @@ export class CabecalhoComponent {
   }
 
   confirmLogout() {
-  // Chame o método de logout do serviço
-  this.identidadeService.logout().subscribe({
-    next: () => {
-      // Navegue para a tela de login após o logout
-      this.router.navigate(['/login']);
-    },
-    error: (error) => {
-      // Lide com erros, se necessário
-    }
-  });
-  this.hideLogoutConfirmationDialog();
+    // Chame o método de logout do serviço
+    this.identidadeService.logout().subscribe({
+      next: () => {
+        // Navegue para a tela de login após o logout
+        this.router.navigate(['/login']);
+      },
+      error: (error) => {
+        // Lide com erros, se necessário
+      }
+    });
+
+    this.hideLogoutConfirmationDialog();
   }
 }

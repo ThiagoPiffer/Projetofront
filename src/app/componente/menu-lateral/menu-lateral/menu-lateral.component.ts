@@ -12,7 +12,7 @@ import { saveAs } from 'file-saver';
 import { ArquivoProcessoTemplateUploadModalComponent } from '../../arquivo-processo-template/arquivo-processo-template-upload-modal/arquivo-processo-template-upload-modal.component';
 import { ArquivoProcessoTemplateService } from '../../arquivo-processo-template/arquivo-processo-template.service';
 import { ProcessoCompartilhadoService } from 'src/app/componente/processo/processo-compartilhado.service';
-
+import { Renderer2, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-menu-lateral',
@@ -34,6 +34,8 @@ export class MenuLateralComponent {
               private arquivoProcessoTemplateService: ArquivoProcessoTemplateService,
               private arquivoProcessoCompartilhadoService: ArquivoProcessoCompartilhadoService,
               private processoCompartilhadoService : ProcessoCompartilhadoService,
+              private renderer: Renderer2,
+              private el: ElementRef
               )
   {
     // Ouvir eventos de roteamento
@@ -50,7 +52,17 @@ export class MenuLateralComponent {
     });
   }
 
+  fecharMenuAberto()
+  {
+    this.renderer.listen('window', 'click', (event: Event) => {
+      if (!this.el.nativeElement.contains(event.target)) {
+        this.menuExpandido = false;
+      }
+    });
+  }
+
   ngOnInit() {
+    this.fecharMenuAberto()
     this.listarTemplates();
   }
 
