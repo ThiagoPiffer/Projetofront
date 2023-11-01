@@ -18,8 +18,10 @@ export class ArquivoProcessoTemplateService {
     private utilsService: UtilsService
   ) { }
 
-  salvar(formData: FormData, idProcesso: number,  idEmpresa: number) : Observable<ArquivoProcessoTemplate>{
-    return this.http.post<ArquivoProcessoTemplate>(this.utilsService.API + `/ArquivoProcessoTemplate/Adicionar?idProcesso=${idProcesso}&idEmpresa=${idEmpresa}`, formData);
+  salvar(formData: FormData, idProcesso: number, tiposPessoaTemplateModel: TipoPessoaTemplateModel[]) : Observable<ArquivoProcessoTemplate>{
+    // Converta tiposPessoaTemplateModel para uma string JSON e adicione ao formData
+    formData.append("tipoPessoaTemplateModel", JSON.stringify(tiposPessoaTemplateModel));
+    return this.http.post<ArquivoProcessoTemplate>(this.utilsService.API + `/ArquivoProcessoTemplate/Adicionar?idProcesso=${idProcesso}`, formData);
   }
 
   salvarTiposPessoaTemplate(listaTiposTemplate: TipoPessoaTemplateModel[]) : Observable<TipoPessoaTemplateModel[]>{

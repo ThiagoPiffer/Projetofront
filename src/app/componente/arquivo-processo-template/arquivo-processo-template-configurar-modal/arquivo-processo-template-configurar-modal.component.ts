@@ -7,6 +7,7 @@ import { ArquivoProcessoTemplateService } from '../../arquivo-processo-template/
 import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { saveAs } from 'file-saver';
 import { TipoPessoaTemplateModel } from 'src/app/models/tipoPessoaTemplateModel';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-arquivo-processo-template-configurar-modal',
@@ -27,9 +28,9 @@ export class ArquivoProcessoTemplateConfigurarModalComponent implements OnInit {
   tipoPessoaTemplateAnonimo: TipoPessoaTemplateModel[] = [
     {
       id: 0,
-      idTipoPessoa: 0,
-      idEmpresa: 0,
-      idArquivoProcessoTemplate: 0,
+      tipoPessoaId: 0,
+      EmpresaId: 0,
+      ArquivoProcessoTemplateId: 0,
       campoChave: '',
       descricao: ''
     }
@@ -39,8 +40,10 @@ export class ArquivoProcessoTemplateConfigurarModalComponent implements OnInit {
     private pessoaService: PessoaService,
     private processoCompartilhadoService : ProcessoCompartilhadoService,
     public config: DynamicDialogConfig,
+    public ref: DynamicDialogRef,
     private arquivoProcessoTemplateService: ArquivoProcessoTemplateService,
-    private tipoPessoaTemplateService: TipoPessoaTemplateService
+    private tipoPessoaTemplateService: TipoPessoaTemplateService,
+    private messageService: MessageService
     )
   {
     this.processoCompartilhadoService.processoId$.subscribe(id => {
@@ -89,6 +92,7 @@ export class ArquivoProcessoTemplateConfigurarModalComponent implements OnInit {
     this.arquivoProcessoTemplateService.ListarPessoaTemplate(this.idArquivoTemplate, this.processoId).subscribe(
       {
         next: (pessoaTemplate) =>{
+
             this.pessoaTemplate = pessoaTemplate
         },
         error: (error) => {
@@ -100,6 +104,7 @@ export class ArquivoProcessoTemplateConfigurarModalComponent implements OnInit {
 
   pessoaTemplateFiltrado(idTipo: number) : PessoasProcessoModel[] {
     let lista = this.pessoaTemplate.filter(o => o.idTipoPessoa === idTipo);
+
     return lista;
   }
 
@@ -172,6 +177,21 @@ export class ArquivoProcessoTemplateConfigurarModalComponent implements OnInit {
     this.arquivoProcessoTemplateService.DownloadArquivoTemplate(configuraDocumento).subscribe(data => {
       saveAs(data, this.config.data.arquivoNome);
     });
+  }
+
+  deletarDocumento(): void {
+    this.arquivoProcessoTemplateService.deletar(this.idArquivoTemplate).subscribe(
+      {
+        next: () =>  {
+          // Trate a resposta com sucesso aqui, por exemplo, remova o item da lista ou mostre uma mensagem de sucesso.
+          this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Deletado sucesso' });
+          this.ref.close();
+        },
+        error: (error) => {
+          this.messageService.add({ severity: 'error', summary: 'Erro no processo', detail: error.error.message });
+        }
+      }
+    );
   }
 }
 

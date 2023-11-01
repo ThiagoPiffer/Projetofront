@@ -1,0 +1,32 @@
+.custom-list li {
+  list-style-type: none; /* Remove o marcador padrão */
+}
+
+.copy-icon {
+  color: #607D8B; /* Define a cor do ícone */
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+
+.list-item:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+  border-radius: 5px; /* Bordas arredondadas */
+  background-color: #f5f5f5; /* Cor de fundo suave para destaque */
+}
+
+.copy-icon, .delete-icon {
+  margin: 0 10px;  /* Para dar um espaço entre os ícones e o texto */
+}
+
+.url-text {
+  cursor: pointer;
+  color: #3B82F6; /* Azul elegante */
+}
+
+
+

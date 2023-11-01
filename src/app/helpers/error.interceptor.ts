@@ -14,7 +14,6 @@ export class ErrorInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
       return next.handle(req).pipe(
           catchError((error: HttpErrorResponse) => {
-
               if (error.error instanceof ErrorEvent) {
                   // Erros do lado do cliente
                   this.messageService.add({ severity: 'error', summary: 'Erro no cliente', detail: error.error.message });
@@ -24,7 +23,12 @@ export class ErrorInterceptor implements HttpInterceptor {
                   // Tratamento específico para erro 400
                   if (error.status === 400) {
                       // Aqui, estou presumindo que sua mensagem de erro vem no formato { "": ["mensagem de erro"] }
-                      const serverMessage = error.error[''] && error.error[''][0] ? error.error[''][0] : 'Erro desconhecido';
+                      let serverMessage = 'Erro desconhecido';
+                      if ( error.error[''] && error.error[''][0])
+                        serverMessage = error.error[''][0];
+                      else if (error.error.message)
+                        serverMessage = error.error.message;
+
                       this.messageService.add({ severity: 'error', summary: 'Erro na autenticação', detail: serverMessage });
                   } else {
                       this.messageService.add({ severity: 'error', summary: 'Erro no processo', detail: error.error.message || 'Erro desconhecido' });

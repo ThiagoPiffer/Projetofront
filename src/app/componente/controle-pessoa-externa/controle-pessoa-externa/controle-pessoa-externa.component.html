@@ -1,0 +1,56 @@
+<p-toast></p-toast>
+
+<div class="conteudo">
+  <div class="box m-2 p-3 rounded-box">
+    <div class="row">
+      <div class="col-2">
+        <span>Data e hora de expiração: </span>
+      </div>
+      <div class="col-10">
+        <p-calendar [(ngModel)]="selectedDate" [showTime]="true" hourFormat="24"></p-calendar>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-2">
+        <!-- linha vazia -->
+      </div>
+      <div class="col-10">
+        <p-button
+          icon="fas fa-link"
+          label="Gerar Link Externo"
+          [disabled]="!selectedDate"
+          (click)="gerarLinkExterno()">
+        </p-button>
+      </div>
+    </div>
+  </div>
+
+  <div class="box m-2 p-3 rounded-box">
+    <h3>Links já cadastrados</h3>
+    <ul class="custom-list" *ngIf="linksCadastrados.length > 0">
+      <li *ngFor="let link of linksCadastrados" class="list-item">
+        <!-- Ícone para copiar -->
+        <i class="fas fa-copy copy-icon" style="cursor: pointer;" (click)="copyToClipboard(link.url)" title="Copiar link"></i>
+
+        <!-- URL -->
+        <span style="flex: 2;" class="url-text" (click)="copyToClipboard(link.url)">{{ link.url }}</span>
+
+        <!-- Data de expiração -->
+        <span style="flex: 1;">Expira em: {{ link.expiracao }}</span>
+
+        <!-- Ícone da lixeira -->
+        <button
+          type="button"
+          pButton
+          pRipple
+          icon="pi pi-trash"
+          class="p-button-rounded p-button-danger p-button-text"
+          (click)="deletarLink(link.id)"
+          style="margin: 0; margin-right: 50px; line-height: 0; min-height: 0; width: 20px; height: 20px;">
+        </button>
+      </li>
+    </ul>
+    <p *ngIf="linksCadastrados.length < 1">Não há links cadastrados.</p>
+  </div>
+</div>
+

@@ -10,6 +10,9 @@ import { PessoaCadastroModalComponent } from './componente/Pessoa/pessoa-cadastr
 import { LoginComponent } from './componente/identidade/login/login.component';
 import { RegistroComponent } from './componente/identidade/registro/registro.component';
 import { AuthGuard } from './helpers/auth.guard';
+import { CadastroPessoaExternaComponent } from './componente/controle-pessoa-externa/cadastro-pessoa-externa/cadastro-pessoa-externa.component';
+import { NotificacaoComponent } from './componente/notificacao/notificacao/notificacao.component';
+import { PessoaListaPaginaComponent } from './componente/Pessoa/pessoa-lista-pagina/pessoa-lista-pagina.component';
 
 const routes: Routes = [
   {
@@ -33,6 +36,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'pessoa-lista-pagina',
+    component: PessoaListaPaginaComponent,
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'processo-detalhe',
     component: ProcessoDetalheComponent,
     canActivate: [AuthGuard]
@@ -41,6 +49,14 @@ const routes: Routes = [
     path: 'pessoa-cadastro-modal',
     component: PessoaCadastroModalComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'cadastro-pessoa-externa/:id',
+    component: CadastroPessoaExternaComponent
+  },
+  {
+    path: 'notificacao',
+    component: NotificacaoComponent
   },
   {
     path: 'login',

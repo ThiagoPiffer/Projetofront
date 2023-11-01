@@ -1,8 +1,8 @@
 export interface TipoPessoaTemplateModel {
   id: number;
-  idTipoPessoa: number;
-  idEmpresa: number;
-  idArquivoProcessoTemplate: number;
+  tipoPessoaId: number;
+  EmpresaId: number;
+  ArquivoProcessoTemplateId: number;
   campoChave: string;
   descricao: string;
 }

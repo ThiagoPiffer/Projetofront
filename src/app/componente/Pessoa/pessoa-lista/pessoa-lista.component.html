@@ -1,0 +1,62 @@
+<button class="btn" (click)="abrirModalCadastroPessoa(0)" *ngIf="exibeCadastro">
+  <i class="fas fa-user-plus"></i> Adicionar Pessoa
+</button>
+<button class="btn" (click)="abrirModalAssociarPessoa()" *ngIf="exibeAssociar">
+  <i class="fas fa-users"></i> Associar Pessoa
+</button>
+
+<div *ngIf="exibirListaPessoa()">
+  <p-table [value]="pessoasProcessoModel" dataKey="id" class="table-limited">
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="width: 1rem"></th>
+            <th pSortableColumn="nome">Nome <p-sortIcon field="nome"></p-sortIcon></th>
+            <th *ngIf="listaProcesso" pSortableColumn="tipoPessoaDescricao">Tipo <p-sortIcon field="tipoPessoaDescricao"></p-sortIcon></th>
+            <th style="width: 1rem"></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-pessoa let-expanded="expanded">
+        <tr>
+            <td>
+              <a type="button" [@ngIfAnimation] pButton pRipple [pRowToggler]="pessoa" class="custom-link">
+                <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'" class="custom-icon"></i>
+              </a>
+            </td>
+            <td>{{ pessoa.nome }}</td>
+            <td *ngIf="listaProcesso">{{ pessoa.tipoPessoaDescricao }}</td>
+            <td>
+              <a #menuButton class="icon-button invisible-button no-hover" (click)="menu.toggle($event)">
+                <span class="icon icon-tres-pontos"></span>
+              </a>
+              <p-menu #menu appendTo="body" [model]="getMenuPessoas(pessoa.id)" [popup]="true"></p-menu>
+          </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="rowexpansion" let-pessoa >
+        <tr [@easeInOut]>
+            <td colspan="3">
+              <div class="p-2">
+                <div class="row">
+                    <div class="col-6">
+                      <li><strong>Celular:</strong> ({{ pessoa.dddCelular }}) {{ pessoa.celular }}</li>
+                      <li><strong>Telefone:</strong> ({{ pessoa.dddTelefone }}) {{ pessoa.telefone }}</li>
+                      <li><strong>Data de Nascimento:</strong> {{ pessoa.dataNascimento }}</li>
+                      <li><strong>Idade:</strong> {{ pessoa.idade }}</li>
+                    </div>
+                    <div class="col-6">
+                      <li><strong>CPF/CNPJ:</strong> {{ pessoa.cpfcnpj }}</li>
+                      <li><strong>Identidade:</strong> {{ pessoa.identidade }}</li>
+                      <li><strong>Email:</strong> {{ pessoa.email }}</li>
+                    </div>
+                </div>
+              </div>
+            </td>
+        </tr>
+    </ng-template>
+  </p-table>
+</div>
+<!-- lista vazia -->
+<div>
+<span *ngIf="!exibirListaPessoa()" class="listaVazia">Lista de pessoa vazia.</span>
+</div>
+

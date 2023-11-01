@@ -73,16 +73,17 @@ export class ProcessoDetalheComponent implements OnInit {
   arquivosProcesso : ArquivoProcesso | any;
   expanded: boolean = false;
 
-  constructor(private processoService: ProcessoService,
-              private arquivoProcessoService: ArquivoProcessoService,
-              private pessoaService: PessoaService,
-              private processoCompartilhadoService : ProcessoCompartilhadoService,
-              private dialogService: DialogService,
-              private messageService: MessageService,
-              private arquivoProcessoCompartilhadoService: ArquivoProcessoCompartilhadoService,
-              private pessoaCompartilhadoService: PessoaCompartilhadoService,
-              private utilsService: UtilsService,
-              private router: Router
+  constructor(
+    private processoService: ProcessoService,
+    private arquivoProcessoService: ArquivoProcessoService,
+    private pessoaService: PessoaService,
+    private processoCompartilhadoService : ProcessoCompartilhadoService,
+    private dialogService: DialogService,
+    private messageService: MessageService,
+    private arquivoProcessoCompartilhadoService: ArquivoProcessoCompartilhadoService,
+    private pessoaCompartilhadoService: PessoaCompartilhadoService,
+    private utilsService: UtilsService,
+    private router: Router
 
     ) {
       this.processoCompartilhadoService.processoId$.subscribe(id => {

@@ -1,0 +1,21 @@
+<div class="conteudo2">
+  <div class="row mt-3">
+    <div class="col-6 mx-auto">
+      <h2 class="mb-3">Pessoas para associar</h2>
+      <!-- <div class="box m-2 p-2 rounded-box"> -->
+        <p-listbox *ngIf="pessoasProcessoModel" [options]="pessoasProcessoModel" [(ngModel)]="selectedPessoasProcessoModel" [filter]="true" [style]="{ width: '55rem' }">
+          <ng-template let-pessoa pTemplate="item">
+              {{pessoa.nome}} - {{pessoa.cpfcnpj}}
+          </ng-template>
+        </p-listbox>
+      <!-- </div> -->
+    </div>
+  </div>
+  <div class="row my-2">
+    <div class="col-12 text-end">
+      <p-button icon="pi pi-times" label="Cancelar" styleClass="p-button-text" (click)="fecharModal()"></p-button>
+
+      <p-button icon="pi pi-check" label="Confirmar" styleClass="p-button-text" (click)="salvarPessoaAssociar(selectedPessoasProcessoModel)"></p-button>
+    </div>
+  </div>
+</div>

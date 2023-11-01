@@ -3,36 +3,54 @@
   <div class="topbar-menu fadeInDown" *ngIf="userEmail">
     <!-- Item do perfil do usuário -->
     <div class="profile-item">
-        <a href="#" (click)="toggleProfileMenu(); $event.preventDefault()" class="profile-link">
 
-            <div class="profile-image">
-                <!-- Imagem do usuário (adicione sua lógica de caminho de imagem aqui) -->
-                <img src="/assets/images/profile-image.png" alt="Profile" />
-            </div>
-            <div class="profile-info">
-              <span class="profile-name">{{ userName }}</span>
-              <span style="padding-left: 10px;" class="profile-role">{{ userRole }}</span>
-            </div>
-        </a>
-        <!-- Menu suspenso do perfil -->
-        <ul *ngIf="isProfileMenuVisible" class="profile-menu">
-          <div class="card flex justify-content-center">
-            <p-menu [model]="items">
-                <ng-template pTemplate="item" let-item>
-                    <a class="p-menuitem-link flex justify-content-between align-items-center p-3">
-                        <div>
-                            <span [class]="item.icon"></span>
-                            <span> {{ item.label }}</span>
-                        </div>
-                    </a>
-                </ng-template>
-            </p-menu>
-          </div>
-      </ul>
+      <!-- Icone para notificações -->
+      <span class="notification-icon">
+        <ng-container *ngIf="notificationCount > 0; else nonClickableIcon">
+            <a href="#" (click)="abrirNotificao(); $event.preventDefault()">
+                <i class="topbar-icon pi pi-bell pi-fw menu-bold-icon" style="margin-right: 10px;"></i>
+                <!-- Marcador de notificações -->
+                <span class="notification-badge">{{ notificationCount }}</span>
+            </a>
+        </ng-container>
+        <ng-template #nonClickableIcon>
+            <i class="topbar-icon pi pi-bell pi-fw menu-bold-icon" style="margin-right: 10px;"></i>
+        </ng-template>
+      </span>
+
+
+      <!-- Menu perfil -->
+      <a href="#" (click)="toggleProfileMenu(); $event.preventDefault()" class="profile-link">
+        <div class="profile-image">
+          <!-- Imagem do usuário (adicione sua lógica de caminho de imagem aqui) -->
+          <img src="/assets/images/profile-image.png" alt="Profile" />
+        </div>
+        <div class="profile-info">
+          <span class="profile-name">{{ userName }}</span>
+          <span style="padding-left: 10px;" class="profile-role">{{ userRole }}</span>
+        </div>
+      </a>
     </div>
-    <!-- Outros itens do menu, se necessário -->
+
+    <!-- Menu suspenso do perfil -->
+    <ul *ngIf="isProfileMenuVisible" class="profile-menu">
+      <div class="card flex justify-content-center">
+        <p-menu [model]="items">
+          <ng-template pTemplate="item" let-item>
+            <a class="p-menuitem-link flex justify-content-between align-items-center p-3">
+              <div>
+                <span [class]="item.icon"></span>
+                <span> {{ item.label }}</span>
+              </div>
+            </a>
+          </ng-template>
+        </p-menu>
+      </div>
+    </ul>
   </div>
 </div>
+
+
 
 <p-dialog #logoutConfirmationDialog header="Confirmação" [(visible)]="displayLogoutDialog" [modal]="true" [responsive]="true">
   <p>Tem certeza de que deseja sair?</p>

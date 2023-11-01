@@ -1,0 +1,115 @@
+.box-content {
+  background-color: white;  /* ou outra cor de sua escolha */
+  height: 100%;
+}
+
+
+.p-datatable-tbody-row.ng-trigger.ng-star-inserted {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out; /* 0.5 segundos de animação */
+}
+
+.p-datatable-tbody-row.ng-trigger.ng-star-inserted.expanded-row {
+  max-height: 500px;
+}
+
+.table-limited {
+  max-height: 45vh;
+  overflow-y: auto;
+  display: block;
+}
+
+/* Para Webkit (Chrome, Opera, Safari) */
+
+/* Esconde inicialmente a barra de rolagem na classe .table-limited */
+.table-limited::-webkit-scrollbar {
+  width: 5px; /* Largura mais fina para a barra de rolagem */
+  background: transparent; /* Torna a barra de rolagem completamente transparente */
+}
+
+/* Quando o mouse passa sobre o elemento .table-limited, mostra a barra de rolagem */
+.table-limited:hover::-webkit-scrollbar {
+  width: 5px;
+}
+
+.table-limited:hover::-webkit-scrollbar-track {
+  background-color: #f9f9f9; /* Cor de fundo mais clara para a trilha */
+  border-radius: 3px; /* Cantos mais sutis */
+}
+
+.table-limited:hover::-webkit-scrollbar-thumb {
+  background-color: #b0b0b0; /* Cor mais clara para a barra de rolagem */
+  border-radius: 3px;
+}
+
+/* Quando o mouse está sobre a barra de rolagem da classe .table-limited */
+.table-limited:hover::-webkit-scrollbar-thumb:hover {
+  background-color: #8a8a8a; /* Cor um pouco mais escura quando o mouse está sobre ela */
+}
+
+.table-limited .p-datatable-tbody > tr > td,
+.table-limited .p-datatable-thead > tr > th {
+    padding: 4px 8px;  /* Ajuste conforme sua preferência */
+}
+
+.custom-link {
+  background-color: white;
+  color: #6c757d;
+  text-decoration: none; /* Remove o traço embaixo */
+  display: inline-block; /* Para permitir padding */
+  padding: 5px; /* Adicione padding se necessário */
+  border-radius: 4px; /* Arredonda os cantos, se desejado */
+  border: white;
+}
+
+/* Estilos para o estado hover, se desejado */
+.custom-link:hover {
+  background-color: white; /* Um leve cinza para o hover */
+  border: white;
+}
+
+.custom-icon {
+  font-size: 11px;
+}
+
+.menumenu {
+  left: auto !important;
+  right: 100% !important; /* para alinhar o lado direito do menu com o lado esquerdo do botão */
+}
+
+.menumenu.ui-menu.ui-menu-dynamic.ui-widget.ui-widget-content.ui-corner-all.ui-helper-clearfix {
+  left: auto !important;
+  right: 100% !important; /* para alinhar o lado direito do menu com o lado esquerdo do botão */
+}
+
+/* Define a classe para o ícone de rendimentos */
+.icon-tres-pontos {
+  display: inline-block;
+  width: 24px; /* Ajuste o tamanho conforme necessário */
+  height: 24px; /* Ajuste o tamanho conforme necessário */
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>');
+  background-size: cover;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

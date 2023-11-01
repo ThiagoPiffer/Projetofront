@@ -65,8 +65,16 @@
 }
 
 .profile-item {
+  display: flex;
+  align-items: center;
+  /* outras estilizações */
+}
+
+.notification-icon {
+  margin-right: 10px; /* Ajuste conforme necessário */
   position: relative;
 }
+
 
 .profile-menu {
   position: absolute;
@@ -75,8 +83,27 @@
   z-index: 1000; /* Garante que ele apareça acima de outros elementos */
 }
 
+.menu-bold-icon {
+  color: white;
+  font-weight: bold;
+  font-size: 25px;
+  margin-top: 5px;
+}
 
+.topbar-icon {
+  color: white;
+  font-weight: bold;
+}
 
-
+.notification-badge {
+  position: absolute;
+  top: 0;  /* ou ajuste conforme necessário */
+  right: 4px;  /* ou ajuste conforme necessário */
+  background-color: #8BC34A;
+  color: white;
+  border-radius: 50%;
+  padding: 3px 6px;
+  font-size: 9px;
+}
 
 

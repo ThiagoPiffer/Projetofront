@@ -202,3 +202,27 @@ body .p-sidebar .p-sidebar-content {
   font-size: 24px; /* Define o tamanho da fonte */
   padding: 10px; /* Espaçamento interno */
 }
+
+.p-accordion-header a {
+
+  font-size: 14px; /* Ajuste conforme necessário */
+  padding: 5px !important; /* Ajuste conforme necessário */
+  height: 40px !important;
+}
+
+.fundo-destaque{
+  border-radius: 10px;
+  padding: 10px;
+  background: #607D8B; /* branco ocupa apenas os primeiros 10% do gradiente */
+  font-family: 'Montserrat', sans-serif; /* Define a família da fonte */
+  font-size: 15px; /* Define o tamanho da fonte */
+  font-weight: bold; /* Torna o texto em negrito */
+  color: #FFFFFF; /* Cor do texto */
+}
+
+.listaVazia {
+  color: gray;
+  font-style: italic;
+  opacity: 0.6;
+  padding-left: 5px;
+}

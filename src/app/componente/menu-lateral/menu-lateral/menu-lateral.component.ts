@@ -1,3 +1,4 @@
+import { ControlePessoaExternaComponent } from './../../controle-pessoa-externa/controle-pessoa-externa/controle-pessoa-externa.component';
 import { ArquivoProcessoTemplateConfigurarModalComponent } from './../../arquivo-processo-template/arquivo-processo-template-configurar-modal/arquivo-processo-template-configurar-modal.component';
 import { ArquivoProcessoTemplate } from './../../../models/ArquivoProcessoTemplate';
 import { ArquivoProcessoCompartilhadoService } from './../../arquivo-Processo/arquivo-processo-compartilhado.service';
@@ -21,6 +22,10 @@ import { Renderer2, ElementRef } from '@angular/core';
 })
 export class MenuLateralComponent {
   mostrarMenuLateral = false;
+  mostrarMenuTemplate = false;
+  mostrarMenuUtilidades = false;
+  mostrarMenuConteudo = false;
+
   menuExpandido = false; // controla se o menu está expandido ou retraído
   @Output() estadoMenuAlterado = new EventEmitter<boolean>();
   listaTemplates: ArquivoProcessoTemplate[] = [];
@@ -88,7 +93,7 @@ export class MenuLateralComponent {
 
     const ref = this.dialogService.open(ArquivoProcessoTemplateConfigurarModalComponent, {
       header: 'Configurar Template',
-      width: '35%',
+      width: '55%',
       height: '60%',
       data: {
         arquivoId: arquivo.id,
@@ -101,10 +106,13 @@ export class MenuLateralComponent {
       this.arquivoProcessoCompartilhadoService.mensagem$.pipe(take(1)).subscribe(mensagem => {
         if (mensagem.tipo)
           this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: mensagem.mensagem });
+
         else{
           if(mensagem.mensagem)
             this.messageService.add({ severity: 'error', summary: 'Erro no processo', detail: mensagem.mensagem });
         }
+
+        this.listarTemplates()
       });
     });
 
@@ -119,22 +127,72 @@ export class MenuLateralComponent {
   atualizarVisibilidadeMenuLateral(url: string) {
     // Lógica para mostrar ou ocultar o menu lateral com base na URL
     // Por exemplo, se a URL contém 'algum-caminho', mostrar o menu lateral
-    if (url.includes('processo-detalhe')) {
-      this.mostrarMenuLateral = true;
-      this.SidebarService.toggleSidebar(true);
-    } else {
-      this.SidebarService.toggleSidebar(false);
-      this.mostrarMenuLateral = false;
+
+    switch (true) {
+      case url.includes('processo-detalhe'):
+        this.mostrarMenuLateral = true;
+        this.mostrarMenuConteudo = true;
+        this.mostrarMenuTemplate = true;
+        this.mostrarMenuUtilidades = true;
+        this.SidebarService.toggleSidebar(true);
+        break;
+
+      case url.includes('processo-lista'):
+        this.mostrarMenuLateral = true;
+        this.mostrarMenuConteudo = true;
+        this.mostrarMenuTemplate = false;
+        this.mostrarMenuUtilidades = true;
+        this.SidebarService.toggleSidebar(true);
+        break;
+
+      case url.includes('pessoa-lista-pagina'):
+        this.mostrarMenuLateral = true;
+        this.mostrarMenuConteudo = true;
+        this.mostrarMenuTemplate = false;
+        this.mostrarMenuUtilidades = true;
+        this.SidebarService.toggleSidebar(true);
+        break;
+
+      case url.includes('notificacao'):
+        this.mostrarMenuLateral = true;
+        this.mostrarMenuConteudo = true;
+        this.mostrarMenuTemplate = false;
+        this.mostrarMenuUtilidades = true;
+        this.SidebarService.toggleSidebar(true);
+        break;
+
+      default:
+          this.SidebarService.toggleSidebar(false);
+          this.mostrarMenuLateral = false;
+          break;
+      }
     }
-  }
 
   toggleMenu() {
     this.menuExpandido = !this.menuExpandido;
   }
 
-  metodoRelatorio1(event: Event) {
+  GerarLinkExternoCadastroPessoa(event: Event) {
     event.preventDefault();
-    // seu código para lidar com o clique aqui
+
+    const ref = this.dialogService.open(ControlePessoaExternaComponent, {
+      header: 'Gerar link externo',
+      width: '65%',
+      height: '70%'
+    });
+
+    // ref.onClose.subscribe((result) => {
+    //   this.arquivoProcessoCompartilhadoService.mensagem$.pipe(take(1)).subscribe(mensagem => {
+    //     if (mensagem.tipo)
+    //       this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: mensagem.mensagem });
+    //     else{
+    //       if(mensagem.mensagem)
+    //         this.messageService.add({ severity: 'error', summary: 'Erro no processo', detail: mensagem.mensagem });
+    //     }
+
+    //     this.listarTemplates();
+    //   });
+    // });
   }
 
   NovoTemplate(event: Event){
@@ -142,7 +200,8 @@ export class MenuLateralComponent {
 
     const ref = this.dialogService.open(ArquivoProcessoTemplateUploadModalComponent, {
       header: 'Upload Arquivo',
-      width: '65%'
+      width: '80%',
+      height: '65%'
     });
 
     ref.onClose.subscribe((result) => {

@@ -111,7 +111,9 @@ export class ArquivoProcessoTemplateUploadModalComponent implements OnInit  {
       email: this.removerAcentos(novoTipoPessoa.descricao + "Email"),
       identidade: this.removerAcentos(novoTipoPessoa.descricao + "Identidade"),
     });
-
+    console.log(tipoPessoa)
+    console.log(this.tiposSelecionados)
+    console.log(this.entradas)
     // Previne que o dropdown seja fechado ao clicar no botão
     event.stopPropagation();
   }
@@ -127,41 +129,34 @@ export class ArquivoProcessoTemplateUploadModalComponent implements OnInit  {
 
       formData.append('file', file, file.name);
 
+      console.log(this.tiposSelecionados)
       this.listaTiposTemplate = this.tiposSelecionados.map(tipo => {
         return {
             id: 0,
-            idArquivoProcessoTemplate: 0,
-            idProcesso: 0,
-            idEmpresa: 2,
-            idTipoPessoa: tipo.id,
+            ArquivoProcessoTemplateId: 0,
+            ProcessoId: 0,
+            EmpresaId: 2,
+            tipoPessoaId: tipo.id,
             campoChave: tipo.textoAdicional,
             descricao: '',
         };
       });
-      let idEmpresa = 2;
-      this.arquivoProcessoTemplateService.salvar(formData, this.processoId, idEmpresa).subscribe({
+
+      this.arquivoProcessoTemplateService.salvar(formData, this.processoId, this.listaTiposTemplate).subscribe({
         next: (data) => {
           this.listaTiposTemplate = this.listaTiposTemplate.map(lista => {
             return {
               id: 0,
-              idArquivoProcessoTemplate: data.id,
-              idEmpresa: 2,
-              idTipoPessoa: lista.idTipoPessoa,
+              ArquivoProcessoTemplateId: data.id,
+              EmpresaId: 0,
+              tipoPessoaId: lista.tipoPessoaId,
               campoChave: lista.campoChave,
               descricao: '',
             };
           })
-          this.arquivoProcessoTemplateService.salvarTiposPessoaTemplate(this.listaTiposTemplate).subscribe({
-            next: () => {
 
-            this.messageService.add({ severity: 'success', summary: 'Cadastro realizado com sucesso', detail: '' });
-            this.fecharModal();
-            },
-            error: erro => {
-              console.error('Erro ao salvar o arquivo:', erro);
-              // Você pode querer adicionar uma mensagem de erro aqui também
-            }
-          });
+          this.messageService.add({ severity: 'success', summary: 'Cadastro realizado com sucesso', detail: '' });
+          this.fecharModal();
         },
         error: erro => {
             console.error('Erro ao salvar o arquivo:', erro);

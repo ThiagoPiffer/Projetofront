@@ -36,8 +36,8 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { SidebarModule } from 'primeng/sidebar';
 import { AccordionModule } from 'primeng/accordion';
 import { StepsModule } from 'primeng/steps';
-
-
+import { CalendarModule } from 'primeng/calendar';
+import { ListboxModule } from 'primeng/listbox';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from './helpers/error.interceptor';
@@ -62,6 +62,12 @@ import { ArquivoProcessoTemplateUploadModalComponent } from './componente/arquiv
 import { ArquivoProcessoTemplateConfigurarModalComponent } from './componente/arquivo-processo-template/arquivo-processo-template-configurar-modal/arquivo-processo-template-configurar-modal.component';
 import { TipoPessoaComponent } from './componente/tipo-pessoa/tipo-pessoa/tipo-pessoa.component';
 import { TipoPessoaTemplateComponent } from './componente/tipo-pessoa-template/tipo-pessoa-template/tipo-pessoa-template.component';
+import { ControlePessoaExternaComponent } from './componente/controle-pessoa-externa/controle-pessoa-externa/controle-pessoa-externa.component';
+import { CadastroPessoaExternaComponent } from './componente/controle-pessoa-externa/cadastro-pessoa-externa/cadastro-pessoa-externa.component';
+import { NotificacaoComponent } from './componente/notificacao/notificacao/notificacao.component';
+import { PessoaListaComponent } from './componente/Pessoa/pessoa-lista/pessoa-lista.component';
+import { PessoaAssociarModalComponent } from './componente/Pessoa/pessoa-associar-modal/pessoa-associar-modal.component';
+import { PessoaListaPaginaComponent } from './componente/Pessoa/pessoa-lista-pagina/pessoa-lista-pagina.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +90,13 @@ import { TipoPessoaTemplateComponent } from './componente/tipo-pessoa-template/t
     ArquivoProcessoTemplateUploadModalComponent,
     ArquivoProcessoTemplateConfigurarModalComponent,
     TipoPessoaComponent,
-    TipoPessoaTemplateComponent
+    TipoPessoaTemplateComponent,
+    ControlePessoaExternaComponent,
+    CadastroPessoaExternaComponent,
+    NotificacaoComponent,
+    PessoaListaComponent,
+    PessoaAssociarModalComponent,
+    PessoaListaPaginaComponent
   ],
   imports: [
     BrowserModule,
@@ -107,7 +119,9 @@ import { TipoPessoaTemplateComponent } from './componente/tipo-pessoa-template/t
     FileUploadModule,
     SidebarModule,
     AccordionModule,
-    StepsModule
+    StepsModule,
+    CalendarModule,
+    ListboxModule
   ],
   providers: [
     UtilsService,

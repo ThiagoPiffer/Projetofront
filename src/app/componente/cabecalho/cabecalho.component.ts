@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { IdentidadeService } from '../identidade/identidade.service';
 import { Dialog } from 'primeng/dialog';
 import { Renderer2, ElementRef } from '@angular/core';
+import { CabecalhoService } from './cabecalho.service';
 
 
 
@@ -15,6 +16,9 @@ export class CabecalhoComponent {
 
   userEmail: string | null = null;
   displayLogoutDialog: boolean = false;
+  notificationCount: number = 0; // ou o número desejado de notificações
+  autenticado = false;
+
 
   items = [
     {
@@ -42,7 +46,8 @@ export class CabecalhoComponent {
   constructor(private router: Router,
               private identidadeService: IdentidadeService,
               private renderer: Renderer2,
-              private el: ElementRef
+              private el: ElementRef,
+              private cabecalho: CabecalhoService
               )
               {
                 this.logoutConfirmationDialog = {} as Dialog;
@@ -69,7 +74,25 @@ export class CabecalhoComponent {
 
   ngOnInit() {
     this.fecharMenuAberto()
+    this.autenticacao();
+    if (this.autenticado)
+      this.notificacao();
+  }
+  notificacao() {
+    this.cabecalho.QuantidadeNotificacao().subscribe(
+      {
+        next: (data) => {
+          this.notificationCount = data;
+        }
+      }
+    )
+  }
 
+  abrirNotificao(){
+    this.router.navigate(['../notificacao']);
+  }
+
+  autenticacao(){
     this.identidadeService.usuarioAtual.subscribe(usuario => {
       if (usuario && usuario.usuarioToken && usuario.usuarioToken.email)
       {
@@ -98,6 +121,7 @@ export class CabecalhoComponent {
         if (agora < expiracao && agora > criacao) {
           this.userEmail = usuario.usuarioToken.email;
           this.userName = usuario.usuarioToken.email;
+          this.autenticado = true;
         }else
         {
           // O token expirou, então limpe os dados do localStorage

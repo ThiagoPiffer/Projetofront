@@ -1,6 +1,13 @@
 
 
 <div class="conteudo2">
+  <div class="fundo-destaque mt-2" *ngIf="cadastroExteno">
+    <span> <i class="fas fa-building" style="padding-right: 5px;"></i> {{ controlePessoaExternaModel.empresa.nome }}</span>
+    <i pTooltip="Cadastro externo" class="fas fa-link" style="padding-right: 5px; padding-top: 3px;  float: right;"></i>
+
+
+  </div>
+
 
   <div class="row my-2">
     <div class="col-12">
@@ -72,6 +79,7 @@
   <div class="row my-2">
     <div class="col-12 text-end">
       <p-button icon="pi pi-times" label="Cancelar" styleClass="p-button-text" (click)="fecharModal()"></p-button>
+
       <p-button icon="pi pi-check" label="Confirmar" styleClass="p-button-text" (click)="salvarPessoaNova(novaPessoa)"></p-button>
     </div>
   </div>

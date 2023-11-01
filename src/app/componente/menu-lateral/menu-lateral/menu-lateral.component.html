@@ -5,22 +5,39 @@
   </button>
   <p-sidebar [(visible)]="menuExpandido" position="left" [modal]="false" [baseZIndex]="10000">
     <p-accordion>
-      <p-accordionTab header="Template" [selected]="false">
+      <p-accordionTab *ngIf="mostrarMenuConteudo" class="accordionTab-menu-lateral" header="Conteúdo" [selected]="false">
+        <ul class="ulAccordionTab">
+          <li class="liAccordionTab" *ngFor="let template of listaTemplates">
+            <a  href="/notificacao">
+              <i class="fas fa-bell" style="padding-right: 5px;"></i> Notificações</a></li>
+
+          <li class="liAccordionTab" *ngFor="let template of listaTemplates">
+            <a  href="/pessoa-lista-pagina">
+              <i class="fas fa-users" style="padding-right: 5px;"></i>Pessoas</a></li>
+
+          <li class="liAccordionTab" *ngFor="let template of listaTemplates">
+            <a  href="/processo-lista">
+              <i class="fas fa-balance-scale" style="padding-right: 5px;"></i> Processos</a></li>
+        </ul>
+      </p-accordionTab>
+      <p-accordionTab *ngIf="mostrarMenuTemplate" class="accordionTab-menu-lateral" header="Templates" [selected]="false">
         <ul class="ulAccordionTab">
           <li class="liAccordionTab" *ngFor="let template of listaTemplates">
             <a (click)="ConfiguraArquivoTemplateModal($event, template)">{{ template.nome }}</a>
           </li>
           <li class="liAccordionTab">
             <a href="#" (click)="NovoTemplate($event)">
-              <i class="fas fa-plus"></i> Novo Template
+              <i class="fas fa-plus" style="padding-right: 5px;"></i> Novo Template
             </a>
         </ul>
       </p-accordionTab>
-      <p-accordionTab header="Template2" [selected]="false">
-        <ul>
-          <li><a href="#" (click)="metodoRelatorio1($event)">Relatório 1</a></li>
-          <li><a href="#" (click)="metodoRelatorio1($event)">Relatório 2</a></li>
-          <li><a href="#" (click)="metodoRelatorio1($event)">Relatório 3</a></li>
+      <p-accordionTab *ngIf="mostrarMenuUtilidades" class="accordionTab-menu-lateral" header="Utilitades" [selected]="false">
+        <ul class="ulAccordionTab">
+          <li class="liAccordionTab">
+            <a href="#" (click)="GerarLinkExternoCadastroPessoa($event)">
+              <i class="fas fa-link" style="padding-right: 5px;"></i>
+              Link externo para cadastro de Pessoa</a>
+          </li>
         </ul>
       </p-accordionTab>
       <!-- Você pode adicionar mais <p-accordionTab> aqui para outros itens no menu -->
