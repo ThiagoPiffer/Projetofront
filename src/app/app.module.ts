@@ -38,6 +38,7 @@ import { AccordionModule } from 'primeng/accordion';
 import { StepsModule } from 'primeng/steps';
 import { CalendarModule } from 'primeng/calendar';
 import { ListboxModule } from 'primeng/listbox';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from './helpers/error.interceptor';
@@ -68,6 +69,8 @@ import { NotificacaoComponent } from './componente/notificacao/notificacao/notif
 import { PessoaListaComponent } from './componente/Pessoa/pessoa-lista/pessoa-lista.component';
 import { PessoaAssociarModalComponent } from './componente/Pessoa/pessoa-associar-modal/pessoa-associar-modal.component';
 import { PessoaListaPaginaComponent } from './componente/Pessoa/pessoa-lista-pagina/pessoa-lista-pagina.component';
+import { EventoListaComponent } from './componente/evento/evento-lista/evento-lista.component';
+import { EventoCadastroModalComponent } from './componente/evento/evento-cadastro-modal/evento-cadastro-modal.component';
 
 @NgModule({
   declarations: [
@@ -96,7 +99,9 @@ import { PessoaListaPaginaComponent } from './componente/Pessoa/pessoa-lista-pag
     NotificacaoComponent,
     PessoaListaComponent,
     PessoaAssociarModalComponent,
-    PessoaListaPaginaComponent
+    PessoaListaPaginaComponent,
+    EventoListaComponent,
+    EventoCadastroModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -121,7 +126,8 @@ import { PessoaListaPaginaComponent } from './componente/Pessoa/pessoa-lista-pag
     AccordionModule,
     StepsModule,
     CalendarModule,
-    ListboxModule
+    ListboxModule,
+    InputTextareaModule
   ],
   providers: [
     UtilsService,

@@ -1,0 +1,34 @@
+<div class="conteudo2">
+  <div class="row m-2 mt-4">
+    <div class="col-6 p-float-label">
+      <input class="w-100" pInputText id="nome" [(ngModel)]="novoEvento.nome">
+      <label htmlFor="nome" class="input-padding">Nome do Evento</label>
+    </div>
+
+    <div class="col-6 p-float-label">
+      <p-calendar
+        [style]="{'width':'100%'}"
+        appendTo="body"
+        [(ngModel)]="novoEvento.dataFinal"
+        [showTime]="true"
+        hourFormat="24">
+      </p-calendar>
+      <label class="input-padding">Data Final</label>
+    </div>
+  </div>
+
+  <div class="row m-2 mt-4">
+    <div class="col-12 p-float-label">
+      <textarea  [(ngModel)]="novoEvento.descricao" class="w-100 input-padding resizable" id="descricao" rows="5" cols="80" pInputTextarea></textarea>
+      <label for="descricao" class="input-padding">Descrição</label>
+    </div>
+  </div>
+
+  <!-- Outros campos de entrada... -->
+  <div class="row my-2">
+    <div class="col-12 text-end">
+      <p-button icon="pi pi-times" label="Cancelar" styleClass="p-button-text" (click)="fecharModal()"></p-button>
+      <p-button icon="pi pi-check" label="Cadastrar Evento" styleClass="p-button-text" (click)="salvarEventoNovo(novoEvento)"></p-button>
+    </div>
+  </div>
+</div>

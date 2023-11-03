@@ -8,28 +8,30 @@ import { TipoPessoaTemplateModel } from 'src/app/models/tipoPessoaTemplateModel'
   providedIn: 'root'
 })
 export class TipoPessoaTemplateService {
+  private readonly endpointBase = '/TipoPessoaTemplate'; // Adicionado o endpoint base
+
   constructor(
     private http: HttpClient,
     private utilsService: UtilsService
   ) { }
 
   listar(): Observable<TipoPessoaTemplateModel[]> {
-    return this.http.get<TipoPessoaTemplateModel[]>(this.utilsService.API + '/TipoPessoaTemplate/Listar');
+    return this.http.get<TipoPessoaTemplateModel[]>(`${this.utilsService.API}${this.endpointBase}/Listar`);
   }
 
   obterPorId(id: number): Observable<TipoPessoaTemplateModel> {
-    return this.http.get<TipoPessoaTemplateModel>(this.utilsService.API + '/TipoPessoaTemplate/ObterPorId?id=' + id);
+    return this.http.get<TipoPessoaTemplateModel>(`${this.utilsService.API}${this.endpointBase}/ObterPorId?id=${id}`);
   }
 
   editar(tipoPessoaTemplate: TipoPessoaTemplateModel): Observable<TipoPessoaTemplateModel> {
-    return this.http.put<TipoPessoaTemplateModel>(this.utilsService.API + '/TipoPessoaTemplate/Editar', tipoPessoaTemplate);
+    return this.http.put<TipoPessoaTemplateModel>(`${this.utilsService.API}${this.endpointBase}/Editar`, tipoPessoaTemplate);
   }
 
   salvar(tipoPessoaTemplate: TipoPessoaTemplateModel): Observable<TipoPessoaTemplateModel> {
-    return this.http.post<TipoPessoaTemplateModel>(this.utilsService.API + '/TipoPessoaTemplate/Adicionar', tipoPessoaTemplate);
+    return this.http.post<TipoPessoaTemplateModel>(`${this.utilsService.API}${this.endpointBase}/Adicionar`, tipoPessoaTemplate);
   }
 
   deletar(id: number): Observable<any> {
-    return this.http.delete<any>(this.utilsService.API + '/TipoPessoaTemplate/Deletar?id=' + id);
+    return this.http.delete<any>(`${this.utilsService.API}${this.endpointBase}/Deletar?id=${id}`);
   }
 }

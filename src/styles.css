@@ -226,3 +226,13 @@ body .p-sidebar .p-sidebar-content {
   opacity: 0.6;
   padding-left: 5px;
 }
+
+
+.input-padding {
+  padding-left: 8px; /* Ajuste este valor conforme necessário */
+}
+
+.resizable {
+  resize: both; /* Permite redimensionar horizontal e verticalmente */
+  overflow: auto; /* Garante que o conteúdo do textarea seja sempre visível com barras de rolagem se necessário */
+}

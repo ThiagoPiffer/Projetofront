@@ -1,28 +1,26 @@
-
-
 <div class="conteudo2">
-  <div class="fundo-destaque mt-2" *ngIf="cadastroExteno">
+  <!-- Externo cadastro information if available -->
+  <div class="fundo-destaque mt-3" *ngIf="cadastroExteno">
     <span> <i class="fas fa-building" style="padding-right: 5px;"></i> {{ controlePessoaExternaModel.empresa.nome }}</span>
-    <i pTooltip="Cadastro externo" class="fas fa-link" style="padding-right: 5px; padding-top: 3px;  float: right;"></i>
-
-
+    <i pTooltip="Cadastro externo" class="fas fa-link" style="padding-right: 5px; padding-top: 3px; float: right;"></i>
   </div>
 
-
-  <div class="row my-2">
-    <div class="col-12">
-      <label class="d-block">Nome:</label>
+  <!-- Nome input -->
+  <div class="row my-2 mt-4">
+    <div class="col-6 p-float-label">
       <input class="w-100" pInputText id="nome" [(ngModel)]="novaPessoa.nome" required #nomeField="ngModel" />
+      <label class="input-padding" htmlFor="nome">Nome</label>
       <div *ngIf="nomeField.errors && nomeField.errors['required'] && nomeField.touched" class="error-message">
         Nome é obrigatório.
       </div>
     </div>
   </div>
 
-  <div class="row my-2">
-    <div class="col-12">
-      <label class="d-block">Email:</label>
+  <!-- Email input -->
+  <div class="row my-2 mt-4">
+    <div class="col-6 p-float-label">
       <input class="w-100" pInputText id="email" [(ngModel)]="novaPessoa.email" email name="email" #emailField="ngModel" required/>
+      <label class="input-padding" htmlFor="email">Email</label>
       <div *ngIf="emailField.touched && emailField.errors">
         <div *ngIf="emailField.errors['required']" class="error-message">
             Email é obrigatório.
@@ -34,54 +32,57 @@
     </div>
   </div>
 
-  <div class="row my-2">
-    <div class="col-12">
-        <label class="d-block">Data de Nascimento:</label>
-        <p-inputMask [(ngModel)]="novaPessoa.dataNascimento" name="dataNascimento" mask="99/99/9999" slotChar="dd/mm/yyyy" (ngModelChange)="validateDataNascimento()" #dataNascimentoField="ngModel"></p-inputMask>
-        <div *ngIf="!isDataNascimentoValid && dataNascimentoField.touched" class="error-message">
-          Data de Nascimento é obrigatória.
-        </div>
+  <!-- Data de Nascimento input -->
+  <div class="row my-2 mt-4">
+    <div class="col-6 p-float-label">
+      <p-inputMask [(ngModel)]="novaPessoa.dataNascimento" name="dataNascimento" mask="99/99/9999" slotChar="dd/mm/yyyy" (ngModelChange)="validateDataNascimento()" #dataNascimentoField="ngModel"></p-inputMask>
+      <label class="input-padding" htmlFor="dataNascimento">Data de Nascimento</label>
+      <div *ngIf="!isDataNascimentoValid && dataNascimentoField.touched" class="error-message">
+        Data de Nascimento é obrigatória.
+      </div>
     </div>
   </div>
 
-  <div class="row my-2">
-      <div class="col-6">
-        <label class="d-block">CPF/CNPJ:</label>
-        <input class="w-100" pInputText id="cpfcnpj" [(ngModel)]="novaPessoa.cpfcnpj" (input)="updateCPFCNPJ($event)" appCpfCnpjMask required #cpfcnpjField="ngModel" />
-        <div *ngIf="cpfcnpjField.errors && cpfcnpjField.errors['required'] && cpfcnpjField.touched" class="error-message">
-          CPF/CNPJ é obrigatório.
-        </div>
+  <!-- CPF/CNPJ input -->
+  <div class="row my-2 mt-4">
+    <div class="col-6 p-float-label">
+      <input class="w-100" pInputText id="cpfcnpj" [(ngModel)]="novaPessoa.cpfcnpj" (input)="updateCPFCNPJ($event)" appCpfCnpjMask required #cpfcnpjField="ngModel" />
+      <label class="input-padding" htmlFor="cpfcnpj">CPF/CNPJ</label>
+      <div *ngIf="cpfcnpjField.errors && cpfcnpjField.errors['required'] && cpfcnpjField.touched" class="error-message">
+        CPF/CNPJ é obrigatório.
       </div>
-      <div class="col-6">
-        <label class="d-block">Celular:</label>
-        <input class="w-100" pInputText id="celular" [(ngModel)]="novaPessoa.celular" required #celularField="ngModel" />
-        <div *ngIf="celularField.errors && celularField.errors['required'] && celularField.touched" class="error-message">
-          Celular é obrigatório.
-        </div>
+    </div>
+    <!-- Celular input -->
+    <div class="col-6 p-float-label">
+      <input class="w-100" pInputText id="celular" [(ngModel)]="novaPessoa.celular" required #celularField="ngModel" />
+      <label class="input-padding" htmlFor="celular">Celular</label>
+      <div *ngIf="celularField.errors && celularField.errors['required'] && celularField.touched" class="error-message">
+        Celular é obrigatório.
       </div>
+    </div>
   </div>
 
-  <div class="row my-2">
-      <div class="col-6">
-        <label class="d-block">Identidade:</label>
-        <input class="w-100" pInputText id="identidade" [(ngModel)]="novaPessoa.identidade" (input)="validateIdentidade()" appIdentidadeMask required #identidadeField="ngModel" />
-        <div *ngIf="identidadeField.errors && identidadeField.errors['required'] && identidadeField.touched" class="error-message">
-            Identidade é obrigatória.
-        </div>
+  <!-- Identidade input -->
+  <div class="row my-2 mt-4">
+    <div class="col-6 p-float-label">
+      <input class="w-100" pInputText id="identidade" [(ngModel)]="novaPessoa.identidade" (input)="validateIdentidade()" appIdentidadeMask required #identidadeField="ngModel" />
+      <label class="input-padding" htmlFor="identidade">Identidade</label>
+      <div *ngIf="identidadeField.errors && identidadeField.errors['required'] && identidadeField.touched" class="error-message">
+          Identidade é obrigatória.
       </div>
-      <div class="col-6">
-        <label class="d-block">Telefone:</label>
-        <input class="w-100" pInputText id="telefone" [(ngModel)]="novaPessoa.telefone" />
-      </div>
+    </div>
+    <!-- Telefone input -->
+    <div class="col-6 p-float-label">
+      <input class="w-100" pInputText id="telefone" [(ngModel)]="novaPessoa.telefone" />
+      <label class="input-padding" htmlFor="telefone">Telefone</label>
+    </div>
   </div>
 
-
+  <!-- Buttons for cancel and confirm -->
   <div class="row my-2">
     <div class="col-12 text-end">
       <p-button icon="pi pi-times" label="Cancelar" styleClass="p-button-text" (click)="fecharModal()"></p-button>
-
       <p-button icon="pi pi-check" label="Confirmar" styleClass="p-button-text" (click)="salvarPessoaNova(novaPessoa)"></p-button>
     </div>
   </div>
 </div>
-

@@ -166,22 +166,9 @@ export class PessoaListaComponent implements OnInit {
         ];
 
       default:
-        null
+        return []
         break;
     }
-
-    return [
-        {
-            label: 'Editar',
-            icon: 'pi pi-pencil',
-            command: () => this.editarPessoa(id)
-        },
-        {
-            label: 'Excluir',
-            icon: 'pi pi-times',
-            command: () => this.excluirPessoa(id)
-        }
-    ];
   }
 
   excluirPessoa(idPessoa: number) {
