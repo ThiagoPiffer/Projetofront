@@ -27,7 +27,8 @@ export class CabecalhoComponent {
     },
     {
         label: 'Configurações',
-        icon: 'pi pi-cog'
+        icon: 'pi pi-cog',
+        command: (event: any) => { this.router.navigate(['../configuracao']); }
     },
     {
         label: 'Sair',

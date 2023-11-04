@@ -1,0 +1,15 @@
+<div class="conteudo2">
+  <div class="row m-2 mt-4">
+    <div class="col-12 p-float-label">
+      <input class="w-100" pInputText id="nome" [(ngModel)]="novoTipoPessoa.descricao">
+      <label htmlFor="nome" class="input-padding">Nome do Tipo Pessoa</label>
+    </div>
+  </div>
+  <!-- Outros campos de entrada... -->
+  <div class="row my-2">
+    <div class="col-12 text-end">
+      <p-button icon="pi pi-times" label="Cancelar" styleClass="p-button-text" (click)="fecharModal()"></p-button>
+      <p-button icon="pi pi-check" label="Cadastrar Tipo Pessoa" styleClass="p-button-text" (click)="salvarTipoPessoaNovo(novoTipoPessoa)"></p-button>
+    </div>
+  </div>
+</div>

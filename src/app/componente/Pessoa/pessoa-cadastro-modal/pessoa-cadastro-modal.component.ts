@@ -128,7 +128,7 @@ export class PessoaCadastroModalComponent {
     }else {
       if (this.pessoaId === 0){
         // Chama o serviço para salvar a nova pessoa
-        this.pessoaService.salvar(pessoa, this.processoId).subscribe({
+        this.pessoaService.salvar(pessoa).subscribe({
             next: () => {
                 this.pessoaCompartilhadoService.enviarMensagem(true, 'Cadastro realizado com sucesso');
                 this.fecharModal();

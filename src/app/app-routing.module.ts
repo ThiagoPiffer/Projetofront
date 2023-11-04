@@ -13,6 +13,7 @@ import { AuthGuard } from './helpers/auth.guard';
 import { CadastroPessoaExternaComponent } from './componente/controle-pessoa-externa/cadastro-pessoa-externa/cadastro-pessoa-externa.component';
 import { NotificacaoComponent } from './componente/notificacao/notificacao/notificacao.component';
 import { PessoaListaPaginaComponent } from './componente/Pessoa/pessoa-lista-pagina/pessoa-lista-pagina.component';
+import { ConfiguracaoListaComponent } from './componente/configuracao/configuracao-lista/configuracao-lista.component';
 
 const routes: Routes = [
   {
@@ -48,6 +49,11 @@ const routes: Routes = [
   {
     path: 'pessoa-cadastro-modal',
     component: PessoaCadastroModalComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'configuracao',
+    component: ConfiguracaoListaComponent,
     canActivate: [AuthGuard]
   },
   {

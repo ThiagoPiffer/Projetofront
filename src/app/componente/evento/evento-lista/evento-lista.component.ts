@@ -56,7 +56,6 @@ export class EventoListaComponent implements OnInit {
   }
 
   abrirModalCadastroEvento(id: number) {
-    debugger
     let ref;
     if (id === 0) {
       ref = this.dialogService.open(EventoCadastroModalComponent, {
@@ -74,7 +73,6 @@ export class EventoListaComponent implements OnInit {
 
     ref.onClose.subscribe((result) => {
       this.eventoCompartilhadoService.mensagem$.pipe(take(1)).subscribe(mensagem => {
-        debugger
         if (mensagem.tipo)
           this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: mensagem.mensagem });
         else{

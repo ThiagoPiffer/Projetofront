@@ -11,6 +11,7 @@ import { MessageService } from 'primeng/api';
 import { PessoaCompartilhadoService } from '../pessoa-compartilhado.service';
 import { animate, animateChild, query, style, transition, trigger } from '@angular/animations';
 import { PessoaAssociarModalComponent } from '../pessoa-associar-modal/pessoa-associar-modal.component';
+import { TipoPessoaAssociarModalComponent } from '../../tipo-pessoa/tipo-pessoa-associar-modal/tipo-pessoa-associar-modal.component';
 
 @Component({
   selector: 'app-pessoa-lista',
@@ -156,7 +157,7 @@ export class PessoaListaComponent implements OnInit {
           {
               label: 'Inserir Tipo',
               icon: 'pi pi-pencil',
-              // command: () => this.editarPessoa(id)
+              command: () => this.inserirTipoPessoa(id)
           },
           {
               label: 'Desassiciar',
@@ -169,6 +170,28 @@ export class PessoaListaComponent implements OnInit {
         return []
         break;
     }
+  }
+
+  inserirTipoPessoa(pessoaId: number){
+    let ref;
+    ref = this.dialogService.open(TipoPessoaAssociarModalComponent, {
+      header: 'Associar Tipo Pessoa',
+      width: '35%',
+      data: { pessoaId: pessoaId }
+    });
+
+    ref.onClose.subscribe((result) => {
+      this.pessoaCompartilhadoService.mensagem$.pipe(take(1)).subscribe(mensagem => {
+        if (mensagem.tipo)
+          this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: mensagem.mensagem });
+        else{
+          if(mensagem.mensagem)
+          this.messageService.add({ severity: 'error', summary: 'Erro no processo', detail: mensagem.mensagem });
+        }
+
+        this.listar()
+      });
+    });
   }
 
   excluirPessoa(idPessoa: number) {
@@ -205,13 +228,12 @@ export class PessoaListaComponent implements OnInit {
     this.pessoaService.deletar(id).subscribe({
       next: () => {
           this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Processo realizado com sucesso' });
-          this.listarPessoasProcesso();
+          this.listarPessoasCompleta();
       }
    });
   }
 
   abrirModalCadastroPessoa(id: number) {
-    debugger
     let ref;
     if (id === 0) {
       ref = this.dialogService.open(PessoaCadastroModalComponent, {
@@ -229,7 +251,6 @@ export class PessoaListaComponent implements OnInit {
 
     ref.onClose.subscribe((result) => {
       this.pessoaCompartilhadoService.mensagem$.pipe(take(1)).subscribe(mensagem => {
-        debugger
         if (mensagem.tipo)
           this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: mensagem.mensagem });
         else{

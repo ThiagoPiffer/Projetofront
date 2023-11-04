@@ -61,7 +61,6 @@ import { CookieService } from 'ngx-cookie-service';
 import { MenuLateralComponent } from './componente/menu-lateral/menu-lateral/menu-lateral.component';
 import { ArquivoProcessoTemplateUploadModalComponent } from './componente/arquivo-processo-template/arquivo-processo-template-upload-modal/arquivo-processo-template-upload-modal.component';
 import { ArquivoProcessoTemplateConfigurarModalComponent } from './componente/arquivo-processo-template/arquivo-processo-template-configurar-modal/arquivo-processo-template-configurar-modal.component';
-import { TipoPessoaComponent } from './componente/tipo-pessoa/tipo-pessoa/tipo-pessoa.component';
 import { TipoPessoaTemplateComponent } from './componente/tipo-pessoa-template/tipo-pessoa-template/tipo-pessoa-template.component';
 import { ControlePessoaExternaComponent } from './componente/controle-pessoa-externa/controle-pessoa-externa/controle-pessoa-externa.component';
 import { CadastroPessoaExternaComponent } from './componente/controle-pessoa-externa/cadastro-pessoa-externa/cadastro-pessoa-externa.component';
@@ -71,6 +70,11 @@ import { PessoaAssociarModalComponent } from './componente/Pessoa/pessoa-associa
 import { PessoaListaPaginaComponent } from './componente/Pessoa/pessoa-lista-pagina/pessoa-lista-pagina.component';
 import { EventoListaComponent } from './componente/evento/evento-lista/evento-lista.component';
 import { EventoCadastroModalComponent } from './componente/evento/evento-cadastro-modal/evento-cadastro-modal.component';
+import { TipoPessoaCadastroModalComponent } from './componente/tipo-pessoa/tipo-pessoa-cadastro-modal/tipo-pessoa-cadastro-modal.component';
+import { TipoPessoaListaComponent } from './componente/tipo-pessoa/tipo-pessoa-lista/tipo-pessoa-lista.component';
+import { TipoPessoaAssociarModalComponent } from './componente/tipo-pessoa/tipo-pessoa-associar-modal/tipo-pessoa-associar-modal.component';
+import { ConfiguracaoListaComponent } from './componente/configuracao/configuracao-lista/configuracao-lista.component';
+import { PerfilComponent } from './componente/Perfil/perfil/perfil.component';
 
 @NgModule({
   declarations: [
@@ -92,7 +96,6 @@ import { EventoCadastroModalComponent } from './componente/evento/evento-cadastr
     MenuLateralComponent,
     ArquivoProcessoTemplateUploadModalComponent,
     ArquivoProcessoTemplateConfigurarModalComponent,
-    TipoPessoaComponent,
     TipoPessoaTemplateComponent,
     ControlePessoaExternaComponent,
     CadastroPessoaExternaComponent,
@@ -102,6 +105,11 @@ import { EventoCadastroModalComponent } from './componente/evento/evento-cadastr
     PessoaListaPaginaComponent,
     EventoListaComponent,
     EventoCadastroModalComponent,
+    TipoPessoaCadastroModalComponent,
+    TipoPessoaListaComponent,
+    TipoPessoaAssociarModalComponent,
+    ConfiguracaoListaComponent,
+    PerfilComponent,
   ],
   imports: [
     BrowserModule,

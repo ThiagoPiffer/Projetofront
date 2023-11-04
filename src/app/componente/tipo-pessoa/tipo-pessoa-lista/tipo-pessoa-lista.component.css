@@ -1,0 +1,83 @@
+/* Torna o botão branco com borda transparente e remove o contorno ao clicar */
+.icon-button {
+  background-color: white;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: none; /* Remover contorno ao clicar e focar */
+}
+
+/* Define a cor preta para o ícone por padrão */
+.icon-button svg {
+  fill: black;
+}
+
+/* Remove a cor do botão quando o mouse estiver sobre ele */
+.icon-button:hover {
+  background-color: white;
+  background-color: transparent;
+}
+
+/* Define a cor preta para o ícone quando o mouse estiver sobre o botão */
+.icon-button:hover svg {
+  fill: black;
+}
+
+/* Remove a borda azul que aparece quando o botão está focado */
+.icon-button:focus {
+  outline: none;
+  border: none;
+}
+
+/* Define a classe para o ícone de rendimentos */
+.icon-tres-pontos {
+  display: inline-block;
+  width: 24px; /* Ajuste o tamanho conforme necessário */
+  height: 24px; /* Ajuste o tamanho conforme necessário */
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>');
+  background-size: cover;
+}
+
+.linha-novo-processo {
+  box-shadow: 0 1px 0 0 #cfc8c8, 1px 0 0 0 #cfc8c8;
+  border-radius: 5px;
+}
+
+.table-limited {
+  max-height: 45vh;
+  overflow-y: auto;
+  display: block;
+}
+
+/* Para Webkit (Chrome, Opera, Safari) */
+
+/* Esconde inicialmente a barra de rolagem na classe .table-limited */
+.table-limited::-webkit-scrollbar {
+  width: 5px; /* Largura mais fina para a barra de rolagem */
+  background: transparent; /* Torna a barra de rolagem completamente transparente */
+}
+
+/* Quando o mouse passa sobre o elemento .table-limited, mostra a barra de rolagem */
+.table-limited:hover::-webkit-scrollbar {
+  width: 5px;
+}
+
+.table-limited:hover::-webkit-scrollbar-track {
+  background-color: #f9f9f9; /* Cor de fundo mais clara para a trilha */
+  border-radius: 3px; /* Cantos mais sutis */
+}
+
+.table-limited:hover::-webkit-scrollbar-thumb {
+  background-color: #b0b0b0; /* Cor mais clara para a barra de rolagem */
+  border-radius: 3px;
+}
+
+/* Quando o mouse está sobre a barra de rolagem da classe .table-limited */
+.table-limited:hover::-webkit-scrollbar-thumb:hover {
+  background-color: #8a8a8a; /* Cor um pouco mais escura quando o mouse está sobre ela */
+}
+
+
+
+
+

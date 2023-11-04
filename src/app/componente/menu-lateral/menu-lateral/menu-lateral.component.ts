@@ -145,6 +145,14 @@ export class MenuLateralComponent {
         this.SidebarService.toggleSidebar(true);
         break;
 
+      case url.includes('configuracao'):
+        this.mostrarMenuLateral = true;
+        this.mostrarMenuConteudo = true;
+        this.mostrarMenuTemplate = false;
+        this.mostrarMenuUtilidades = true;
+        this.SidebarService.toggleSidebar(true);
+        break;
+
       case url.includes('pessoa-lista-pagina'):
         this.mostrarMenuLateral = true;
         this.mostrarMenuConteudo = true;

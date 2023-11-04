@@ -59,6 +59,6 @@ export class PessoaAssociarModalComponent {
           this.pessoaCompartilhadoService.enviarMensagem(true, 'Cadastro realizado com sucesso');
           this.fecharModal();
       },
-  });
+    });
   }
 }

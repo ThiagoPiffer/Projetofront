@@ -2,9 +2,9 @@
   <div class="row mt-3">
     <div class="col-12">
       <!-- <div class="box m-2 p-2 rounded-box"> -->
-        <p-listbox *ngIf="pessoasProcessoModel" [options]="pessoasProcessoModel" [(ngModel)]="selectedPessoasProcessoModel" [filter]="true">
-          <ng-template let-pessoa pTemplate="item">
-              {{pessoa.nome}} - {{pessoa.cpfcnpj}}
+        <p-listbox *ngIf="tipoPessoaModel" [options]="tipoPessoaModel" [(ngModel)]="selectedTipoPessoaModel" [filter]="true">
+          <ng-template let-tipoPessoa pTemplate="item">
+              {{tipoPessoa.descricao}}
           </ng-template>
         </p-listbox>
       <!-- </div> -->
@@ -14,7 +14,7 @@
     <div class="col-12 text-end">
       <p-button icon="pi pi-times" label="Cancelar" styleClass="p-button-text" (click)="fecharModal()"></p-button>
 
-      <p-button icon="pi pi-check" label="Confirmar" styleClass="p-button-text" (click)="salvarPessoaAssociar(selectedPessoasProcessoModel)"></p-button>
+      <p-button icon="pi pi-check" label="Confirmar" styleClass="p-button-text" (click)="salvarTipoPessoaAssociar(selectedTipoPessoaModel)"></p-button>
     </div>
   </div>
 </div>

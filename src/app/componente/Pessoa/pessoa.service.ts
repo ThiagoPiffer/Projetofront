@@ -44,8 +44,8 @@ export class PessoaService {
     return this.http.put<Pessoa>(this.utilsService.API + '/Pessoa/Editar', pessoa);
   }
 
-  salvar(pessoaDto: Pessoa, idProcesso: number): Observable<Pessoa> {
-    return this.http.post<Pessoa>(this.utilsService.API + '/Pessoa/Adicionar?idProcesso=' + idProcesso, pessoaDto);
+  salvar(pessoaDto: Pessoa): Observable<Pessoa> {
+    return this.http.post<Pessoa>(this.utilsService.API + '/Pessoa/Adicionar', pessoaDto);
   }
 
   associar(pessoaDto: PessoasProcessoModel, idProcesso: number): Observable<PessoasProcessoModel> {

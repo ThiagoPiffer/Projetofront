@@ -8,7 +8,7 @@ import { ProcessoCompartilhadoService } from '../../processo/processo-compartilh
 import { ArquivoProcessoTemplateService } from '../arquivo-processo-template.service';
 import { ArquivoProcessoTemplateCompartilhadoService } from '../arquivo-processo-template-compartilhado.service';
 import { ArquivoProcessoTemplate } from 'src/app/models/ArquivoProcessoTemplate';
-import { TipoPessoaModel } from 'src/app/models/tipoPessoaModel';
+import { TipoPessoaModel } from 'src/app/models/tipoPessoa';
 import { TipoPessoaTemplateModel } from 'src/app/models/tipoPessoaTemplateModel';
 
 @Component({
@@ -47,7 +47,7 @@ export class ArquivoProcessoTemplateUploadModalComponent implements OnInit  {
   tiposPessoa: TipoPessoaModel[] = []
 
   ngOnInit(): void {
-    this.TipoPessoaService.listar().subscribe(
+    this.TipoPessoaService.listarTipoPessoasProcesso(this.processoId).subscribe(
       (tiposPessoa: TipoPessoaModel[]) => {
         this.tiposPessoa = tiposPessoa
       }
