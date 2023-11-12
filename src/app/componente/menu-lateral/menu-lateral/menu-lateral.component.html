@@ -7,15 +7,15 @@
     <p-accordion>
       <p-accordionTab *ngIf="mostrarMenuConteudo" class="accordionTab-menu-lateral" header="Conteúdo" [selected]="false">
         <ul class="ulAccordionTab">
-          <li class="liAccordionTab" *ngFor="let template of listaTemplates">
+          <li class="liAccordionTab">
             <a  href="/notificacao">
               <i class="fas fa-bell" style="padding-right: 5px;"></i> Notificações</a></li>
 
-          <li class="liAccordionTab" *ngFor="let template of listaTemplates">
+          <li class="liAccordionTab">
             <a  href="/pessoa-lista-pagina">
               <i class="fas fa-users" style="padding-right: 5px;"></i>Pessoas</a></li>
 
-          <li class="liAccordionTab" *ngFor="let template of listaTemplates">
+          <li class="liAccordionTab">
             <a  href="/processo-lista">
               <i class="fas fa-balance-scale" style="padding-right: 5px;"></i> Processos</a></li>
         </ul>

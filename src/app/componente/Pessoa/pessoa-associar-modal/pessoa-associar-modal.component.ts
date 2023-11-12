@@ -15,7 +15,11 @@ import { PessoaCompartilhadoService } from '../pessoa-compartilhado.service';
 export class PessoaAssociarModalComponent {
 
   processoId: number = 0;
-  pessoasProcessoModel!: PessoasProcessoModel[];
+  // pessoasProcessoModel!: PessoasProcessoModel[];
+  // pessoasProcessoModel = new PessoasProcessoModelImpl();
+  pessoasProcessoModel: PessoasProcessoModel[] = [
+    new PessoasProcessoModelImpl({ })
+  ];
   selectedPessoasProcessoModel = new PessoasProcessoModelImpl()
 
   constructor(
@@ -41,10 +45,12 @@ export class PessoaAssociarModalComponent {
   listarPessoasAssociar(){
     this.pessoaService.listarPessoasAssociar(this.processoId).subscribe(
       (pessoasProcessoModel: PessoasProcessoModel[]) => {
-        this.pessoasProcessoModel = pessoasProcessoModel
-        console.log(this.pessoasProcessoModel)
+        this.pessoasProcessoModel = pessoasProcessoModel.map(pessoa => ({
+          ...pessoa,
+          nomeConcatenado: `${pessoa.nome} - ${pessoa.cpfcnpj}` // nova propriedade concatenada
+        }));
       }
-    )
+    );
   }
 
   fecharModal() {
@@ -55,10 +61,13 @@ export class PessoaAssociarModalComponent {
 
   salvarPessoaAssociar(pessoa: PessoasProcessoModel){
     this.pessoaService.associar(pessoa, this.processoId).subscribe({
-      next: () => {
+      next: (data) => {
           this.pessoaCompartilhadoService.enviarMensagem(true, 'Cadastro realizado com sucesso');
           this.fecharModal();
       },
+      error: (error) => {
+        console.log(error)
+      }
     });
   }
 }

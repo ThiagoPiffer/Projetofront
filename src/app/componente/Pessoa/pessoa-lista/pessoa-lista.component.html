@@ -29,7 +29,7 @@
                 <span class="icon icon-tres-pontos"></span>
               </a>
               <p-menu #menu appendTo="body" [model]="getMenuPessoas(pessoa.id)" [popup]="true"></p-menu>
-          </td>
+            </td>
         </tr>
     </ng-template>
     <ng-template pTemplate="rowexpansion" let-pessoa >
@@ -38,16 +38,17 @@
               <div class="p-2">
                 <div class="row">
                     <div class="col-6">
-                      <li><strong>Celular:</strong> ({{ pessoa.dddCelular }}) {{ pessoa.celular }}</li>
-                      <li><strong>Telefone:</strong> ({{ pessoa.dddTelefone }}) {{ pessoa.telefone }}</li>
-                      <li><strong>Data de Nascimento:</strong> {{ pessoa.dataNascimento }}</li>
-                      <li><strong>Idade:</strong> {{ pessoa.idade }}</li>
-                    </div>
+                      <strong>Celular:</strong> ({{ pessoa.dddCelular }}) {{ pessoa.celular }}</div>
                     <div class="col-6">
-                      <li><strong>CPF/CNPJ:</strong> {{ pessoa.cpfcnpj }}</li>
-                      <li><strong>Identidade:</strong> {{ pessoa.identidade }}</li>
-                      <li><strong>Email:</strong> {{ pessoa.email }}</li>
-                    </div>
+                      <strong>CPF/CNPJ:</strong> {{ pessoa.cpfcnpj }}</div>
+                    <div class="col-6">
+                      <strong>Telefone:</strong> ({{ pessoa.dddTelefone }}) {{ pessoa.telefone }}</div>
+                    <div class="col-6">
+                      <strong>Identidade:</strong> {{ pessoa.identidade }}</div>
+                    <div class="col-6">
+                      <strong>Data de Nascimento:</strong> {{ pessoa.dataNascimento | date : 'dd/MM/yyyy' }}</div>
+                    <div class="col-6">
+                      <strong>Email:</strong> {{ pessoa.email }}</div>
                 </div>
               </div>
             </td>
@@ -57,6 +58,6 @@
 </div>
 <!-- lista vazia -->
 <div>
-<span *ngIf="!exibirListaPessoa()" class="listaVazia">Lista de pessoa vazia.</span>
+  <span *ngIf="!exibirListaPessoa()" class="listaVazia">Lista de pessoa vazia.</span>
 </div>
 

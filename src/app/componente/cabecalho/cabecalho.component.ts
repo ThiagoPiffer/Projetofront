@@ -167,7 +167,7 @@ export class CabecalhoComponent {
   confirmLogout() {
     // Chame o método de logout do serviço
     this.identidadeService.logout().subscribe({
-      next: () => {
+      next: (message) => {
         // Navegue para a tela de login após o logout
         this.router.navigate(['/login']);
       },
@@ -177,5 +177,8 @@ export class CabecalhoComponent {
     });
 
     this.hideLogoutConfirmationDialog();
+
+    // Navegue para a tela de login após o logout
+    this.router.navigate(['/login']);
   }
 }

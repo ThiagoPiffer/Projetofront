@@ -39,6 +39,7 @@ import {
   query,
   animateChild
 } from '@angular/animations';
+import { ProcessoStatusPersonalizadoImpl, ProcessoStatusPersonalizadoModel } from 'src/app/models/processoStatusPersonalizado';
 
 
 @Component({
@@ -72,6 +73,7 @@ export class ProcessoDetalheComponent implements OnInit {
   pessoasProcessoModel : PessoasProcessoModel | any;
   arquivosProcesso : ArquivoProcesso | any;
   expanded: boolean = false;
+  processoStatusPersonalizado = new ProcessoStatusPersonalizadoImpl();
 
   constructor(
     private processoService: ProcessoService,
@@ -95,7 +97,17 @@ export class ProcessoDetalheComponent implements OnInit {
       this.obterProcesso();
       this.listarPessoasProcesso();
       this.listarArquivosProcesso();
+      this.buscarProcessoStatus();
     }
+
+    buscarProcessoStatus(){
+      this.processoService.buscarProcessoStatus(this.processoId).subscribe({
+        next: (data) =>{
+          this.processoStatusPersonalizado = data;
+        }
+      })
+    }
+
 
     ngOnInit(): void {
     }

@@ -46,9 +46,15 @@ export class ArquivoProcessoService {
     return this.http.delete<any>(this.utilsService.API + '/ArquivoProcesso/Deletar?id=' + id);
   }
 
+  // DownloadArquivo(id: number) {
+  //   const url = this.utilsService.API + `/ArquivoProcesso/DownloadArquivo/${id}`;
+  //   const headers = new HttpHeaders().set('Content-Type', 'application/json');
+  //   return this.http.get(url, { headers: headers, responseType: 'blob' });
+  // }
+
   DownloadArquivo(id: number) {
     const url = this.utilsService.API + `/ArquivoProcesso/DownloadArquivo/${id}`;
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.get(url, { headers: headers, responseType: 'blob' });
+    return this.http.get(url, { responseType: 'blob' });
   }
+
 }

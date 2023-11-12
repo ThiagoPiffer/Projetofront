@@ -25,6 +25,11 @@ export class ControlePessoaExternaComponent {
   atualizarLista(){
     this.controlePessoaExternaService.listar().subscribe(links => {
       this.linksCadastrados = links;
+
+      this.linksCadastrados.forEach(link => {
+        link.expiracao = new Date(link.expiracao);
+      });
+
     });
   }
 

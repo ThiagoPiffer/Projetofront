@@ -1,0 +1,96 @@
+<div class="conteudo2">
+  <!-- Nome input -->
+  <div class="row my-2 mt-4">
+    <div class="col-12 p-float-label">
+      <input pInputText type="text" id="nome" [(ngModel)]="novoEventoStatusPersonalizado.nome" required #nomeField="ngModel" class="w-100" />
+      <label class="input-padding" for="nome">Nome:</label>
+      <div *ngIf="nomeField.errors && nomeField.errors['required'] && nomeField.touched" class="error-message">
+        Nome é obrigatório.
+      </div>
+    </div>
+  </div>
+
+  <!-- Descrição input -->
+  <div class="row my-2 mt-4">
+    <div class="col-12 p-float-label">
+      <textarea pInputTextarea id="descricao" [(ngModel)]="novoEventoStatusPersonalizado.descricao" required #descricaoField="ngModel" class="w-100"></textarea>
+      <label class="input-padding" for="descricao">Descrição:</label>
+      <div *ngIf="descricaoField.errors && descricaoField.errors['required'] && descricaoField.touched" class="error-message">
+        Descrição é obrigatória.
+      </div>
+    </div>
+  </div>
+
+  <!-- Valida Condição selectButton -->
+  <div class="row my-1 mt-1">
+    <div class="col-12">
+      <label for="validaCondicao">Valida Condição:</label>
+      <div class="ajuste-selectButton">
+        <p-selectButton [options]="stateOptions" [(ngModel)]="novoEventoStatusPersonalizado.validaCondicao" optionLabel="label" optionValue="value" class="small-select-button"></p-selectButton>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="novoEventoStatusPersonalizado.validaCondicao">
+    <!-- Maior Que radioButton -->
+    <div class="col-3">
+      <label for="maiorQue">Data atual maior que data prevista:</label>
+      <p-radioButton class="ajuste-radiotButton" name="condicao" value="maiorQue" [(ngModel)]="condicaoSelecionada" inputId="maiorQue" (onClick)="onConditionChange($event,'maiorQue')"></p-radioButton>
+    </div>
+
+    <!-- Menor Que radioButton -->
+    <div class="col-3">
+      <label for="menorQue">Data atual menor que Data prevista:</label>
+      <p-radioButton class="ajuste-radiotButton" name="condicao" value="menorQue" [(ngModel)]="condicaoSelecionada" inputId="menorQue" (onClick)="onConditionChange($event,'menorQue')"></p-radioButton>
+    </div>
+
+    <!-- Igual A radioButton -->
+    <div class="col-3">
+      <label for="igualA">Data atual igual a data prevista:</label>
+      <p-radioButton class="ajuste-radiotButton" name="condicao" value="igualA" [(ngModel)]="condicaoSelecionada" inputId="igualA" (onClick)="onConditionChange($event,'igualA')"></p-radioButton>
+    </div>
+
+
+    <!-- Valor Controle input -->
+    <div class="col-3 p-float-label">
+      <input pInputText type="text" id="valorControle" [(ngModel)]="novoEventoStatusPersonalizado.valorControle" required #valorControleField="ngModel" class="w-100" />
+      <label class="input-padding" for="valorControle">Valor controle para data atual:</label>
+      <div *ngIf="valorControleField.errors && valorControleField.errors['required'] && valorControleField.touched" class="error-message">
+        Valor controle é obrigatório.
+      </div>
+    </div>
+
+    <!-- Mensagem de Notificação input -->
+    <div class="col-12 mt-4 p-float-label">
+      <input pInputText type="text" id="mensagemNotificacao" [(ngModel)]="novoEventoStatusPersonalizado.mensagemNotificacao" required #mensagemNotificacaoField="ngModel" class="w-100" />
+      <label class="input-padding" for="mensagemNotificacao">Mensagem de Notificação:</label>
+      <div *ngIf="novoEventoStatusPersonalizado.validaCondicao && mensagemNotificacaoField.errors && mensagemNotificacaoField.errors['required'] && mensagemNotificacaoField.touched" class="error-message">
+        Mensagem de Notificação é obrigatória.
+      </div>
+    </div>
+  </div>
+
+  <div class="row my-2 mt-4">
+    <!-- Escolha do ícone -->
+    <div class="col-3">
+      <label>Escolha um ícone:</label>
+      <p-selectButton [(ngModel)]="iconeSelecionado" [options]="opcoesIcones" optionValue="valor">
+        <ng-template let-icone pTemplate="item">
+          <i [ngClass]="icone.valor"></i>
+        </ng-template>
+      </p-selectButton>
+    </div>
+    <!-- Escolha da cor -->
+    <div class="col-1 mt-1">
+      <label for="cor">Cor: </label>
+      <p-colorPicker appendTo="body" id="cor" [(ngModel)]="novoEventoStatusPersonalizado.cor" class="w-100"></p-colorPicker>
+    </div>
+  </div>
+  <!-- Buttons for cancel and confirm -->
+  <div class="row my-2">
+    <div class="col-12 text-end">
+      <p-button icon="pi pi-times" label="Cancelar" styleClass="p-button-text" (click)="fecharModal()"></p-button>
+      <p-button icon="pi pi-check" label="Confirmar" styleClass="p-button-text" (click)="salvarEventoStatusPersonalizadoNovo(novoEventoStatusPersonalizado, iconeSelecionado)"></p-button>
+    </div>
+  </div>
+</div>

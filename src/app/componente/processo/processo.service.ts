@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UtilsService } from 'src/app/Utils/utils.serive';
+import { ProcessoStatusPersonalizadoModel } from 'src/app/models/processoStatusPersonalizado';
 
 
 @Injectable({
@@ -18,6 +19,10 @@ export class ProcessoService {
 
   listar(): Observable<Processo[]> {
     return this.http.get<Processo[]>(this.utilsService.API + '/Processo');
+  }
+
+  buscarProcessoStatus(processoId: number): Observable<ProcessoStatusPersonalizadoModel> {
+    return this.http.get<ProcessoStatusPersonalizadoModel>(this.utilsService.API + `/Processo/BuscarProcessoStatus?processoId=${processoId}`);
   }
 
   obterProId(id: number): Observable<Processo> {

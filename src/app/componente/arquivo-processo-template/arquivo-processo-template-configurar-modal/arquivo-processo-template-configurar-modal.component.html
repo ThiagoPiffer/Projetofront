@@ -51,6 +51,10 @@
       </div>
     </div>
   </div>
-  <p-button icon="fas fa-trash-alt" label="Excluir" styleClass="p-button-danger" (click)="deletarDocumento()"></p-button>
-  <p-button icon="fas fa-file-alt" label="Gerar Documento" styleClass="p-button-text" (click)="gerarDocumento()"></p-button>
+  <div class="row m-2 p-3">
+    <div class="col-12 text-end">
+      <p-button icon="fas fa-trash-alt" label="Excluir" styleClass="p-button-text text-red-500" (click)="deletarDocumento()"></p-button>
+      <p-button icon="fas fa-file-alt" label="Gerar Documento" styleClass="p-button-text" (click)="gerarDocumento()"></p-button>
+    </div>
+  </div>
 </div>

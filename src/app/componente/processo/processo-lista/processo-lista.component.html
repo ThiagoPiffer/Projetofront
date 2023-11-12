@@ -78,7 +78,7 @@
               <td>
                 <p-cellEditor>
                     <ng-template pTemplate="input">
-                        <p-inputMask pInputText type="text" [(ngModel)]="processo.dataInicio" mask="99/99/9999" slotChar="mm/dd/yyyy"></p-inputMask>
+                        <p-inputMask pInputText type="text" [(ngModel)]="processo.dataInicio" mask="99/99/9999" slotChar="dd/MM/yyyy"></p-inputMask>
                     </ng-template>
                     <ng-template pTemplate="output">
                         {{processo.dataInicio}}
@@ -98,7 +98,7 @@
               <td>
                 <p-cellEditor>
                     <ng-template pTemplate="input">
-                        <p-inputMask pInputText type="text" [(ngModel)]="processo.dataPrevista" mask="99/99/9999" slotChar="mm/dd/yyyy"></p-inputMask>
+                        <p-inputMask pInputText type="text" [(ngModel)]="processo.dataPrevista" mask="99/99/9999" slotChar="dd/MM/yyyy"></p-inputMask>
                     </ng-template>
                     <ng-template pTemplate="output">
                         {{processo.dataPrevista}}

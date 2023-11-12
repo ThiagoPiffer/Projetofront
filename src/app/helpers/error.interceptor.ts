@@ -29,9 +29,9 @@ export class ErrorInterceptor implements HttpInterceptor {
                       else if (error.error.message)
                         serverMessage = error.error.message;
 
-                      this.messageService.add({ severity: 'error', summary: 'Erro na autenticação', detail: serverMessage });
+                      this.messageService.add({ severity: 'error', summary: 'Erro no processo', detail: serverMessage });
                   } else {
-                      this.messageService.add({ severity: 'error', summary: 'Erro no processo', detail: error.error.message || 'Erro desconhecido' });
+                      this.messageService.add({ severity: 'error', summary: 'Erro desconhecido no processo', detail: error.error.message || 'Erro desconhecido' });
                   }
               }
               return throwError(error);

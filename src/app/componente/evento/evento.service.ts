@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { EventoModel } from 'src/app/models/evento'; // Ajuste o caminho se necessário
+import { EventoStatusPersonalizadoModel } from 'src/app/models/eventoStatusPersonalizado';
 
 @Injectable({
   providedIn: 'root'
@@ -33,5 +34,9 @@ export class EventoService {
 
   deletar(id: number): Observable<any> {
     return this.http.delete<any>(`${this.utilsService.API}${this.endpointBase}/Deletar?id=${id}`);
+  }
+
+  buscarEventoStatus(eventoId: number): Observable<EventoStatusPersonalizadoModel> {
+    return this.http.get<EventoStatusPersonalizadoModel>(`${this.utilsService.API}${this.endpointBase}/BuscarProcessoStatus?eventoId=${eventoId}`);
   }
 }

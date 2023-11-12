@@ -7,6 +7,7 @@ import { EventoCompartilhadoService } from '../evento-compartilhado.service';
 import { take } from 'rxjs/operators';
 import { MessageService } from 'primeng/api';
 import { ProcessoCompartilhadoService } from '../../processo/processo-compartilhado.service';
+import { EventoStatusPersonalizadoImpl, EventoStatusPersonalizadoModel } from 'src/app/models/eventoStatusPersonalizado';
 
 @Component({
   selector: 'app-evento-lista',
@@ -18,6 +19,8 @@ export class EventoListaComponent implements OnInit {
 
   eventos: EventoModel[] = [];
   processoId: number = 0;
+
+  eventoStatusPersonalizado = new EventoStatusPersonalizadoImpl();
 
   constructor(
     private eventoService: EventoService,
@@ -92,6 +95,14 @@ export class EventoListaComponent implements OnInit {
           this.listarEventos();
       }
    });
+  }
+
+  buscareventoStatusPersonalizado(idEvento: number){
+    this.eventoService.buscarEventoStatus(idEvento).subscribe({
+      next: (data) => {
+        this.eventoStatusPersonalizado = data;
+      }
+    })
   }
 
   getMenuEventos(id: number){

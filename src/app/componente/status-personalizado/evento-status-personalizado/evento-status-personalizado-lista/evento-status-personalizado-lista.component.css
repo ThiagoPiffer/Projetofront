@@ -1,3 +1,8 @@
+.body {
+  display: flex;
+  align-items: center; /* Isso alinhará verticalmente os itens filho no centro */
+}
+
 .box-content {
   background-color: white;  /* ou outra cor de sua escolha */
   height: 100%;
@@ -92,33 +97,13 @@
   background-size: cover;
 }
 
-.font-titulo-card {
-  font-weight: normal;
-  color: #333;
-  padding-left: 5px;
-  padding-top: 15px;
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
 }
 
-.font-descricao-card {
-  font-size: 0.8em;
-  font-weight: lighter;
-  color: #494949;
-  padding-left: 15px;
-  margin-top: -8px;
-}
 
-.font-titulo {
-  min-width: 100px;
-  font-weight: normal;
-  color: #333;
-  font-size: 18px;
-}
-
-.font-conteudo {
-  font-weight: lighter;
-  color: #333;
-  font-size: 18px;
-}
 
 
 

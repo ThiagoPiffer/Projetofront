@@ -39,6 +39,12 @@ import { StepsModule } from 'primeng/steps';
 import { CalendarModule } from 'primeng/calendar';
 import { ListboxModule } from 'primeng/listbox';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { ColorPickerModule } from 'primeng/colorpicker';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+
+
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from './helpers/error.interceptor';
@@ -75,6 +81,10 @@ import { TipoPessoaListaComponent } from './componente/tipo-pessoa/tipo-pessoa-l
 import { TipoPessoaAssociarModalComponent } from './componente/tipo-pessoa/tipo-pessoa-associar-modal/tipo-pessoa-associar-modal.component';
 import { ConfiguracaoListaComponent } from './componente/configuracao/configuracao-lista/configuracao-lista.component';
 import { PerfilComponent } from './componente/Perfil/perfil/perfil.component';
+import { EventoStatusPersonalizadoListaComponent } from './componente/status-personalizado/evento-status-personalizado/evento-status-personalizado-lista/evento-status-personalizado-lista.component';
+import { ProcessoStatusPersonalizadoListaComponent } from './componente/status-personalizado/processo-status-personalizado/processo-status-personalizado-lista/processo-status-personalizado-lista.component';
+import { EventoStatusPersonalizadoCadastroModalComponent } from './componente/status-personalizado/evento-status-personalizado/evento-status-personalizado-cadastro-modal/evento-status-personalizado-cadastro-modal.component';
+import { ProcessoStatusPersonalizadoCadastroModalComponent } from './componente/status-personalizado/processo-status-personalizado/processo-status-personalizado-cadastro-modal/processo-status-personalizado-cadastro-modal.component';
 
 @NgModule({
   declarations: [
@@ -110,6 +120,10 @@ import { PerfilComponent } from './componente/Perfil/perfil/perfil.component';
     TipoPessoaAssociarModalComponent,
     ConfiguracaoListaComponent,
     PerfilComponent,
+    EventoStatusPersonalizadoListaComponent,
+    ProcessoStatusPersonalizadoListaComponent,
+    EventoStatusPersonalizadoCadastroModalComponent,
+    ProcessoStatusPersonalizadoCadastroModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -135,7 +149,11 @@ import { PerfilComponent } from './componente/Perfil/perfil/perfil.component';
     StepsModule,
     CalendarModule,
     ListboxModule,
-    InputTextareaModule
+    InputTextareaModule,
+    SelectButtonModule,
+    ColorPickerModule,
+    RadioButtonModule,
+    ConfirmDialogModule
   ],
   providers: [
     UtilsService,

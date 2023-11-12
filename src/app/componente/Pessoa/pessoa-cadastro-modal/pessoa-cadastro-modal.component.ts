@@ -4,14 +4,8 @@ import { PessoaService } from './../pessoa.service';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Pessoa, PessoaImpl } from '../../../models/pessoa';
 import { MessageService } from 'primeng/api';
-
 import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
-
-
 import { AbstractControl, ValidatorFn } from '@angular/forms';
-
-
-
 import { FormGroup } from '@angular/forms';
 import { DialogService } from 'primeng/dynamicdialog';
 import { PessoaCompartilhadoService } from '../pessoa-compartilhado.service';

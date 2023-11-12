@@ -72,7 +72,6 @@ export class IdentidadeService {
   logout(): Observable<void> {
     // Faça a chamada de logout para a API, se necessário
     // Por exemplo, se sua API tem um endpoint '/Identidade/sair'
-
     return this.http.get<UsuarioRegistroModel>(this.utilsService.API + '/Identidade/sair')
       .pipe(
         map(resposta => {
@@ -80,7 +79,6 @@ export class IdentidadeService {
           localStorage.removeItem('usuarioAtual'); // limpa usuario da sessao
           this.usuarioAtualSubject.next(null);
 
-          // Você pode retornar null ou vazio aqui, já que o tipo de retorno é Observable<void>
           return;
         })
       );

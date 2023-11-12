@@ -66,7 +66,7 @@ export class CadastroPessoaExternaComponent implements OnInit {
     let ref;
     if (id === 0) {
       ref = this.dialogService.open(PessoaCadastroModalComponent, {
-        header: 'Cadastrar Externo',
+        header: 'Cadastro Externo',
         width: '35%',
         data:
         {
@@ -77,7 +77,7 @@ export class CadastroPessoaExternaComponent implements OnInit {
       });
     } else {
       ref = this.dialogService.open(PessoaCadastroModalComponent, {
-        header: 'Cadastrar Externo',
+        header: 'Edição Externa',
         width: '35%',
         data:
         {

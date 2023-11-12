@@ -1,5 +1,3 @@
-<p-toast></p-toast>
-
 <div class="conteudo">
   <div class="box m-2 p-3 rounded-box">
     <div class="row">
@@ -36,7 +34,7 @@
         <span style="flex: 2;" class="url-text" (click)="copyToClipboard(link.url)">{{ link.url }}</span>
 
         <!-- Data de expiração -->
-        <span style="flex: 1;">Expira em: {{ link.expiracao }}</span>
+        <span style="flex: 1;">Expira em: {{ link.expiracao | date: 'dd/MM/yyyy HH:mm' }}</span>
 
         <!-- Ícone da lixeira -->
         <button

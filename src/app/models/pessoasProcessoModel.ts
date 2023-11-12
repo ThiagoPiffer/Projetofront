@@ -4,7 +4,7 @@ export interface PessoasProcessoModel {
   dataNascimento?: string | null;
   idade?: number | null;
   email?: string | null;
-  cpfCnpj: string;
+  cpfcnpj: string;
   identidade: string;
   dddTelefone?: string | null;
   telefone?: string | null;
@@ -13,6 +13,8 @@ export interface PessoasProcessoModel {
   idTipoPessoa? : number | null;
   tipoPessoaDescricao?: string | null;
   ativo: boolean;
+
+
 }
 
 export class PessoasProcessoModelImpl implements PessoasProcessoModel {
@@ -21,7 +23,7 @@ export class PessoasProcessoModelImpl implements PessoasProcessoModel {
   dataNascimento?: string | null = null;
   idade?: number | null = null;
   email?: string | null = null;
-  cpfCnpj: string = '';
+  cpfcnpj: string = '';
   identidade: string = '';
   dddTelefone?: string | null = null;
   telefone?: string | null = null;
@@ -30,6 +32,8 @@ export class PessoasProcessoModelImpl implements PessoasProcessoModel {
   idTipoPessoa?: number | null = null;
   tipoPessoaDescricao?: string | null = null;
   ativo: boolean = true;
+
+
 
   constructor(partial?: Partial<PessoasProcessoModel>) {
     Object.assign(this, partial);

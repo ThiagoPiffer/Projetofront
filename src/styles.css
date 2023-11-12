@@ -68,7 +68,7 @@ app-root {
 
 .conteudo{
   width: 100%;
-  padding: 10px;
+  padding: 20px;
 }
 
 .box {
@@ -235,4 +235,20 @@ body .p-sidebar .p-sidebar-content {
 .resizable {
   resize: both; /* Permite redimensionar horizontal e verticalmente */
   overflow: auto; /* Garante que o conteúdo do textarea seja sempre visível com barras de rolagem se necessário */
+}
+
+.text-red-500 {
+  color: var(--red-500) !important;
+}
+
+.text-yellow-500 {
+  color: var(--yellow-500) !important;
+}
+
+.font-icone-excluir {
+  font-size: 35px !important;
+}
+
+.font-menssagem-excluir {
+  padding-left: 20px ;
 }

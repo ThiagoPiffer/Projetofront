@@ -8,7 +8,8 @@
       <tr>
         <th pSortableColumn="nome" style="min-width: 150px;">Nome do Evento<p-sortIcon field="nome"></p-sortIcon></th>
         <th>Descrição</th>
-        <th pSortableColumn="dataFinal" style="min-width: 150px;">Data Final<p-sortIcon field="dataFinal"></p-sortIcon></th>
+        <th pSortableColumn="dataFinal" style="width: 180px;">Data Final<p-sortIcon field="dataFinal"></p-sortIcon></th>
+        <th style="width: 1rem"></th>
         <th style="width: 1rem"></th>
       </tr>
     </ng-template>
@@ -16,7 +17,8 @@
       <tr>
         <td>{{ evento.nome }}</td>
         <td>{{ evento.descricao }}</td>
-        <td>{{ evento.dataFinal | date: 'MM/dd/yyyy HH:mm' }}</td>
+        <td>{{ evento.dataFinal | date: 'dd/MM/yyyy HH:mm' }}</td>
+        <td><i *ngIf="evento.eventoStatusPersonalizadoModel" [ngClass]="evento.eventoStatusPersonalizadoModel.icone" [ngStyle]="{'color': evento.eventoStatusPersonalizadoModel.cor}"  [title]="evento.eventoStatusPersonalizadoModel.nome + ': ' + evento.eventoStatusPersonalizadoModel.descricao"></i></td>
         <td>
           <a #menuButton class="icon-button invisible-button no-hover" (click)="menu.toggle($event)">
             <span class="icon icon-tres-pontos"></span>

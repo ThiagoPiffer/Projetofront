@@ -4,14 +4,14 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class TipoPessoaCompartilhadoService {
+export class EventoStatusPersonalizadoCompartilhadoService {
+
 
   private mensagemSource = new BehaviorSubject<{ tipo: boolean; mensagem: string }>({ tipo: false, mensagem: '' });
 
   mensagem$ = this.mensagemSource.asObservable();
 
   enviarMensagem(tipo: boolean, mensagem: string) {
-    debugger
     this.mensagemSource.next({ tipo, mensagem });
   }
 }

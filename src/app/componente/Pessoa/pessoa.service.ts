@@ -48,8 +48,8 @@ export class PessoaService {
     return this.http.post<Pessoa>(this.utilsService.API + '/Pessoa/Adicionar', pessoaDto);
   }
 
-  associar(pessoaDto: PessoasProcessoModel, idProcesso: number): Observable<PessoasProcessoModel> {
-    return this.http.post<PessoasProcessoModel>(this.utilsService.API + '/Pessoa/associar?idProcesso=' + idProcesso, pessoaDto);
+  associar(pessoaDto: PessoasProcessoModel, idProcesso: number): Observable<any> {
+    return this.http.post<any>(this.utilsService.API + '/Pessoa/associar?idProcesso=' + idProcesso, pessoaDto);
   }
 
   salvarCadastroExterno(pessoaDto: Pessoa): Observable<Pessoa> {

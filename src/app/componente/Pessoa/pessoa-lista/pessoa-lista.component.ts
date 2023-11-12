@@ -179,9 +179,10 @@ export class PessoaListaComponent implements OnInit {
       width: '35%',
       data: { pessoaId: pessoaId }
     });
-
+debugger
     ref.onClose.subscribe((result) => {
-      this.pessoaCompartilhadoService.mensagem$.pipe(take(1)).subscribe(mensagem => {
+      this.pessoaCompartilhadoService.mensagem$.pipe(take(10)).subscribe(mensagem => {
+        debugger
         if (mensagem.tipo)
           this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: mensagem.mensagem });
         else{
@@ -219,7 +220,7 @@ export class PessoaListaComponent implements OnInit {
     this.pessoaService.desassociarPessoaProcesso(idPessoa, this.processoId).subscribe({
       next: () => {
           this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Processo realizado com sucesso' });
-          this.listarPessoasProcesso();
+          this.listar();
       }
    });
   }
@@ -228,7 +229,7 @@ export class PessoaListaComponent implements OnInit {
     this.pessoaService.deletar(id).subscribe({
       next: () => {
           this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Processo realizado com sucesso' });
-          this.listarPessoasCompleta();
+          this.listar();
       }
    });
   }

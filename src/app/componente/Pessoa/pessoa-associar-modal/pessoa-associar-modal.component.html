@@ -2,9 +2,9 @@
   <div class="row mt-3">
     <div class="col-12">
       <!-- <div class="box m-2 p-2 rounded-box"> -->
-        <p-listbox *ngIf="pessoasProcessoModel" [options]="pessoasProcessoModel" [(ngModel)]="selectedPessoasProcessoModel" [filter]="true">
+        <p-listbox *ngIf="pessoasProcessoModel" [options]="pessoasProcessoModel" optionLabel="nomeConcatenado" [(ngModel)]="selectedPessoasProcessoModel" [filter]="true">
           <ng-template let-pessoa pTemplate="item">
-              {{pessoa.nome}} - {{pessoa.cpfcnpj}}
+              {{ pessoa.nomeConcatenado }}
           </ng-template>
         </p-listbox>
       <!-- </div> -->

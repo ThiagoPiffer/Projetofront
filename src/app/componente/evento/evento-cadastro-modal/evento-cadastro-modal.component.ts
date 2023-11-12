@@ -42,6 +42,7 @@ export class EventoCadastroModalComponent {
       this.eventoId = this.config.data.eventoId;
       this.eventoService.obterPorId(this.eventoId).subscribe((evento) => {
         this.novoEvento = evento;
+        this.novoEvento.dataFinal = new Date(evento.dataFinal);
       });
     }
   }
@@ -53,16 +54,27 @@ export class EventoCadastroModalComponent {
         return;
     }
 
-    evento.processoId = this.processoId
-    this.eventoService.salvar(evento).subscribe({
-      next: () => {
+    if (evento.id === 0){
+      evento.processoId = this.processoId
+      this.eventoService.salvar(evento).subscribe({
+        next: () => {
 
-          this.eventoCompartilhadoService.enviarMensagem(true, 'Cadastro realizado com sucesso');
-          this.fecharModal();
-      },error: (error) => {
-      }
+            this.eventoCompartilhadoService.enviarMensagem(true, 'Cadastro realizado com sucesso');
+            this.fecharModal();
+        },error: (error) => {
+        }
 
-    });
+      });
+    }else {
+      this.eventoService.editar(evento).subscribe({
+        next: () => {
+            this.eventoCompartilhadoService.enviarMensagem(true, 'Cadastro realizado com sucesso');
+            this.fecharModal();
+        },error: (error) => {
+        }
+
+      });
+    }
   }
 
   fecharModal() {

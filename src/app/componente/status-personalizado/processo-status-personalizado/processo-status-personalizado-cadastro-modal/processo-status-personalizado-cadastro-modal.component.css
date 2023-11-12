@@ -1,0 +1,44 @@
+.flex {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; /* Espaçamento vertical entre os campos */
+}
+
+.flex > label {
+  order: 1; /* Coloca o label antes do input */
+}
+
+.flex > input {
+  order: 2; /* Coloca o input depois do label */
+}
+
+td {
+  padding: 3px;
+}
+
+p-inputMask {
+  width: 100%;
+}
+
+.error-message{
+  color: orangered;
+  font-size: 11px;
+}
+
+.small-select-button  {
+  width: 0.2rem; /* Defina um tamanho específico ou use auto se preferir */
+  height: 0.5rem; /* Defina um tamanho específico ou use auto se preferir */
+  padding: 0.2rem 0.4rem !important; /* Use !important se necessário para sobrescrever os estilos do PrimeNG */
+  font-size: 0.8rem !important; /* Ajuste o tamanho da fonte e use !important se necessário */
+  line-height: 0.5; /* Ajuste a altura da linha se necessário */
+}
+
+.ajuste-selectButton {
+  padding-left: 5px;
+  margin-top: -20px;
+}
+
+.ajuste-radiotButton {
+  padding-left: 5px;
+}
+
