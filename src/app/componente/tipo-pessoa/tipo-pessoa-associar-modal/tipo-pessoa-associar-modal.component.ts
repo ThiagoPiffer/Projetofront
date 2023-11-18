@@ -61,10 +61,8 @@ export class TipoPessoaAssociarModalComponent {
   }
 
   salvarTipoPessoaAssociar(tipoPessoa: TipoPessoaModel){
-    debugger
     this.tipoPessoaService.associar(tipoPessoa, this.processoId, this.pessoaId).subscribe({
       next: () => {
-        debugger
           this.tipoPessoaCompartilhadoService.enviarMensagem(true, 'Cadastro realizado com sucesso');
           this.fecharModal();
       },

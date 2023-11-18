@@ -11,7 +11,6 @@ export class TipoPessoaCompartilhadoService {
   mensagem$ = this.mensagemSource.asObservable();
 
   enviarMensagem(tipo: boolean, mensagem: string) {
-    debugger
     this.mensagemSource.next({ tipo, mensagem });
   }
 }

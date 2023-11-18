@@ -94,7 +94,7 @@ export class MenuLateralComponent {
     const ref = this.dialogService.open(ArquivoProcessoTemplateConfigurarModalComponent, {
       header: 'Configurar Template',
       width: '55%',
-      height: '60%',
+      height: '80%',
       data: {
         arquivoId: arquivo.id,
         processoId: this.processoId,
@@ -209,7 +209,7 @@ export class MenuLateralComponent {
     const ref = this.dialogService.open(ArquivoProcessoTemplateUploadModalComponent, {
       header: 'Upload Arquivo',
       width: '80%',
-      height: '65%'
+      height: '80%'
     });
 
     ref.onClose.subscribe((result) => {

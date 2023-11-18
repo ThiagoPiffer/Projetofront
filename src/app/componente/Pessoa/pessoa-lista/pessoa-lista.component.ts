@@ -179,10 +179,9 @@ export class PessoaListaComponent implements OnInit {
       width: '35%',
       data: { pessoaId: pessoaId }
     });
-debugger
+
     ref.onClose.subscribe((result) => {
       this.pessoaCompartilhadoService.mensagem$.pipe(take(10)).subscribe(mensagem => {
-        debugger
         if (mensagem.tipo)
           this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: mensagem.mensagem });
         else{
