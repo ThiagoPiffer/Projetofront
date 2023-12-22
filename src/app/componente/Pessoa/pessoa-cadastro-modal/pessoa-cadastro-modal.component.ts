@@ -10,6 +10,7 @@ import { FormGroup } from '@angular/forms';
 import { DialogService } from 'primeng/dynamicdialog';
 import { PessoaCompartilhadoService } from '../pessoa-compartilhado.service';
 import { ControlePessoaExternaModel } from 'src/app/models/controlePessoaExternaModel';
+import { EnderecoImpl } from 'src/app/models/endereco';
 
 
 @Component({
@@ -56,6 +57,8 @@ export class PessoaCadastroModalComponent {
       this.pessoaId = this.config.data.pessoaId;
       this.pessoaService.obterPorId(this.pessoaId).subscribe((pessoa) => {
         this.novaPessoa = pessoa;
+        if (this.novaPessoa.endereco == null)
+          this.novaPessoa.endereco = new EnderecoImpl();
       });
     }
 

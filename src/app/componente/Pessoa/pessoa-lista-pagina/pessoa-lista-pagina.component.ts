@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./pessoa-lista-pagina.component.css']
 })
 export class PessoaListaPaginaComponent {
+  iconePagina = 'fas fa-users'
+  caminhoPagina = 'Pessoas'
 
   constructor(
     // private processoService: ProcessoService,

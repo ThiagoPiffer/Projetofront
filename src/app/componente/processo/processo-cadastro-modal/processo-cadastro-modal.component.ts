@@ -2,7 +2,7 @@
 import { ProcessoCompartilhadoService } from '../../processo/processo-compartilhado.service';
 import { ProcessoService } from './../processo.service';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Processo } from '../../../models/processo';
+import { Processo, ProcessoImpl } from '../../../models/processo';
 import { MessageService } from 'primeng/api';
 
 import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
@@ -23,18 +23,20 @@ export class ProcessoCadastroModalComponent {
   @Input() displayModal = true; // Inicialização padrão
   @Output() close = new EventEmitter<boolean>();
 
-  novoProcesso: Processo = {
-    id: 0,
-    numero: '',
-    dataCadastro: '',
-    dataFinal: '',
-    descricao: '',
-    dataInicio: null,
-    dataPrevista: null,
-    valorCausa: 0.0,  // Inicializando com 0, mas isso pode ser ajustado conforme a necessidade
-    grupoProcessoId: null,
-    ativo: false  // Supondo que o valor inicial seja false
-  };
+  // novoProcesso: Processo = {
+  //   id: 0,
+  //   numero: '',
+  //   dataCadastro: '',
+  //   dataFinal: '',
+  //   descricao: '',
+  //   dataInicio: null,
+  //   dataPrevista: null,
+  //   valorCausa: 0.0,  // Inicializando com 0, mas isso pode ser ajustado conforme a necessidade
+  //   grupoProcessoId: null,
+  //   ativo: false  // Supondo que o valor inicial seja false
+  // };
+
+  novoProcesso = new ProcessoImpl();
 
   isDataNascimentoValid = true;
   isIdentidadeValid = true;

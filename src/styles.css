@@ -8,17 +8,44 @@ html, body{
   padding: 0;
   box-sizing: border-box;
   background: #ffffff;
-  font-family: var(--font-family);
+  /* font-family: var(--font-family); */
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
 }
 
+
 app-cabecalho {
-  position: relative; /* ou 'fixed' ou 'absolute', dependendo da sua necessidade */
+  /* position: relative; */
+  position: fixed;
+  width: 100%; /* Faz o cabeçalho ocupar toda a largura da janela */
   z-index: 1009; /* maior que o z-index do sidebar */
-  background: linear-gradient(white, #607D8B 5%); /* branco ocupa apenas os primeiros 10% do gradiente */
+  background: linear-gradient(white, white 5%); /* branco ocupa apenas os primeiros 10% do gradiente */
   --grid-column-start: 1;
   --grid-column-end: 3;
   grid-area: h;
+  height: 60px;
 }
+
+.border-top-cabecalho {
+  position: fixed; /* Posição fixa */
+  width: 100%; /* Largura total */
+  height: 30px; /* Altura do elemento */
+  border-top: 1px solid #c5c4c4; /* Borda superior */
+  border-top-left-radius: 30px; /* Raio da borda arredondada no canto superior esquerdo */
+  border-top-right-radius: 30px; /* Raio da borda arredondada no canto superior direito */
+  box-shadow: -35px 0 0 0 #FFF; /* Sombra caixa que simula borda externa */
+  z-index: 99; /* Alto z-index */
+}
+
+body .p-sidebar {
+  z-index: 999;
+}
+
+body .p-sidebar .p-sidebar-content {
+  padding: 0 !important; /* Remove o padding */
+}
+
+
 
 /* .l-esquerdo {
   background: rgb(168, 167, 167);
@@ -27,7 +54,13 @@ app-cabecalho {
   grid-area: e;
 } */
 
+
 main {
+  margin-top: 60px;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  box-shadow: inset 0 3px 4px #0000001a;
+
   background: #f2f2f2;
   --grid-column-start: 1;
   --grid-column-end: 1;
@@ -36,12 +69,7 @@ main {
   min-height: 95vh;
 }
 
-p-sidebar {
-  background: rgb(168, 167, 167);
-  --grid-column-start: 1;
-  --grid-column-end: 3;
-  grid-area: s;
-}
+
 
 /* aside {
   background: green;
@@ -55,14 +83,15 @@ app-rodape {
   --grid-column-start: 1;
   --grid-column-end: 3;
   grid-area: f;
+  z-index: 9;
 }
 
 app-root {
   display: grid;
-  grid-template-columns: 1fr 80fr 1fr;
+  grid-template-columns: 70px 94fr 1fr;
   grid-template-rows: auto 1fr auto;
   grid-template-areas: "h h h"
-                        "m m m"
+                        "s m m"
                         "f f f"
 }
 
@@ -125,19 +154,19 @@ app-root {
 }
 
 .p-dialog-content > .body{
-  padding: 15px !important;
+  padding: 55px !important;
   font-size: larger;
 }
 
 
 .p-dialog-footer{
-
+  z-index: 99;
 }
 
-.conteudo2{
+/* .conteudo2{
   width: 100%;
   padding: 5px;
-}
+} */
 
 body .table-limited .p-datatable-tbody > tr > td,
 body .table-limited .p-datatable-thead > tr > th {
@@ -152,23 +181,19 @@ input {
 
 .conteudo-principal-menu-expandido {
   /* seus estilos para o conteúdo principal quando o menu está expandido */
-  margin-left: 0px; /* Exemplo: ajuste conforme necessário */
+  margin-left: 0px !important; /* Exemplo: ajuste conforme necessário */
 }
 
 .conteudo-principal-menu-retraido {
   /* seus estilos para o conteúdo principal quando o menu está retraído */
-  margin-left: 0px; /* Exemplo: ajuste conforme necessário */
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  margin-left: -70px !important;; /* Exemplo: ajuste conforme necessário */
 }
 
 .index-superior{
   z-index: 1010;
 }
-
-body .p-sidebar .p-sidebar-content {
-  padding: 0 !important; /* Remove o padding */
-}
-
-
 
 .p-accordion-content {
   padding: 0 !important; /* remove o padding */
@@ -176,9 +201,8 @@ body .p-sidebar .p-sidebar-content {
 }
 
 
-/* Adicione isso ao seu arquivo de estilos CSS */
 .p-dialog-content {
-  background-color: #f9f9f9 !important; /* Isso representa a cor cinza claro; você pode ajustar o código hexadecimal conforme necessário */
+  background-color: #fbfbfb !important; /* Isso representa a cor cinza claro; você pode ajustar o código hexadecimal conforme necessário */
 }
 
 .rounded-box {
@@ -196,7 +220,7 @@ body .p-sidebar .p-sidebar-content {
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 .project-title {
-  color: #FFFFFF; /* Cor do texto */
+  color: #000000; /* Cor do texto */
   font-weight: bold; /* Torna o texto em negrito */
   font-family: 'Montserrat', sans-serif; /* Define a família da fonte */
   font-size: 24px; /* Define o tamanho da fonte */
@@ -251,4 +275,182 @@ body .p-sidebar .p-sidebar-content {
 
 .font-menssagem-excluir {
   padding-left: 20px ;
+}
+
+.custom-button {
+  background-color: #3a4c8a;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: inline-block;
+}
+
+.custom-button:hover {
+  background-color: #2d3b68;
+  color: white;
+}
+
+.custom-button-md {
+  background-color: #3a4c8a;
+  border: none;
+  color: white;
+  padding: 8px 15px; /* Menor que o padrão */
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px; /* Menor que o padrão */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: inline-block;
+}
+
+.custom-button-md:hover {
+  background-color: #2d3b68;
+  color: white;
+}
+
+.custom-button-sm {
+  background-color: #3a4c8a;
+  border: none;
+  color: white;
+  padding: 5px 10px; /* Menor que o médio */
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px; /* Menor que o médio */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: inline-block;
+}
+
+.custom-button-sm:hover {
+  background-color: #2d3b68;
+  color: white;
+}
+
+.custom-button-transparente {
+  background-color: transparent;
+  border: 0px;
+  color: #3a4c8a;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s, color 0.3s;
+  display: inline-block;
+}
+
+.custom-button-transparente-md {
+  border: 0px;
+  padding: 8px 15px; /* Menor que o padrão */
+  font-size: 14px; /* Menor que o padrão */
+}
+
+.custom-button-transparente-sm {
+  background-color: transparent;
+  border: 0px;
+  padding: 5px 10px; /* Menor que o médio */
+  font-size: 12px; /* Menor que o médio */
+}
+
+.custom-button-transparente:hover,
+.custom-button-transparente-sm:hover,
+.custom-button-transparente-md:hover {
+  background-color: #3a4b8a16;
+  border-radius: 4px;
+  /* color: white; */
+}
+
+.customMenu-button-transparente-sm {
+  background-color: transparent;
+  border: 0px;
+  padding: 12px 0px 10px 2px; /* Ajuste o padding conforme necessário */
+  margin: 10px 0px 10px 10px; /* Ajuste o padding conforme necessário */
+  font-size: 12px; /* Menor que o médio */
+  width: 50px !important;
+}
+
+.customMenu-hover-redondo:hover {
+  background-color: #55555518; /* Cor de fundo ao passar o mouse */
+  color: black !important;
+  border-radius: 50%; /* Torna o botão redondo */
+  padding: 12px 0px 10px 2px; /* Ajuste o padding conforme necessário */
+  margin: 10px 0px 10px 10px; /* Ajuste o padding conforme necessário */
+  width: 50px !important;
+}
+
+.p-button.p-button-text {
+  color: #3a4c8a !important;
+}
+
+.p-button.p-button-text:enabled:hover {
+  color: #3a4c8a !important;
+}
+
+.p-button-danger.p-button.p-button-text {
+  color: #EF4444 !important;
+}
+
+.icone-padrao {
+  font-size: 14px; /* Ajuste o tamanho do ícone */
+  vertical-align: middle; /* Alinha verticalmente com o texto, se necessário */
+}
+
+.texto-padrao {
+  /* Estilos para o texto */
+  font-size: 14px;
+  font-weight: normal;
+  text-transform: none;
+}
+
+.divisorPagina{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.cor-padrao {
+  color: #495057 !important;
+}
+
+.margin-0 {
+  margin: 0px;
+}
+
+.botao-menos-alto {
+  padding-top: 5px;    /* Reduz o padding superior */
+  padding-bottom: 5px; /* Reduz o padding inferior */
+}
+
+.alinhamento-botoes-pagina {
+  margin-top: -3px;
+  margin-bottom: -5px;
+}
+
+.topoPagina {
+  margin-top: -15px;
+}
+
+.menu-deslocado {
+  margin-left: 200px; /* Ajuste conforme necessário */
+}
+
+.checkbox-custom {
+  width: 15px;
+  height: 25px;
+  border: 2px solid #0d6efd; /* Cor da borda */
+  border-radius: 3px; /* Bordas arredondadas */
+  cursor: pointer; /* Cursor de mão ao passar o mouse */
+}
+
+.checkbox-custom:checked {
+  background-color: #0d6efd; /* Cor de fundo quando selecionado */
 }

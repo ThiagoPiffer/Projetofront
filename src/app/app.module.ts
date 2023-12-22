@@ -43,7 +43,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { ColorPickerModule } from 'primeng/colorpicker';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-
+import { CheckboxModule } from 'primeng/checkbox';
 
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -153,7 +153,8 @@ import { ProcessoStatusPersonalizadoCadastroModalComponent } from './componente/
     SelectButtonModule,
     ColorPickerModule,
     RadioButtonModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    CheckboxModule
   ],
   providers: [
     UtilsService,

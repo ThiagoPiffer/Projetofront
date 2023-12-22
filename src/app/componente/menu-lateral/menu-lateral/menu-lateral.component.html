@@ -1,46 +1,25 @@
-<div *ngIf="mostrarMenuLateral">
-  <button (click)="toggleMenu()" class="botao-menu index-superior">
-    <!-- ícone de três tracinhos -->
-    <i class="pi pi-bars"></i>
-  </button>
-  <p-sidebar [(visible)]="menuExpandido" position="left" [modal]="false" [baseZIndex]="10000">
-    <p-accordion>
-      <p-accordionTab *ngIf="mostrarMenuConteudo" class="accordionTab-menu-lateral" header="Conteúdo" [selected]="false">
-        <ul class="ulAccordionTab">
-          <li class="liAccordionTab">
-            <a  href="/notificacao">
-              <i class="fas fa-bell" style="padding-right: 5px;"></i> Notificações</a></li>
-
-          <li class="liAccordionTab">
-            <a  href="/pessoa-lista-pagina">
-              <i class="fas fa-users" style="padding-right: 5px;"></i>Pessoas</a></li>
-
-          <li class="liAccordionTab">
-            <a  href="/processo-lista">
-              <i class="fas fa-balance-scale" style="padding-right: 5px;"></i> Processos</a></li>
-        </ul>
-      </p-accordionTab>
-      <p-accordionTab *ngIf="mostrarMenuTemplate" class="accordionTab-menu-lateral" header="Templates" [selected]="false">
-        <ul class="ulAccordionTab">
-          <li class="liAccordionTab" *ngFor="let template of listaTemplates">
-            <a (click)="ConfiguraArquivoTemplateModal($event, template)">{{ template.nome }}</a>
-          </li>
-          <li class="liAccordionTab">
-            <a href="#" (click)="NovoTemplate($event)">
-              <i class="fas fa-plus" style="padding-right: 5px;"></i> Novo Template
-            </a>
-        </ul>
-      </p-accordionTab>
-      <p-accordionTab *ngIf="mostrarMenuUtilidades" class="accordionTab-menu-lateral" header="Utilitades" [selected]="false">
-        <ul class="ulAccordionTab">
-          <li class="liAccordionTab">
-            <a href="#" (click)="GerarLinkExternoCadastroPessoa($event)">
-              <i class="fas fa-link" style="padding-right: 5px;"></i>
-              Link externo para cadastro de Pessoa</a>
-          </li>
-        </ul>
-      </p-accordionTab>
-      <!-- Você pode adicionar mais <p-accordionTab> aqui para outros itens no menu -->
-    </p-accordion>
-  </p-sidebar>
+<div class="sidebar" *ngIf="mostrarMenuLateral">
+  <ul class="layout-menu">
+      <!-- Menu Listas -->
+      <li>
+        <button class="customMenu-button-transparente-sm customMenu-hover-redondo" pTooltip="Listas" (click)="menuLista.toggle($event)">
+          <i class="fas fa-list cor-padrao"></i>
+        </button>
+        <p-menu #menuLista class="menu-deslocado" appendTo="body" [model]="obterItensListas()" [popup]="true"></p-menu>
+      </li>
+      <!-- Menu Link Externo -->
+      <li>
+        <button class="customMenu-button-transparente-sm customMenu-hover-redondo" pTooltip="Cadastro Externo" (click)="menuTemplate.toggle($event)">
+          <i class="fas fa-link cor-padrao"></i>
+        </button>
+        <p-menu #menuTemplate class="menu-deslocado" appendTo="body" [model]="obterItensLinkExterno()" [popup]="true"></p-menu>
+      </li>
+      <!-- Menu Templates -->
+      <!-- <li>
+        <button class="customMenu-button-transparente-sm" (click)="menuTemplate.toggle($event)">
+          <i class="fas fa-object-ungroup"></i>
+        </button>
+        <p-menu #menuTemplate appendTo="body" [model]="obterItensMenuTemplates()" [popup]="true"></p-menu>
+      </li> -->
+  </ul>
 </div>

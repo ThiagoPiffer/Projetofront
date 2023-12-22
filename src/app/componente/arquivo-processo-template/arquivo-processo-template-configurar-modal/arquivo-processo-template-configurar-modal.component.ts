@@ -140,6 +140,12 @@ export class ArquivoProcessoTemplateConfigurarModalComponent implements OnInit {
     else
       return ``;
   }
+  formatCampoChaveCpfCnpj(campoChave: string): string {
+    if (campoChave)
+      return `{{cpfcnpj${campoChave}}}`;
+    else
+      return ``;
+  }
   formatCampoChaveIdentidade(campoChave: string): string {
     if (campoChave)
       return `{{identidade${campoChave}}}`;

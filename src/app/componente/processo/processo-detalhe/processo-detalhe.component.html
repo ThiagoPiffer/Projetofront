@@ -1,6 +1,56 @@
 <p-toast></p-toast>
 
 <div class="conteudo">
+  <div class="row topoPagina">
+    <div class="col-10">
+      <span [ngClass]="iconePagina" class="icone-padrao cor-padrao"></span>
+      <span class="divisorPagina">/</span>
+      <span class="texto-padrao cor-padrao">{{ caminhoPagina }}</span>
+    </div>
+    <div class="col-2 p-0 text-end alinhamento-botoes-pagina" >
+      <div class="d-flex justify-content-end">
+        <!-- Menu Template -->
+        <div *ngIf="listaTemplates.length > 0">
+          <button class="custom-button-transparente-sm" (click)="menuTemplate.toggle($event)">
+            <i class="fas fa-object-ungroup"></i>
+          </button>
+          <p-menu #menuTemplate appendTo="body" [model]="obterItensMenuTemplate()" [popup]="true"></p-menu>
+        </div>
+        <!-- Menu Processo -->
+        <div>
+          <button class="custom-button-transparente-sm" (click)="menuProcesso.toggle($event)">
+            <i class="pi pi-bars"></i>
+          </button>
+          <p-menu #menuProcesso appendTo="body" [model]="obterItensMenuProcesso()" [popup]="true"></p-menu>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Finalizar Processo -->
+  <p-dialog header="Header" [(visible)]="visibleModalFinalizarProcesso" [style]="{ width: '80vw' }">
+    <ng-template pTemplate="header">
+        <h4><span class="text-xl font-bold">Finalizar Processo</span></h4>
+    </ng-template>
+    <div class="body">
+      <!-- Motivo finaliza input -->
+      <div class="row  ">
+        <div class="col-12 p-float-label" *ngIf="processo">
+          <textarea pInputTextarea id="motivoFinal" [(ngModel)]="processo.motivoFinal!" required #motivoFinalField="ngModel" class="w-100"></textarea>
+          <label class="input-padding" for="motivoFinal">Informe o motivo do encerramento do processo: </label>
+          <div *ngIf="motivoFinalField.errors && motivoFinalField.errors['required'] && motivoFinalField.touched" class="error-message">
+            Motivo é obrigatório.
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-template pTemplate="footer">
+      <p-button icon="pi pi-times" (click)="visibleModalFinalizarProcesso = false" label="Cancelar" styleClass="p-button-text"></p-button>
+      <p-button icon="pi pi-check" (click)="finalizarProcesso(processo)" label="Confirmar" styleClass="p-button-text"></p-button>
+    </ng-template>
+  </p-dialog>
+
+
   <div class="row">
     <div class="box m-2 p-2 col rounded-box" style="position: relative;">
 
@@ -26,7 +76,9 @@
       <div class="row m-1">
         <div class="col-8 d-flex align-items-center">
           <span class="font-titulo">Valor Causa:</span>
-          <span class="font-conteudo" style="padding-left: 5px;"> {{ processo?.valorCausa }}</span>
+          <span class="font-conteudo" style="padding-left: 5px;">
+            {{ processo?.valorCausa | currency:'BRL':'symbol':'1.2-2' }}
+          </span>
         </div>
         <div class="col-4 d-flex align-items-center">
           <span class="font-titulo">Inicio:</span>
@@ -35,8 +87,16 @@
       </div>
       <div class="row m-1">
         <div class="col-8"></div>
-        <div class="col-4 d-flex align-items-center">
+        <div class="col-4 d-flex align-items-center" *ngIf="exibeDataFinal()">
+          <span class="font-titulo">Final:</span><span class="font-conteudo"> {{ processo?.dataFinal }}</span>
+        </div>
+        <div class="col-4 d-flex align-items-center" *ngIf="!exibeDataFinal()">
           <span class="font-titulo">Previsão:</span><span class="font-conteudo"> {{ processo?.dataPrevista }}</span>
+        </div>
+      </div>
+      <div class="row m-1">
+        <div class="col-12 d-flex align-items-center" *ngIf="exibeDataFinal()">
+          <span class="font-titulo">Motivo encerramento: </span><span class="font-conteudo" style="padding-left: 5px;"> {{ processo?.motivoFinal }}</span>
         </div>
       </div>
     </div>
@@ -91,12 +151,13 @@
     </div>
   </div>
 
-  <!-- lista pessoa -->
   <div class="row">
+    <!-- lista pessoa -->
     <div class="box m-2 p-2 col rounded-box">
       <app-pessoa-lista [listaProcesso]="true" [exibeAssociar]="true" [exibeCadastro]="false" style="padding: 0;"></app-pessoa-lista>
     </div>
 
+    <!-- lista documentos -->
     <div class="box m-2 p-2 col rounded-box">
       <button class="btn" (click)="abrirModalImportarArquivo()">
         <i class="fas fa-file-alt"></i> Adicionar Documento

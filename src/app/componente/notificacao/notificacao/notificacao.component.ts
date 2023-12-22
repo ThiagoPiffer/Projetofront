@@ -7,6 +7,8 @@ import { ProcessoCompartilhadoService } from '../../processo/processo-compartilh
   styleUrls: ['./notificacao.component.css']
 })
 export class NotificacaoComponent implements OnInit {
+  iconePagina = 'fas fa-bell'
+  caminhoPagina = 'Notificações'
 
   constructor(
     private processoCompartilhadoService : ProcessoCompartilhadoService,

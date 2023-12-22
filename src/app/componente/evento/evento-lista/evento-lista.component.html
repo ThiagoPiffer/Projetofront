@@ -1,6 +1,16 @@
+<div class="row topoPagina">
+  <div class="col-8">
 <button class="btn" (click)="abrirModalCadastroEvento(0)" *ngIf="exibeCadastro">
   <i class="fas fa-calendar-alt"></i> Adicionar Evento
 </button>
+</div>
+<div class="col-4 pl-3 text-end alinhamento-botoes-pagina" >
+  <div class="d-flex justify-content-end">
+    <input type="checkbox" id="ny" class="checkbox-custom" [(ngModel)]="exibeEncerrados" (click)="listarEncerradosToggle()" />
+    <label style="padding-left: 5px;">Exibir encerrados</label>
+  </div>
+</div>
+</div>
 
 <div class="evento-lista-container">
   <p-table *ngIf="exibirListaEvento()" [value]="eventos" class="table-limited">
@@ -23,7 +33,7 @@
           <a #menuButton class="icon-button invisible-button no-hover" (click)="menu.toggle($event)">
             <span class="icon icon-tres-pontos"></span>
           </a>
-          <p-menu #menu appendTo="body" [model]="getMenuEventos(evento.id)" [popup]="true"></p-menu>
+          <p-menu #menu appendTo="body" [model]="getMenuEventos(evento)" [popup]="true"></p-menu>
         </td>
       </tr>
     </ng-template>

@@ -3,6 +3,7 @@ export interface EventoModel {
   nome: string;
   descricao: string;
   dataFinal: Date;
+  encerrado: boolean
   processoId: number;
   empresaId: number;
   ativo: boolean;
@@ -13,6 +14,7 @@ export class EventoImpl implements EventoModel {
   nome: string = '';
   descricao: string = '';
   dataFinal: Date = new Date();
+  encerrado: boolean = false;
   processoId: number = 0;
   empresaId: number = 0;
   id: number = 0;

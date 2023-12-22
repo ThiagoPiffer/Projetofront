@@ -25,8 +25,8 @@ export class GrupoprocessoService {
               private identidadeService: IdentidadeService
     ) { }
 
-  listar(): Observable<GrupoProcessoModel[]> {
-    return this.http.get<GrupoProcessoModel[]>(this.utilsService.API + '/GrupoProcesso/Listar');
+  listar(exibeEncerrados: boolean ): Observable<GrupoProcessoModel[]> {
+    return this.http.get<GrupoProcessoModel[]>(this.utilsService.API + `/GrupoProcesso/Listar?exibeEncerrados=${exibeEncerrados}`);
   }
 
   // listar(): Observable<GrupoProcessoModel[]> {
@@ -71,5 +71,9 @@ export class GrupoprocessoService {
 
   editar(grupoDto: GrupoProcesso): Observable<GrupoProcesso> {
     return this.http.post<GrupoProcesso>(this.utilsService.API + '/GrupoProcesso/Editar', grupoDto)
+  }
+
+  deletar(grupoDto: GrupoProcesso): Observable<any> {
+    return this.http.delete<any>(this.utilsService.API + '/GrupoProcesso/Deletar?id=' + grupoDto.id)
   }
 }

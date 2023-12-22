@@ -7,6 +7,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { SidebarService } from 'src/app/sidebar.service';
 import { DialogService } from 'primeng/dynamicdialog';
 import { MessageService } from 'primeng/api';
+import { MenuItem } from 'primeng/api';
 import { take } from 'rxjs/operators';
 import { saveAs } from 'file-saver';
 
@@ -22,6 +23,7 @@ import { Renderer2, ElementRef } from '@angular/core';
 })
 export class MenuLateralComponent {
   mostrarMenuLateral = false;
+  menuLateralVisible = false;
   mostrarMenuTemplate = false;
   mostrarMenuUtilidades = false;
   mostrarMenuConteudo = false;
@@ -67,8 +69,79 @@ export class MenuLateralComponent {
   }
 
   ngOnInit() {
-    this.fecharMenuAberto()
-    this.listarTemplates();
+    if (this.TelasQueNaoAparecemMenu()){
+      this.fecharMenuAberto()
+      this.listarTemplates();
+    }
+  }
+
+  obterItensMenuTemplates() {
+    let items = this.listaTemplates.map(template => ({
+      label: template.nome,
+      icon: '', // Defina o ícone aqui, se necessário
+      command: () => {
+        this.ConfiguraArquivoTemplateModal(template);
+      }
+    }));
+
+    // Adiciona um novo item ao final do array
+    items.push({
+      label: 'Novo Template',
+      icon: '', // Defina o ícone para o item "Novo Template" se necessário
+      command: () => {
+        this.NovoTemplate();
+      }
+    });
+
+    return items;
+  }
+
+  obterItensLinkExterno(){
+    return  [
+      {
+        label: 'Cadastro Pessoa Externa',
+        icon: 'fas fa-link',
+        command: () => {
+          this.GerarLinkExternoCadastroPessoa();
+        }
+      }
+    ];
+  }
+
+
+  obterItensListas(){
+    return  [
+      {
+        label: 'Notificações',
+        icon: 'fas fa-bell',
+        command: () => {
+          this.router.navigate(['../notificacao']);
+        }
+      },
+      {
+        label: 'Pessoas',
+        icon: 'fas fa-users',
+        command: () => {
+          this.router.navigate(['../pessoa-lista-pagina']);
+        }
+      },
+      {
+        label: 'Processos',
+        icon: 'fas fa-balance-scale',
+        command: () => {
+          this.router.navigate(['../processo-lista']);
+        }
+      }
+    ];
+  }
+
+  TelasQueNaoAparecemMenu() : boolean {
+    const currentUrl = this.router.url;
+    if (currentUrl.includes('/') ||
+        currentUrl.includes('login')
+        )
+      return false
+    return true
   }
 
   listarTemplates() {
@@ -88,8 +161,9 @@ export class MenuLateralComponent {
   //   this.arquivoProcessoTemplateService.DownloadArquivoTemplate(1)
   // }
 
-  ConfiguraArquivoTemplateModal(event: Event, arquivo: ArquivoProcessoTemplate) {
-    event.preventDefault();
+  // ConfiguraArquivoTemplateModal(event: Event, arquivo: ArquivoProcessoTemplate) {
+  ConfiguraArquivoTemplateModal(arquivo: ArquivoProcessoTemplate) {
+    // event.preventDefault();
 
     const ref = this.dialogService.open(ArquivoProcessoTemplateConfigurarModalComponent, {
       header: 'Configurar Template',
@@ -180,8 +254,8 @@ export class MenuLateralComponent {
     this.menuExpandido = !this.menuExpandido;
   }
 
-  GerarLinkExternoCadastroPessoa(event: Event) {
-    event.preventDefault();
+  GerarLinkExternoCadastroPessoa() {
+
 
     const ref = this.dialogService.open(ControlePessoaExternaComponent, {
       header: 'Gerar link externo',
@@ -203,8 +277,8 @@ export class MenuLateralComponent {
     // });
   }
 
-  NovoTemplate(event: Event){
-    event.preventDefault();
+  NovoTemplate(){
+    // event.preventDefault();
 
     const ref = this.dialogService.open(ArquivoProcessoTemplateUploadModalComponent, {
       header: 'Upload Arquivo',

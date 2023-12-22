@@ -1,3 +1,5 @@
+import { Endereco } from './endereco'
+
 export interface Pessoa {
   id: number;
   nome: string;
@@ -18,6 +20,15 @@ export interface Pessoa {
   estadoCivil: string | null;
   cadastroExterno: boolean;
   controlePessoaExternaId: number | null;
+  endereco: {
+    numero: string;
+    rua: string;
+    bairro: string;
+    municipio: string;
+    cidade: string;
+    estado: string;
+    cep: string;
+  }
 }
 
 export class PessoaImpl implements Pessoa {
@@ -40,6 +51,15 @@ export class PessoaImpl implements Pessoa {
   estadoCivil: string | null = null;
   cadastroExterno: boolean = false;
   controlePessoaExternaId: number | null = null;
+  endereco = {
+    numero: '',
+    rua: '',
+    bairro: '',
+    municipio: '',
+    cidade: '',
+    estado: '',
+    cep: '',
+  }
 
   constructor(partial?: Partial<Pessoa>) {
     Object.assign(this, partial);

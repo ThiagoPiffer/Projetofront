@@ -1,14 +1,22 @@
 <div class="header">
-  <span class="project-title">P R O J E T O</span>
-  <div class="topbar-menu fadeInDown" *ngIf="userEmail">
+  <div class="icone-projeto-image">
+    <!-- Imagem do usuário (adicione sua lógica de caminho de imagem aqui) -->
+    <img src="/assets/images/Icone-projeto.png" alt="Projeto" />
+  </div>
+  <div class="titulo-projeto-image">
+    <!-- Imagem do usuário (adicione sua lógica de caminho de imagem aqui) -->
+    <img src="/assets/images/titulo-projeto-2.png" alt="Projeto" />
+  </div>
+  <div class="topbar-menu fadeInDown" >
+    <div *ngIf="userEmail">
     <!-- Item do perfil do usuário -->
     <div class="profile-item">
 
       <!-- Icone para notificações -->
       <span class="notification-icon">
         <ng-container *ngIf="notificationCount > 0; else nonClickableIcon">
-            <a href="#" (click)="abrirNotificao(); $event.preventDefault()">
-                <i class="topbar-icon pi pi-bell pi-fw menu-bold-icon" style="margin-right: 10px;"></i>
+            <a href="#" (click)="abrirNotificao(); $event.preventDefault()" class="iconMenu-hover">
+                <i class="topbar-icon pi pi-bell pi-fw menu-bold-icon cor-padrao" style="margin-right: 10px;"></i>
                 <!-- Marcador de notificações -->
                 <span class="notification-badge">{{ notificationCount }}</span>
             </a>
@@ -47,6 +55,7 @@
         </p-menu>
       </div>
     </ul>
+  </div>
   </div>
 </div>
 

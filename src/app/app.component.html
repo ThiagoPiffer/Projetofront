@@ -3,9 +3,11 @@
 
 <app-menu-lateral (estadoMenuAlterado)="menuExpandido = $event"></app-menu-lateral>
 
-<main [ngClass]="{'conteudo-principal-menu-expandido': menuExpandido, 'conteudo-principal-menu-retraido': !menuExpandido}">
-  <router-outlet></router-outlet>
-</main>
+  <main [ngClass]="{'conteudo-principal-menu-expandido': menuExpandido, 'conteudo-principal-menu-retraido': !menuExpandido}">
+    <div *ngIf="menuExpandido" class="border-top-cabecalho"></div>
+    <router-outlet></router-outlet>
+  </main>
 
-<app-rodape></app-rodape>
+
+<!-- <app-rodape></app-rodape> -->
 

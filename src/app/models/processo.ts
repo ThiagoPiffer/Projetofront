@@ -2,10 +2,11 @@ export interface Processo {
   id: number;
   numero: string;
   descricao: string;
-  dataCadastro: String | null;
-  dataInicio: String | null;
-  dataPrevista: String | null;
-  dataFinal: String | null;
+  dataCadastro: string | null;
+  dataInicio: string | null;
+  dataPrevista: string | null;
+  dataFinal: string | null;
+  motivoFinal: string | null;
   valorCausa: number;
   grupoProcessoId: number | null;
   ativo: boolean;
@@ -19,6 +20,7 @@ export class ProcessoImpl implements Processo {
   dataInicio: string | null = null;
   dataPrevista: string | null = null;
   dataFinal: string | null = null;
+  motivoFinal: string | null = null;
   valorCausa: number = 0;
   grupoProcessoId: number | null = null;
   ativo: boolean = true;

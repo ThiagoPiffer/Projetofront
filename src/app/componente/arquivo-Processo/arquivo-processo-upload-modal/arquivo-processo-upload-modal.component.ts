@@ -24,7 +24,7 @@ export class ArquivoProcessoUploadModalComponent {
   @Input() displayModal = true; // Inicialização padrão
   @Output() close = new EventEmitter<boolean>();
   uploadedFiles: any[] = [];
-  maxFileSizeNumber: number = 1000000;
+  maxFileSizeNumber: number = 10000000000;
   processoId: number = 0;
 
 

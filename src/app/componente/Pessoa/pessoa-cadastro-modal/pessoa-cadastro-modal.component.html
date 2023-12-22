@@ -78,6 +78,106 @@
     </div>
   </div>
 
+  <!-- Estado Civil input -->
+  <div class="row my-2 mt-4">
+    <div class="col-6 p-float-label">
+      <input class="w-100" pInputText id="estadoCivil" [(ngModel)]="novaPessoa.estadoCivil" required #estadoCivilField="ngModel" />
+      <label class="input-padding" htmlFor="estadoCivil">Estado Civil</label>
+      <div *ngIf="estadoCivilField.errors && estadoCivilField.errors['required'] && estadoCivilField.touched" class="error-message">
+          Estado Civil é obrigatório.
+      </div>
+    </div>
+    <!-- Profissão input -->
+    <div class="col-6 p-float-label">
+      <input class="w-100" pInputText id="profissao" [(ngModel)]="novaPessoa.profissao" required #profissaoField="ngModel" />
+      <label class="input-padding" htmlFor="profissao">Profissão</label>
+      <div *ngIf="profissaoField.errors && profissaoField.errors['required'] && profissaoField.touched" class="error-message">
+          Profissao é obrigatório.
+      </div>
+    </div>
+  </div>
+
+  <div class="row my-2 mt-4">
+    <!-- Profissão input -->
+    <div class="col-6 p-float-label">
+      <input class="w-100" pInputText id="nacionalidade" [(ngModel)]="novaPessoa.nacionalidade" required #nacionalidadeField="ngModel" />
+      <label class="input-padding" htmlFor="nacionalidade">Nacionalidade</label>
+      <div *ngIf="nacionalidadeField.errors && nacionalidadeField.errors['required'] && nacionalidadeField.touched" class="error-message">
+          Nacionalidade é obrigatório.
+      </div>
+    </div>
+    <!-- linha em branco -->
+    <div class="col-6 p-float-label">
+    </div>
+  </div>
+
+  <!-- Cep input -->
+  <div class="row my-2 mt-4">
+    <div class="col-6 p-float-label">
+      <input class="w-100" pInputText id="cep" [(ngModel)]="novaPessoa.endereco.cep" required #cepField="ngModel" />
+      <label class="input-padding" htmlFor="cep">CEP</label>
+      <div *ngIf="cepField.errors && cepField.errors['required'] && cepField.touched" class="error-message">
+          CEP é obrigatório.
+      </div>
+    </div>
+    <!-- linha em branco -->
+    <div class="col-6 p-float-label">
+    </div>
+  </div>
+
+   <!-- Numero input -->
+   <div class="row my-2 mt-4">
+    <div class="col-6 p-float-label">
+      <input class="w-100" pInputText id="numero" [(ngModel)]="novaPessoa.endereco.numero" required #numeroField="ngModel" />
+      <label class="input-padding" htmlFor="numero">Número</label>
+      <div *ngIf="numeroField.errors && numeroField.errors['required'] && numeroField.touched" class="error-message">
+          Número é obrigatório.
+      </div>
+    </div>
+    <!-- Rua input -->
+    <div class="col-6 p-float-label">
+      <input class="w-100" pInputText id="rua" [(ngModel)]="novaPessoa.endereco.rua" required #ruaField="ngModel" />
+      <label class="input-padding" htmlFor="rua">Rua</label>
+      <div *ngIf="ruaField.errors && ruaField.errors['required'] && ruaField.touched" class="error-message">
+          Rua é obrigatório.
+      </div>
+    </div>
+  </div>
+
+     <!-- Bairro input -->
+     <div class="row my-2 mt-4">
+      <div class="col-6 p-float-label">
+        <input class="w-100" pInputText id="bairro" [(ngModel)]="novaPessoa.endereco.bairro" required #bairroField="ngModel" />
+        <label class="input-padding" htmlFor="bairro">Bairro</label>
+        <div *ngIf="bairroField.errors && bairroField.errors['required'] && bairroField.touched" class="error-message">
+            Bairro é obrigatório.
+        </div>
+      </div>
+      <!-- Cidade input -->
+      <div class="col-6 p-float-label">
+        <input class="w-100" pInputText id="cidade" [(ngModel)]="novaPessoa.endereco.cidade" required #cidadeField="ngModel" />
+        <label class="input-padding" htmlFor="cidade">Cidade</label>
+        <div *ngIf="cidadeField.errors && cidadeField.errors['required'] && cidadeField.touched" class="error-message">
+            Cidade é obrigatório.
+        </div>
+      </div>
+    </div>
+
+      <!-- Estado input -->
+  <div class="row my-2 mt-4">
+    <div class="col-6 p-float-label">
+      <input class="w-100" pInputText id="estado" [(ngModel)]="novaPessoa.endereco.estado" required #estadoField="ngModel" />
+      <label class="input-padding" htmlFor="estado">estado</label>
+      <div *ngIf="estadoField.errors && estadoField.errors['required'] && estadoField.touched" class="error-message">
+          Estado é obrigatório.
+      </div>
+    </div>
+    <!-- linha em branco -->
+    <div class="col-6 p-float-label">
+    </div>
+  </div>
+
+
   <!-- Buttons for cancel and confirm -->
   <div class="row my-2">
     <div class="col-12 text-end">

@@ -30,8 +30,8 @@
 }
 
 .profile-image img {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   object-fit: cover;
   margin-right: 10px;     /* Isso adiciona um pequeno espaço à direita da imagem */
@@ -44,7 +44,7 @@
 }
 
 .profile-info span {
-  color: white;          /* Isso define a cor do texto como branco */
+  color: rgb(0, 0, 0);          /* Isso define a cor do texto como branco */
   font-family: 'Montserrat', sans-serif;
   cursor: pointer;       /* Isso muda o cursor para um ponteiro quando o mouse passa por cima */
   margin-right: 20px;  /* Ajuste este valor conforme a distância desejada */
@@ -53,15 +53,16 @@
 .profile-name {
   font-size: 18px;  /* Ajuste conforme necessário */
   font-family: 'Montserrat', sans-serif;
-  color: white;
+  color: rgb(0, 0, 0);
   cursor: pointer;
 }
 
 .profile-role {
   font-size: 11px;  /* Ajuste conforme necessário */
   font-family: 'Montserrat', sans-serif;
-  color: white;
+  color: rgb(0, 0, 0);
   cursor: pointer;
+  margin-top: -5px;
 }
 
 .profile-item {
@@ -71,8 +72,23 @@
 }
 
 .notification-icon {
-  margin-right: 10px; /* Ajuste conforme necessário */
+  padding: 5px 1px 8px 5px;
+  margin-right: 10px;
   position: relative;
+  width: 40px;
+  height: 40px; /* Adicione altura para torná-lo um quadrado */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.iconMenu-hover:hover {
+  padding: 5px 1px 5px 1px;
+  background-color: #55555518; /* Cor de fundo ao passar o mouse */
+  border-radius: 50%; /* Mantém o ícone redondo */
+  /* Remova as mudanças de padding que alteram o tamanho */
+  /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);  */
 }
 
 
@@ -84,14 +100,14 @@
 }
 
 .menu-bold-icon {
-  color: white;
+  color: rgb(0, 0, 0);
   font-weight: bold;
   font-size: 25px;
   margin-top: 5px;
 }
 
 .topbar-icon {
-  color: white;
+  color: rgb(0, 0, 0);
   font-weight: bold;
 }
 
@@ -106,4 +122,16 @@
   font-size: 9px;
 }
 
+.icone-projeto-image {
+  margin-left: 15px;
+}
 
+.icone-projeto-image  img {
+  width: 60px;
+  z-index: 999;
+}
+
+
+.titulo-projeto-image img {
+  width: 90px;
+}

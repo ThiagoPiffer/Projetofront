@@ -16,8 +16,8 @@ export class EventoService {
     private utilsService: UtilsService
   ) { }
 
-  listar(processoId: number): Observable<EventoModel[]> {
-    return this.http.get<EventoModel[]>(`${this.utilsService.API}${this.endpointBase}/Listar?processoId=${processoId}`);
+  listar(processoId: number, exibeEncerrados: boolean): Observable<EventoModel[]> {
+    return this.http.get<EventoModel[]>(`${this.utilsService.API}${this.endpointBase}/Listar?processoId=${processoId}&exibeEncerrados=${exibeEncerrados}`);
   }
 
   obterPorId(id: number): Observable<EventoModel> {
@@ -38,5 +38,16 @@ export class EventoService {
 
   buscarEventoStatus(eventoId: number): Observable<EventoStatusPersonalizadoModel> {
     return this.http.get<EventoStatusPersonalizadoModel>(`${this.utilsService.API}${this.endpointBase}/BuscarProcessoStatus?eventoId=${eventoId}`);
+  }
+
+  reabrirEvento(evento: EventoModel): Observable<EventoModel> {
+    console.log(evento)
+    return this.http.put<EventoModel>(`${this.utilsService.API}${this.endpointBase}/ReabrirEvento`, evento)
+  }
+
+  finalizarEvento(evento: EventoModel): Observable<EventoModel> {
+    console.log(evento)
+    console.log(`${this.utilsService.API}${this.endpointBase}/finalizarEvento`)
+    return this.http.put<EventoModel>(`${this.utilsService.API}${this.endpointBase}/finalizarEvento`, evento)
   }
 }

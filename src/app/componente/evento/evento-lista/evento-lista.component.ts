@@ -19,6 +19,7 @@ export class EventoListaComponent implements OnInit {
 
   eventos: EventoModel[] = [];
   processoId: number = 0;
+  exibeEncerrados = false;
 
   eventoStatusPersonalizado = new EventoStatusPersonalizadoImpl();
 
@@ -41,13 +42,18 @@ export class EventoListaComponent implements OnInit {
   }
 
   listarEventos(){
-    this.eventoService.listar(this.processoId).subscribe(
+    this.eventoService.listar(this.processoId, this.exibeEncerrados).subscribe(
       {
         next: (data) => {
           this.eventos = data;
         }
       }
     )
+  }
+
+  listarEncerradosToggle(){
+    this.exibeEncerrados = !this.exibeEncerrados
+    this.listarEventos();
   }
 
   exibirListaEvento(){
@@ -105,18 +111,65 @@ export class EventoListaComponent implements OnInit {
     })
   }
 
-  getMenuEventos(id: number){
+  getMenuEventos(evento: EventoModel){
     return [
+      {
+        label: evento.encerrado ? 'Reabrir Evento' : 'Finalizar Evento',
+        icon: 'fas fa-clipboard-check',
+        command: () => {
+          evento.encerrado ? this.reabrirEvento(evento) : this.finalizarEvento(evento)
+        }
+      },
       {
           label: 'Editar',
           icon: 'pi pi-pencil',
-          command: () => this.editarEvento(id)
+          command: () => this.editarEvento(evento.id)
       },
       {
           label: 'Excluir',
           icon: 'pi pi-times',
-          command: () => this.excluirEvento(id)
+          command: () => this.excluirEvento(evento.id)
       }
     ];
+  }
+
+  reabrirEvento(evento: EventoModel) {
+    this.eventoService.reabrirEvento(evento).subscribe({
+      next: (data) => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Sucesso',
+          detail: 'Evento reaberto.',
+          sticky: true
+        });
+
+        // Recarregar a página após 2 segundos
+        setTimeout(() => {
+          this.recarregarPagina();
+        }, 2000);
+      }
+    });
+  }
+
+  finalizarEvento(evento: EventoModel) {
+    this.eventoService.finalizarEvento(evento).subscribe({
+      next: (data) => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Sucesso',
+          detail: 'Evento finalizado.',
+          sticky: true
+        });
+
+        // Recarregar a página após 2 segundos
+        setTimeout(() => {
+          this.recarregarPagina();
+        }, 2000);
+      }
+    });
+  }
+
+  recarregarPagina(){
+    window.location.reload();
   }
 }

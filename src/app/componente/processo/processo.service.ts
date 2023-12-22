@@ -29,17 +29,25 @@ export class ProcessoService {
     return this.http.get<Processo>(this.utilsService.API + '/Processo/ObterPorId?id=' + id);
   }
 
-  editar(processoDto: Processo): Observable<Processo> {
-    return this.http.put<Processo>(this.utilsService.API + '/Processo/Editar', processoDto)
+  editar(processo: Processo): Observable<Processo> {
+    return this.http.put<Processo>(this.utilsService.API + '/Processo/Editar', processo)
   }
 
-  salvar(processoDto: Processo): Observable<Processo> {
-    return this.http.post<Processo>(this.utilsService.API + '/Processo/Adicionar', processoDto)
+  reabrirProcesso(processo: Processo): Observable<Processo> {
+    return this.http.put<Processo>(this.utilsService.API + '/Processo/ReabrirProcesso', processo)
+  }
+
+  finalizar(processo: Processo): Observable<Processo> {
+    return this.http.put<Processo>(this.utilsService.API + '/Processo/Finalizar', processo)
+  }
+
+  salvar(processo: Processo): Observable<Processo> {
+    return this.http.post<Processo>(this.utilsService.API + '/Processo/Adicionar', processo)
   }
 
 
-  deletar(processoDto: Processo): Observable<any> {
-    return this.http.delete<any>(this.utilsService.API + '/Processo/Deletar?id=' + processoDto.id)
+  deletar(processo: Processo): Observable<any> {
+    return this.http.delete<any>(this.utilsService.API + '/Processo/Deletar?id=' + processo.id)
   }
 
 }

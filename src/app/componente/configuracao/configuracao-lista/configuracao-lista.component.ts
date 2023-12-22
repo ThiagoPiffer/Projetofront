@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./configuracao-lista.component.css']
 })
 export class ConfiguracaoListaComponent {
-
+  iconePagina = 'pi pi-cog'
+  caminhoPagina = 'Configurações'
 }

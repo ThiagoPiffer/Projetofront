@@ -1,13 +1,23 @@
 <p-toast></p-toast>
-<div class="row mt-3">
-  <div class="col-6 mx-auto">
-    <h2 class="mb-3">Pessoas Externas</h2>
-    <div class="box m-2 p-2 rounded-box">
-      <app-pessoa-lista
-        [exibeCadastro]="false"
-        [salvarCadastroExterno]="true"
-        [listaNotificacao]="true"
-      ></app-pessoa-lista>
+<div class="conteudo">
+  <div class="row topoPagina">
+    <div class="col-6 mx-auto">
+      <span [ngClass]="iconePagina" class="icone-padrao cor-padrao"></span>
+      <span class="divisorPagina">/</span>
+      <span class="texto-padrao cor-padrao">{{ caminhoPagina }}</span>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-6 mx-auto">
+      <h2 class="mb-3">Pessoas Externas</h2>
+      <div class="box m-2 p-2 rounded-box">
+        <app-pessoa-lista
+          [exibeCadastro]="false"
+          [salvarCadastroExterno]="true"
+          [listaNotificacao]="true"
+        ></app-pessoa-lista>
+      </div>
     </div>
   </div>
 </div>

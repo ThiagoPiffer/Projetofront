@@ -120,6 +120,10 @@
   font-size: 18px;
 }
 
+.error-message{
+  color: orangered;
+  font-size: 11px;
+}
 
 
 

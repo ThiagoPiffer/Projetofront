@@ -38,17 +38,33 @@
               <div class="p-2">
                 <div class="row">
                     <div class="col-6">
-                      <strong>Celular:</strong> ({{ pessoa.dddCelular }}) {{ pessoa.celular }}</div>
+                      <strong>Celular:</strong> {{ pessoa.celular }}</div>
                     <div class="col-6">
                       <strong>CPF/CNPJ:</strong> {{ pessoa.cpfcnpj }}</div>
                     <div class="col-6">
-                      <strong>Telefone:</strong> ({{ pessoa.dddTelefone }}) {{ pessoa.telefone }}</div>
+                      <strong>Telefone:</strong> {{ pessoa.telefone }}</div>
                     <div class="col-6">
                       <strong>Identidade:</strong> {{ pessoa.identidade }}</div>
                     <div class="col-6">
-                      <strong>Data de Nascimento:</strong> {{ pessoa.dataNascimento | date : 'dd/MM/yyyy' }}</div>
-                    <div class="col-6">
                       <strong>Email:</strong> {{ pessoa.email }}</div>
+                    <div class="col-6">
+                      <strong>Estado Civil:</strong> {{ pessoa.estadoCivil }}</div>
+                    <div class="col-6">
+                    <strong>Profissão:</strong> {{ pessoa.profissao }}</div>
+                    <div class="col-6">
+                      <strong>Nacionalidade:</strong> {{ pessoa.nacionalidade }}</div>
+                    <div class="col-6">
+                      <strong>CEP:</strong> {{ pessoa.endereco.cep }}</div>
+                    <div class="col-6">
+                      <strong>Número:</strong> {{ pessoa.endereco.numero }}</div>
+                    <div class="col-6">
+                      <strong>Rua:</strong> {{ pessoa.endereco.rua }}</div>
+                    <div class="col-6">
+                      <strong>Bairro:</strong> {{ pessoa.endereco.bairro }}</div>
+                    <div class="col-6">
+                      <strong>Cidade:</strong> {{ pessoa.endereco.cidade }}</div>
+                    <div class="col-6">
+                      <strong>Estado:</strong> {{ pessoa.endereco.estado }}</div>
                 </div>
               </div>
             </td>

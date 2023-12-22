@@ -1,5 +1,5 @@
 import { GrupoProcesso } from './../../../models/grupoprocesso';
-import { Processo } from '../../../models/processo';
+import { Processo, ProcessoImpl } from '../../../models/processo';
 import { GrupoProcessoModel } from 'src/app/models/grupoprocessoModel';
 import { ProcessoCadastroModalComponent } from '../processo-cadastro-modal/processo-cadastro-modal.component';
 
@@ -21,6 +21,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 
 import { ChangeDetectorRef } from '@angular/core';
 import { Table } from 'primeng/table';
+import { FormControl, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -37,6 +38,9 @@ import { Table } from 'primeng/table';
 })
 
 export class ProcessoListaComponent implements OnInit {
+  iconePagina = 'fas fa-balance-scale'
+  caminhoPagina = 'Lista de Processos'
+
   listaGrupos: GrupoProcessoModel[] = [];
   // listaGruposItem: Record<string, Processo[]>[] = [{
   //   "Grupo 1": [
@@ -59,13 +63,15 @@ export class ProcessoListaComponent implements OnInit {
   editingNewGroup: boolean | null = null;
   listaProcessos: Processo[] = [];
 
-  mapaItensMenu: Map<number, any[]> = new Map();
+  mapaItensMenuProcesso: Map<number, any[]> = new Map();
+  mapaItensMenuGrupoProcesso: Map<number, any[]> = new Map();
 
   paginaAtual = 1;
   filtro: string = '';
   favoritos: boolean = false;
 
-  visibleModalExcluir: boolean = false;
+  visibleModalExcluirProcesso: boolean = false;
+  visibleModalExcluirGrupoProcesso: boolean = false;
 
   grupoAntigo: GrupoProcesso = {
     id: 0,
@@ -81,41 +87,46 @@ export class ProcessoListaComponent implements OnInit {
     ativo: true
   };
 
-  processoAntigo: Processo = {
-    id: 0,
-    numero: '',
-    descricao: '',
-    dataCadastro: '',
-    dataFinal: '',
-    dataInicio: null,
-    dataPrevista: null,
-    valorCausa: 0,
-    grupoProcessoId: null,
-    ativo: true,
-  };
+  processoAntigo = new ProcessoImpl();
+  // processoAntigo: Processo = {
+  //   id: 0,
+  //   numero: '',
+  //   descricao: '',
+  //   dataCadastro: '',
+  //   dataFinal: '',
+  //   dataInicio: null,
+  //   dataPrevista: null,
+  //   valorCausa: 0,
+  //   grupoProcessoId: null,
+  //   ativo: true,
+  // };
 
-  novoProcesso: Processo = {
-    id: 0,
-    numero: '',
-    descricao: '',
-    dataCadastro: '',
-    dataFinal: '',
-    dataInicio: null,
-    dataPrevista: null,
-    valorCausa: 0,
-    grupoProcessoId: null,
-    ativo: true,
-  };
+  novoProcesso = new ProcessoImpl();
+  // novoProcesso: Processo = {
+  //   id: 0,
+  //   numero: '',
+  //   descricao: '',
+  //   dataCadastro: '',
+  //   dataFinal: '',
+  //   dataInicio: null,
+  //   dataPrevista: null,
+  //   valorCausa: 0,
+  //   grupoProcessoId: null,
+  //   ativo: true,
+  // };
 
   items: MenuItem[] | undefined;
   novoProcessos: Processo[] = [];
   processoExcluir: Processo | null = null;
+  grupoProcessoExcluir: GrupoProcesso | null = null;
 
   editando: boolean = false;
   @ViewChild('dt', { static: false }) dataTable: Table | undefined;
+  exibeEncerrados = false;
 
-
-
+  formGroup = new FormGroup({
+    cbExibeEncerrados: new FormControl('')
+  });
 
 
   constructor(private processoService: ProcessoService,
@@ -154,9 +165,19 @@ export class ProcessoListaComponent implements OnInit {
     // ];
   }
 
-  exibirModalExcluir(processo: Processo) {
-    this.visibleModalExcluir = true;
+  exibirModalExcluirProcesso(processo: Processo) {
+    this.visibleModalExcluirProcesso = true;
     this.processoExcluir = processo;
+  }
+
+  listarEncerradosToggle(){
+    this.exibeEncerrados = !this.exibeEncerrados
+    this.listarGrupoProcesso();
+  }
+
+  exibirModalExcluirGrupoProcesso(grupoProcesso: GrupoProcesso) {
+    this.visibleModalExcluirGrupoProcesso = true;
+    this.grupoProcessoExcluir = grupoProcesso;
   }
 
   exibirDetable(processo: Processo) {
@@ -164,11 +185,25 @@ export class ProcessoListaComponent implements OnInit {
     this.router.navigate(['../processo-detalhe']); // Navegação para o componente destino
   }
 
-  delete() {
+  deleteProcesso() {
     this.processoService.deletar(this.processoExcluir!).subscribe({
       next: () => {
         this.listarGrupoProcesso();
-        this.visibleModalExcluir = false
+        this.visibleModalExcluirProcesso = false
+        this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Processo excluído' });
+      },
+      error: err => {
+        console.error('Erro ao excluir o processo:', err);
+      }
+    });
+  }
+
+  deleteGrupoProcesso() {
+    this.grupoprocessoService.deletar(this.grupoProcessoExcluir!).subscribe({
+      next: () => {
+        this.listarGrupoProcesso();
+        this.visibleModalExcluirGrupoProcesso = false
+        this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Grupo processo excluído' });
       },
       error: err => {
         console.error('Erro ao excluir o processo:', err);
@@ -180,16 +215,21 @@ export class ProcessoListaComponent implements OnInit {
     return data ? new Date(data) : null;
   }
 
-  obterItensMenu(processo: any, rowIndex: number): MenuItem[] {
-    const items = this.mapaItensMenu.get(processo.id);
+  obterItensMenuProcesso(processo: any, rowIndex: number): MenuItem[] {
+    const items = this.mapaItensMenuProcesso.get(processo.id);
+    return items ? items : [];
+  }
+
+  obterItensMenuGrupoProcesso(grupo: any, rowIndex: number): MenuItem[] {
+    const items = this.mapaItensMenuGrupoProcesso.get(grupo.id);
     return items ? items : [];
   }
 
 
   listarProcessos(): void {
     this.processoService.listar()
-    .subscribe(
-      (processos: Processo[]) => {
+    .subscribe({
+      next: (processos: Processo[]) => {
         this.listaProcessos = processos.map(processo => ({
           ...processo,
           dataInicio: processo.dataInicio ? this.utilsService.formatarData(processo.dataInicio.toString()) : null,
@@ -199,7 +239,7 @@ export class ProcessoListaComponent implements OnInit {
 
 
         this.listaProcessos.forEach(processo => {
-          this.mapaItensMenu.set(processo.id, [
+          this.mapaItensMenuProcesso.set(processo.id, [
             {
               label: 'Detalhes',
               icon: 'pi pi-external-link',
@@ -212,7 +252,7 @@ export class ProcessoListaComponent implements OnInit {
               label: 'Deletar',
               icon: 'pi pi-times',
               command: () => {
-                this.exibirModalExcluir(processo);
+                this.exibirModalExcluirProcesso(processo);
               }
             }
           ]);
@@ -222,17 +262,17 @@ export class ProcessoListaComponent implements OnInit {
 
 
       },
-      (error) => {
+      error: (error) => {
         console.error('Ocorreu um erro ao listar os processos:', error);
         this.listaProcessos = []; // Atribui um array vazio em caso de erro
       }
-    );
+    });
   }
 
   listarGrupoProcesso(): void {
-    this.grupoprocessoService.listar().subscribe(
+    this.grupoprocessoService.listar(this.exibeEncerrados).subscribe(
       (grupoProcesso: GrupoProcessoModel[]) => {
-        if (grupoProcesso.length == 0 )
+        if (grupoProcesso.length == 0 && this.exibeEncerrados == false)
           this.grupoprocessoService.criaGrupoInicial().subscribe(
             () => {
               this.listarGrupoProcesso()
@@ -247,8 +287,20 @@ export class ProcessoListaComponent implements OnInit {
           this.listaGrupos = grupoProcesso; // Atribui a lista de objetos "grupoProcesso" a "listaGrupos".
 
           this.listaGrupos.forEach(grupo => {
+
+            this.mapaItensMenuGrupoProcesso.set(grupo.id, [
+              {
+                label: 'Deletar',
+                icon: 'pi pi-times',
+                command: () => {
+                  this.exibirModalExcluirGrupoProcesso(grupo);
+                }
+              }
+            ]);
+
+
             grupo.processos.forEach(processo => {
-              this.mapaItensMenu.set(processo.id, [
+              this.mapaItensMenuProcesso.set(processo.id, [
                 {
                   label: 'Detalhes',
                   icon: 'pi pi-external-link',
@@ -267,7 +319,7 @@ export class ProcessoListaComponent implements OnInit {
                   label: 'Deletar',
                   icon: 'pi pi-times',
                   command: () => {
-                    this.exibirModalExcluir(processo);
+                    this.exibirModalExcluirProcesso(processo);
                   }
                 }
               ]);
@@ -282,6 +334,7 @@ export class ProcessoListaComponent implements OnInit {
             dataInicio: null,
             dataPrevista: null,
             dataFinal: null,
+            motivoFinal: null,
             valorCausa: 0,
             grupoProcessoId: null,
             ativo: true,
@@ -424,7 +477,7 @@ export class ProcessoListaComponent implements OnInit {
     processo.grupoProcessoId = grupo.id;
     processo.ativo = true;
 
-    if (processo.numero !== '') {
+    if (processo.descricao !== '') {
       this.processoService.salvar(processo).subscribe({
         next: () => {
           this.messageService.add({ severity: 'success', summary: 'Successo', detail: 'Cadastro realizado com sucesso' });
@@ -439,12 +492,12 @@ export class ProcessoListaComponent implements OnInit {
     if (processoId === 0) {
       ref = this.dialogService.open(ProcessoCadastroModalComponent, {
         header: 'Cadastrar Processo',
-        width: '25%',
+        width: '75%',
       });
     } else {
       ref = this.dialogService.open(ProcessoCadastroModalComponent, {
         header: 'Editar Processo',
-        width: '25%',
+        width: '75%',
         data: { processoId: processoId, grupoId: grupoId  }
       });
     }
